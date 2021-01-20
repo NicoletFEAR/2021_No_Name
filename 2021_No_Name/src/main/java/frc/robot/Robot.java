@@ -1,12 +1,12 @@
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
+// the WPILib BSD license file in the root directory o
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.drivebase.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -15,17 +15,37 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * project.
  */
 public class Robot extends TimedRobot {
+  
+  public static OI oi;
+  public static DriveBase driveBase;
+  
+  
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
-  /**
+  /** 
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
   @Override
   public void robotInit() {
+    
+    //RobotMAP.init();
+    DriveBaseMAP.init();
+
+    driveBase = new DriveBase();
+    SmartDashboard.putBoolean("isFront", driveBase.isFrontFacing());
+    
+    oi = new OI();
+
+    
+    driveBase.setDefaultCommand(new OpenLoopDrive()); // means OpenLoopDrive runs
+    // intake.setDefaultCommand(new OpenLoopIntake());
+
+    
+    
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
@@ -39,8 +59,10 @@ public class Robot extends TimedRobot {
    * SmartDashboard integrated updating.
    */
   @Override
-  public void robotPeriodic() {}
-
+  public void robotPeriodic() {
+    
+    // CommandScheduler.getInstance().run();
+  }
   /**
    * This autonomous (along with the chooser code above) shows how to select between different
    * autonomous modes using the dashboard. The sendable chooser code works with the Java
