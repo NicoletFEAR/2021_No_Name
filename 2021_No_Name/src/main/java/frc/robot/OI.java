@@ -105,7 +105,29 @@ public class OI {
         xbox1DpadDown225 = new POVButton(xbox1, 315);
         xbox1DpadLeft = new POVButton(xbox1, 270);
 
-        // xbox0X.whenPressed(() -> Robot.driveBase.switchFront());
+        // xbox0 for normal operation
+        xbox0X.whenPressed(() -> Robot.driveBase.switchFront()); 
+
+        // D pad up and down for intake piston
+        xbox0DpadUp.whenPressed(() -> Robot.intake.up());
+        xbox0DpadDown.whenPressed(() -> Robot.intake.down());
+        
+        // Y for automatic shooting (whenHeld we think)
+        //xbox0Y.whenHeld(whatever out full auto shooting is)
+
+        // A whileHeld lambda for constant intake
+        xbox0A.whileHeld(() -> Robot.intake.intake());
+        
+        // left joy y axis for intake variable
+        // i think this might just be inside of a default command im not sure tho
+
+        // xbox1 for manual shooter stuff
+        // right trigger for firing speed
+        // left trigger for intake speed
+        // left joystick x axis for turret manual
+        // a button when held for hold noodles to actually fire balls
+        xbox1A.whileHeld(() -> Robot.shooter.runHold());
+        // 
 
         // xbox1Y.whileHeld(new ClimbUp(), true);
         // xbox1X.whileHeld(new ClimbReset(), true);

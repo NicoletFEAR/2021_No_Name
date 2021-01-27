@@ -6,7 +6,10 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.drivebase.*;
+import frc.robot.intake.*;
+import frc.robot.shooter.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -16,10 +19,14 @@ import frc.robot.drivebase.*;
  */
 public class Robot extends TimedRobot {
   
+  // our subsystems
   public static OI oi;
   public static DriveBase driveBase;
+  public static Shifter shifter;
+  public static Intake intake;
+  public static Shooter shooter;
   
-  
+  // some default auto stuff, may be removed later
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
@@ -32,13 +39,17 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     
-    //RobotMAP.init();
+    //RobotMAP.init(); // we might not need this
     DriveBaseMAP.init();
 
     driveBase = new DriveBase();
     SmartDashboard.putBoolean("isFront", driveBase.isFrontFacing());
     
-    oi = new OI();
+    shifter = new Shifter();
+    intake = new Intake();
+    shooter = new Shooter();
+    
+    oi = new OI(); // this comes after the subsystems!
 
     
     driveBase.setDefaultCommand(new OpenLoopDrive()); // means OpenLoopDrive runs
@@ -61,7 +72,9 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     
-    // CommandScheduler.getInstance().run();
+    CommandScheduler.getInstance().run();
+
+    
   }
   /**
    * This autonomous (along with the chooser code above) shows how to select between different
@@ -74,7 +87,7 @@ public class Robot extends TimedRobot {
    * chooser code above as well.
    */
   @Override
-  public void autonomousInit() {
+  public void autonomousInit() { // start of auto
     m_autoSelected = m_chooser.getSelected();
     // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
     System.out.println("Auto selected: " + m_autoSelected);

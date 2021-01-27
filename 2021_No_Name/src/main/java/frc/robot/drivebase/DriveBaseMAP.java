@@ -5,6 +5,7 @@ package frc.robot.drivebase;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 
 /**
@@ -25,11 +26,14 @@ public class DriveBaseMAP {
     
     // Shifter
     public static DoubleSolenoid shifty = new DoubleSolenoid(0, 1);
-    public static double SHIFT_DOWN_THRESHOLD = 16; // NEEDS CLACULATING
+    public static double SHIFT_DOWN_THRESHOLD = 16; // NEEDS CALCULATING
     public static double SHIFT_UP_THRESHOLD = 15; // NEEDS CALCULATING
 
+    public static final Value LOW_GEAR = Value.kForward;
+    public static final Value HIGH_GEAR = Value.kReverse;
+
     // OpenLoopDriveCMD
-    public static final double TURN_SCALING = 0.3; // dampens sensitivity of controls to turning
+    public static final double TURN_SCALING = 1.0; // dampens sensitivity of controls to turning
     public static final double SPEED_SCALING = 1.0; // sets a max speed for driver control
     public static final double LEFT_RIGHT_ADJUST = 0.0; // basic adjust to keep robot applying roughly equal power
 
@@ -65,4 +69,16 @@ public class DriveBaseMAP {
 
     }
 
+    public static double getNEOEncoderRotations(CANSparkMax spark) {
+        return spark.getEncoder().getPosition(); // in # of rotations
+    }
+
+    public static double getNEOEncoderVelocity(CANSparkMax spark) {
+        return spark.getEncoder().getVelocity(); // in RPM
+    }
+
+    public static void resetEncoderNEO(CANSparkMax spark, double position) {
+        spark.getEncoder().setPosition(position); // in # of rotations
+    }
+    
 }
