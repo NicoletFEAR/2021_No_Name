@@ -44,7 +44,7 @@ public class ShooterMAP {
         flywheelMotor = new CANSparkMax(31, MotorType.kBrushless);
         hoodMotor = new CANSparkMax(32, MotorType.kBrushless);
         holdMotor = new CANSparkMax(33, MotorType.kBrushless);
-        turretMotor = new TalonSRX(26);  
+        turretMotor = new TalonSRX(34);  
         
         setUpFlywheelPID();
 
