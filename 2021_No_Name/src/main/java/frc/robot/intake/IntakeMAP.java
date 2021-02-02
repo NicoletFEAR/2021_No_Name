@@ -20,7 +20,7 @@ public class IntakeMAP {
 
         intakeMotor = new CANSparkMax(21, MotorType.kBrushless);
 
-        intakePiston = new DoubleSolenoid(0, 1);
+        intakePiston = new DoubleSolenoid(2, 3);
 
 
     }
