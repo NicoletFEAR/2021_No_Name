@@ -6,9 +6,9 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
-// import frc.robot.drivebase.OpenLoopDrive;
-// import frc.robot.climb.*;
-// import frc.robot.constants.*;
+import frc.robot.shooter.*;
+import frc.robot.shooter.hood.*;
+// import frc.robot.drivebase.*
 
 /**
  * interface to the commands and command groups that allow control of the robot.
@@ -117,6 +117,7 @@ public class OI {
 
         // A whileHeld lambda for constant intake
         xbox0A.whileHeld(() -> Robot.intake.intake());
+        xbox0A.whenReleased(() -> Robot.intake.stop()); // have to stop the motor
         
         // left joy y axis for intake variable
         // i think this might just be inside of a default command im not sure tho
@@ -125,12 +126,16 @@ public class OI {
         // right trigger for firing speed
         // left trigger for intake speed
         // left joystick x axis for turret manual
-        // a button when held for hold noodles to actually fire balls
-        xbox1A.whileHeld(() -> Robot.shooter.runHold());
-        // 
 
-        // xbox1Y.whileHeld(new ClimbUp(), true);
-        // xbox1X.whileHeld(new ClimbReset(), true);
+        // a button when held for hold noodles to actually fire balls
+        xbox1A.whileHeld(() -> Robot.hold.toShooter()); // 
+        xbox1A.whenReleased(() -> Robot.hold.stop());
+        
+
+        //Enable Manual Control of the Hood Mech
+        xbox1LeftStick.whenHeld(new OpenLoopHood()); //At the time of writing there is a weird squiggly underneath this. Hopefully it goes away. // it went away for me // try ctrl+s
+        xbox1LeftStick.whenHeld(new OpenLoopShooter()); //we can only hope wait what it's there for me now? something is really weird with my error highlighting tho
+       
     }
 
     // Driver
@@ -142,6 +147,8 @@ public class OI {
     public XboxController getXbox1() {
         return xbox1;
     }
+
+
 
     public double getDriveRightTrigger() {
         return getXbox0().getTriggerAxis(GenericHID.Hand.kRight);
@@ -155,11 +162,13 @@ public class OI {
         return getXbox0().getX(GenericHID.Hand.kLeft);
     }
 
-    public double getClimbSpeed() {
-        return -getXbox1().getY(GenericHID.Hand.kLeft);
+    //Pass Y of left hand trigger on mech XBox for OpenLoopHood
+    public double getHoldAxis() {
+        return getXbox1().getY(GenericHID.Hand.kLeft);        
     }
 
-    public double getWinchSpeed() {
-        return getXbox0().getY(GenericHID.Hand.kRight);
+    public double getShooterAxis() {
+        return getXbox1().getX(GenericHID.Hand.kLeft);     
     }
+
 }

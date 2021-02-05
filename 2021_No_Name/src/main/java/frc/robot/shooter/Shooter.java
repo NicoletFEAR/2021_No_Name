@@ -1,9 +1,8 @@
 package frc.robot.shooter;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Robot;
-import frc.robot.shooter.*;
+import frc.robot.shooter.*; //if its in the shooter package does it still need this import?
 import com.revrobotics.ControlType;
 
 public class Shooter extends SubsystemBase {
@@ -12,13 +11,18 @@ public class Shooter extends SubsystemBase {
      */
 
     // Our Methods HERE
+    //why is there a squiggle here???
 
-    public void runHold() {
-        ShooterMAP.holdMotor.set(ShooterMAP.DEFAULT_HOLD_SPEED);
+    public void stop() {
+        ShooterMAP.flywheelMotor.set(0.0);
+    }
+
+    public void setShootSpeed(double adjustedSpeed) {
+        ShooterMAP.flywheelMotor.set(adjustedSpeed);
     }
 
     public void setHoodPID(int target) {
-        //ShooterMAP.holdPIDController.setReference(setPoint, ControlType.kPosition);
+        // ShooterMAP.holdPIDController.setReference(setPoint, ControlType.kPosition);
         // set to target PID
     }
 

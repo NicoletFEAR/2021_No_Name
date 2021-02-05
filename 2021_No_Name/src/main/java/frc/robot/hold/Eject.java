@@ -1,16 +1,16 @@
-package frc.robot.intake;
+package frc.robot.hold;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class In extends CommandBase {
+public class Eject extends CommandBase {
     /**
     * Creates a new IntakeCommand.
     */
 
-    public In() {
+    public Eject() {
         // Use addRequirements() here to declare subsystem dependencies.
-        addRequirements(Robot.intake);
+        addRequirements(Robot.hold);
     }
 
     // Called when the command is initially scheduled.
@@ -21,13 +21,13 @@ public class In extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        Robot.intake.intake();
+        Robot.hold.eject(); //?
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        Robot.intake.stop();
+        Robot.hold.stop();
     }
 
     // Returns true when the command should end.

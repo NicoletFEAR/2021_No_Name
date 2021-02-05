@@ -13,10 +13,13 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANPIDController;
+import frc.robot.Robot;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
+import frc.robot.Robot;
 
 
 public class ShooterMAP {
@@ -42,8 +45,8 @@ public class ShooterMAP {
     public static void init() {
 
         flywheelMotor = new CANSparkMax(31, MotorType.kBrushless);
-        hoodMotor = new CANSparkMax(32, MotorType.kBrushless);
-        holdMotor = new CANSparkMax(33, MotorType.kBrushless);
+        // hoodMotor = new CANSparkMax(32, MotorType.kBrushless);
+        // holdMotor = new CANSparkMax(33, MotorType.kBrushless);
         turretMotor = new TalonSRX(34);  
         
         setUpFlywheelPID();
@@ -89,25 +92,27 @@ public class ShooterMAP {
         flywheelPIDController.setSmartMotionMaxAccel(maxAcc, smartMotionSlot);
         flywheelPIDController.setSmartMotionAllowedClosedLoopError(allowedErr, smartMotionSlot);
 
-        // display PID coefficients on SmartDashboard
-        SmartDashboard.putNumber("P Gain", kP);
-        SmartDashboard.putNumber("I Gain", kI);
-        SmartDashboard.putNumber("D Gain", kD);
-        SmartDashboard.putNumber("I Zone", kIz);
-        SmartDashboard.putNumber("Feed Forward", kFF);
-        SmartDashboard.putNumber("Max Output", kMaxOutput);
-        SmartDashboard.putNumber("Min Output", kMinOutput);
+        // if (Robot.debugMode) { 
+          // display PID coefficients on SmartDashboard
+          SmartDashboard.putNumber("P Gain", kP);
+          SmartDashboard.putNumber("I Gain", kI);
+          SmartDashboard.putNumber("D Gain", kD);
+          SmartDashboard.putNumber("I Zone", kIz);
+          SmartDashboard.putNumber("Feed Forward", kFF);
+          SmartDashboard.putNumber("Max Output", kMaxOutput);
+          SmartDashboard.putNumber("Min Output", kMinOutput);
 
-        // display Smart Motion coefficients
-        SmartDashboard.putNumber("Max Velocity", maxVel);
-        SmartDashboard.putNumber("Min Velocity", minVel);
-        SmartDashboard.putNumber("Max Acceleration", maxAcc);
-        SmartDashboard.putNumber("Allowed Closed Loop Error", allowedErr);
-        SmartDashboard.putNumber("Set Position", 0);
-        SmartDashboard.putNumber("Set Velocity", 0);
-
-        // button to toggle between velocity and smart motion modes
-        SmartDashboard.putBoolean("Mode", true);
+          // display Smart Motion coefficients
+          SmartDashboard.putNumber("Max Velocity", maxVel);
+          SmartDashboard.putNumber("Min Velocity", minVel);
+          SmartDashboard.putNumber("Max Acceleration", maxAcc);
+          SmartDashboard.putNumber("Allowed Closed Loop Error", allowedErr);
+          SmartDashboard.putNumber("Set Position", 0);
+          SmartDashboard.putNumber("Set Velocity", 0);
+        // }
+          // button to toggle between velocity and smart motion modes
+          SmartDashboard.putBoolean("Mode", true);
+      
     }
 
     public static void periodCheckFlywheelPIDTuning() { // puts and sets PID Values from smart dashboard
