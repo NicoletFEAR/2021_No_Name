@@ -5,10 +5,12 @@
 package frc.robot.intake;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 
 public class OpenLoopIntake extends CommandBase {
   /** Creates a new OpenLoopIntake. */
   public OpenLoopIntake() {
+    addRequirements(Robot.intake);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -18,11 +20,15 @@ public class OpenLoopIntake extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    Robot.intake.variableIntake(Robot.oi.getIntakeAxis());
+  }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    Robot.intake.stop();
+  }
 
   // Returns true when the command should end.
   @Override

@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.shooter.*;
 import frc.robot.shooter.hood.*;
+import frc.robot.intake.*;
 // import frc.robot.drivebase.*
 
 /**
@@ -116,9 +117,12 @@ public class OI {
         //xbox0Y.whenHeld(whatever out full auto shooting is)
 
         // A whileHeld lambda for constant intake
-        xbox0A.whileHeld(() -> Robot.intake.intake());
-        xbox0A.whenReleased(() -> Robot.intake.stop()); // have to stop the motor
-        
+        //xbox0A.whileHeld(() -> Robot.intake.intake());
+        //xbox0A.whenReleased(() -> Robot.intake.stop()); // have to stop the motor
+        xbox0A.whenHeld(new In()); //  for now want real command for interruptible logic
+
+
+
         // left joy y axis for intake variable
         // i think this might just be inside of a default command im not sure tho
 
@@ -132,9 +136,10 @@ public class OI {
         xbox1A.whenReleased(() -> Robot.hold.stop());
         
 
-        //Enable Manual Control of the Hood Mech
-        xbox1LeftStick.whenHeld(new OpenLoopHood()); //At the time of writing there is a weird squiggly underneath this. Hopefully it goes away. // it went away for me // try ctrl+s
-        xbox1LeftStick.whenHeld(new OpenLoopShooter()); //we can only hope wait what it's there for me now? something is really weird with my error highlighting tho
+        //Enable Manual Control of the Hood Mech and shooter speed when held
+        xbox1LeftStick.whenHeld(new OpenLoopHood()); //
+        xbox1LeftStick.whenHeld(new OpenLoopTurret());
+        //xbox1LeftStick.whenHeld(new OpenLoopShooter()); //
        
     }
 
@@ -168,7 +173,12 @@ public class OI {
     }
 
     public double getShooterAxis() {
-        return getXbox1().getX(GenericHID.Hand.kLeft);     
+        return getXbox1().getTriggerAxis(GenericHID.Hand.kRight);
+        //return getXbox1().getX(GenericHID.Hand.kLeft);     
+    }
+    public double getIntakeAxis() {
+        return getXbox1().getTriggerAxis(GenericHID.Hand.kLeft);
+        //return getXbox1().getX(GenericHID.Hand.kLeft);     
     }
 
 }

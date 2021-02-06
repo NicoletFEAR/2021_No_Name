@@ -3,6 +3,8 @@ package frc.robot.shooter;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Robot;
 import frc.robot.shooter.*; //if its in the shooter package does it still need this import?
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.revrobotics.ControlType;
 
 public class Shooter extends SubsystemBase {
@@ -29,6 +31,10 @@ public class Shooter extends SubsystemBase {
     public void setFlywheelPID(int target) {
         ShooterMAP.flywheelPIDController.setReference(target, ControlType.kVelocity);
         // set target velocity for flywheel PID
+    }
+
+    public void setTurretMotorSpeed(double speed) {
+        ShooterMAP.turretMotor.set(ControlMode.PercentOutput, speed);
     }
 
     public void setTurretPID(int target) {

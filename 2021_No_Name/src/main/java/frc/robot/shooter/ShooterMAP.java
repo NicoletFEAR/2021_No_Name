@@ -26,8 +26,8 @@ public class ShooterMAP {
 
     // Speed Controllers/Motors
     public static CANSparkMax flywheelMotor; // the big shooter flywheel
-    public static CANSparkMax hoodMotor;
-    public static CANSparkMax holdMotor;
+    //public static CANSparkMax hoodMotor;
+    //public static CANSparkMax holdMotor;
     public static TalonSRX turretMotor;
 
     // Flywheel PID

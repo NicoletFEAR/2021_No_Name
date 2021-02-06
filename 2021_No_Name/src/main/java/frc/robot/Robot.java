@@ -63,7 +63,8 @@ public class Robot extends TimedRobot {
     oi = new OI(); // this comes after the subsystems!
 
     driveBase.setDefaultCommand(new OpenLoopDrive()); // means OpenLoopDrive runs
-    // intake.setDefaultCommand(new OpenLoopIntake());
+    shooter.setDefaultCommand(new OpenLoopShooter());
+    intake.setDefaultCommand(new OpenLoopIntake());
 
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
