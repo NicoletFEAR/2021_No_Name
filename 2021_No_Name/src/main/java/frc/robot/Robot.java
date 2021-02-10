@@ -16,6 +16,9 @@ import frc.robot.intake.*;
 import frc.robot.shooter.*;
 import frc.robot.hold.*;
 import frc.robot.shooter.hood.*;
+import frc.robot.drivebase.shifter.*;
+import frc.robot.drivebase.shifter.AutoShift;
+import frc.robot.shooter.turret.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -34,6 +37,12 @@ public class Robot extends TimedRobot {
   public static Shooter shooter;
   public static Hold hold;
   public static Hood hood;
+  public static Turret turret;
+
+
+  public static boolean debugMode; // Enable or disable printing of diagnostics to smart dashboard
+    // Also being used in the ShooterMAP to enable/disable putting of various PID
+    // diagnostics
 
   // some default auto stuff, may be removed later
   private static final String kDefaultAuto = "Default";
@@ -48,6 +57,8 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
 
+    debugMode = true; //See Above
+
     // RobotMAP.init(); // we might not need this
     DriveBaseMAP.init();
 
@@ -59,12 +70,16 @@ public class Robot extends TimedRobot {
     shooter = new Shooter();
     hold = new Hold();
     hood = new Hood();
+    turret = new Turret();
 
     oi = new OI(); // this comes after the subsystems!
 
     driveBase.setDefaultCommand(new OpenLoopDrive()); // means OpenLoopDrive runs
     shooter.setDefaultCommand(new OpenLoopShooter());
     intake.setDefaultCommand(new OpenLoopIntake());
+    shifter.setDefaultCommand(new AutoShift());
+    //hood.setDefaultCommand(new OpenLoopHood()); //Only happening when left joystick is being held down
+    //turret.setDefaultCommand(new OpenLoopTurret());
 
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
@@ -85,9 +100,7 @@ public class Robot extends TimedRobot {
 
     CommandScheduler.getInstance().run();
 
-    boolean debugMode = true; // Enable or disable printing of diagnostics to smart dashboard
-    // Also being used in the ShooterMAP to enable/disable putting of various PID
-    // diagnostics
+    
     if (debugMode) {
       SmartDashboard.putNumber("Hood Encoder: ", HoodMAP.hoodEncoder.getPosition());
       // SmartDashboard.putNumber("Turret Encoder: ", ) //probably being added from

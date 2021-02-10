@@ -5,10 +5,11 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.drivebase;
+package frc.robot.drivebase.shifter;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
+import frc.robot.drivebase.*;
+import frc.robot.*;
 
 public class ShiftUpHold extends CommandBase {
   /**
@@ -16,6 +17,7 @@ public class ShiftUpHold extends CommandBase {
    */
   public ShiftUpHold() {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(Robot.shifter);
   }
 
   // Called when the command is initially scheduled.

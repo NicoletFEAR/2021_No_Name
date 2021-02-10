@@ -3,6 +3,7 @@ package frc.robot.shooter.hood; // the package where this file lives
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.CANEncoder;
+import com.revrobotics.CANPIDController;
 
 
 public class HoodMAP {
@@ -10,6 +11,7 @@ public class HoodMAP {
     // Speed Controllers/Motors
     public static CANSparkMax hoodMotor;
     public static CANEncoder hoodEncoder; // to be easier to access
+    public static CANPIDController hoodController;
 
     // Hold Constants
     public static double DEFAULT_SPEED = 0.1; //  if we want a default speed for commands

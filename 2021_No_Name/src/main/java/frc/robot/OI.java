@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.shooter.*;
 import frc.robot.shooter.hood.*;
+import frc.robot.shooter.turret.*;
 import frc.robot.intake.*;
 // import frc.robot.drivebase.*
 
@@ -137,9 +138,11 @@ public class OI {
         
 
         //Enable Manual Control of the Hood Mech and shooter speed when held
-        xbox1LeftStick.whenHeld(new OpenLoopHood()); //
-        xbox1LeftStick.whenHeld(new OpenLoopTurret());
-        //xbox1LeftStick.whenHeld(new OpenLoopShooter()); //
+        //xbox1RBumper gives manual control for co-controller when held
+        xbox1RBumper.whenHeld(new OpenLoopHood()); // Manual control of hood height
+        xbox1RBumper.whenHeld(new OpenLoopTurret()); //Manual control of turret turning
+        xbox1RBumper.whenHeld(new OpenLoopShooter()); //Manual control of flywheel speed
+        xbox1RBumper.whenHeld(new OpenLoopIntake()); //Manual control of intake speed
        
     }
 

@@ -1,3 +1,3 @@
-// public class moveHood {
+// public class MoveHood {
     
 // }

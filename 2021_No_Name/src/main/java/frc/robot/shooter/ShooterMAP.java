@@ -28,15 +28,12 @@ public class ShooterMAP {
     public static CANSparkMax flywheelMotor; // the big shooter flywheel
     //public static CANSparkMax hoodMotor;
     //public static CANSparkMax holdMotor;
-    public static TalonSRX turretMotor;
+    
 
     // Flywheel PID
     public static double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput, maxRPM, maxVel, minVel, maxAcc, allowedErr;
     public static CANPIDController flywheelPIDController;
     public static CANEncoder flywheelEncoder;
-
-    // Turret encoder
-    public static SensorCollection turretEncoder;
 
     // Shooter Constants
     public static double DEFAULT_HOLD_SPEED = 1.0; //  if we want a default speed for commands
@@ -47,14 +44,11 @@ public class ShooterMAP {
         flywheelMotor = new CANSparkMax(31, MotorType.kBrushless);
         // hoodMotor = new CANSparkMax(32, MotorType.kBrushless);
         // holdMotor = new CANSparkMax(33, MotorType.kBrushless);
-        turretMotor = new TalonSRX(34);  
+        
         
         setUpFlywheelPID();
 
-        turretMotor.setNeutralMode(NeutralMode.Brake);
-        turretMotor.setInverted(false);
-
-        turretEncoder = turretMotor.getSensorCollection();
+        
 		// How You Would Get and Set Encoder Pos From Other Classes:
         //turretEncoder.getQuadraturePosition();
         //turretEncoder.getAnalogIn();

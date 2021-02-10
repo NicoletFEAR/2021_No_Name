@@ -5,13 +5,13 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.drivebase;
+package frc.robot.drivebase.shifter;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-
+import frc.robot.drivebase.*;
 public class AutoShift extends CommandBase {
 
   double avgVel;
@@ -36,18 +36,21 @@ public class AutoShift extends CommandBase {
     SmartDashboard.putNumber("avgvel", avgVel);
 
     if (Robot.oi.xbox0.getBumper(Hand.kLeft)) { // check the driver is holding down the low gear button
-      Robot.shifter.shiftDown();
-    } else if (Robot.oi.xbox0.getBumper(Hand.kRight)) {
-      Robot.shifter.shiftUp();
-    } else {
-      if (avgVel < DriveBaseMAP.SHIFT_DOWN_THRESHOLD) { // if not in low, switch to low
-        if (DriveBaseMAP.shifty.get() != DriveBaseMAP.LOW_GEAR) {
-          Robot.shifter.shiftDown();
-        }
-      } else if (avgVel > DriveBaseMAP.SHIFT_UP_THRESHOLD) { // if in low, switch to high
+      if (DriveBaseMAP.shifty.get() == DriveBaseMAP.HIGH_GEAR) { //check that robot is not already in low gear
+        Robot.shifter.shiftDown();
+      }
+    } 
+    else if (Robot.oi.xbox0.getBumper(Hand.kRight)) { // check the driver is holding down the high gear button
+      if (DriveBaseMAP.shifty.get() == DriveBaseMAP.LOW_GEAR) { //check that robot is not already in high gear
+        Robot.shifter.shiftUp();
+      }
+    } else if (avgVel > DriveBaseMAP.SHIFT_UP_THRESHOLD) { // if in low, switch to high
         if (DriveBaseMAP.shifty.get() == DriveBaseMAP.LOW_GEAR) {
           Robot.shifter.shiftUp();
         }
+    } else if (avgVel < DriveBaseMAP.SHIFT_DOWN_THRESHOLD) {
+      if (DriveBaseMAP.shifty.get() == DriveBaseMAP.HIGH_GEAR) {
+        Robot.shifter.shiftDown();
       }
     }
   }
@@ -67,6 +70,5 @@ public class AutoShift extends CommandBase {
   // Called once after isFinished returns true or interrupted
   @Override
   public void end(boolean isInterrupted) {
-  }
-
+  } 
 }

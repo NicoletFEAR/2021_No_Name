@@ -1,9 +1,13 @@
-package frc.robot.drivebase;
+package frc.robot.drivebase.shifter;
+
+import frc.robot.drivebase.*;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 /**
- * 
+ *
+/**
+ *
  */
 public class Shifter extends SubsystemBase {
 

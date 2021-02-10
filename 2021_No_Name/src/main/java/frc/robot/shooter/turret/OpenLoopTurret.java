@@ -1,4 +1,4 @@
-package frc.robot.shooter;
+package frc.robot.shooter.turret;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -12,7 +12,7 @@ public class OpenLoopTurret extends CommandBase {
     
     public OpenLoopTurret() {
         // Use addRequirements() here to declare subsystem dependencies.
-        // addRequirements(Robot.shooter);
+        addRequirements(Robot.turret);
     }
     
     // Called when the command is initially scheduled.
@@ -26,7 +26,7 @@ public class OpenLoopTurret extends CommandBase {
         movementVal = Robot.oi.getXbox1().getX(GenericHID.Hand.kLeft); //Get Y input from left joystick on mech driver xbox1
         
         //Might need to tune multiplier value
-        Robot.shooter.setTurretMotorSpeed(movementVal); //Pass adjusted joystick input to move method
+        Robot.turret.setTurretMotorSpeed(movementVal); //Pass adjusted joystick input to move method
         
         // leave this:
         // long term we really want this joystick input to
@@ -39,7 +39,7 @@ public class OpenLoopTurret extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        Robot.shooter.setTurretMotorSpeed(0.0); //Pass adjusted joystick input to move method
+        Robot.turret.setTurretMotorSpeed(0.0); //Pass adjusted joystick input to move method
     }
 
     // Returns true when the command should end.
