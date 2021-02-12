@@ -61,7 +61,12 @@ public class Robot extends TimedRobot {
 
     // RobotMAP.init(); // we might not need this
     DriveBaseMAP.init();
-
+    ShooterMAP.init();
+    IntakeMAP.init();
+    HoodMAP.init();
+    HoldMAP.init();
+    TurretMAP.init();
+  
     driveBase = new DriveBase();
     SmartDashboard.putBoolean("isFront", driveBase.isFrontFacing());
 
@@ -102,7 +107,7 @@ public class Robot extends TimedRobot {
 
     
     if (debugMode) {
-      SmartDashboard.putNumber("Hood Encoder: ", HoodMAP.hoodEncoder.getPosition());
+      //SmartDashboard.putNumber("Hood Encoder: ", HoodMAP.hoodEncoder.getPosition());
       // SmartDashboard.putNumber("Turret Encoder: ", ) //probably being added from
       // Anything else you think we should add?
     }

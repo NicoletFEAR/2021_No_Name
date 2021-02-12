@@ -157,12 +157,12 @@ public class Hood extends SubsystemBase {
        * setReference method on an existing pid object and setting
        * the control type to kSmartMotion
        */
-      HoodMAP.hoodController.setReference(setPoint, ControlType.kSmartMotion);
-      processVariable = HoodMAP.hoodEncoder.getPosition();
+      //HoodMAP.hoodController.setReference(setPoint, ControlType.kSmartMotion);
+      //processVariable = HoodMAP.hoodEncoder.getPosition();
     }
     
     SmartDashboard.putNumber("Hood SetPoint", setPoint);
-    SmartDashboard.putNumber("Hood Process Variable", processVariable);
-    SmartDashboard.putNumber("Hood Output", HoodMAP.hoodMotor.getAppliedOutput());
+    //SmartDashboard.putNumber("Hood Process Variable", processVariable);
+    //SmartDashboard.putNumber("Hood Output", HoodMAP.hoodMotor.getAppliedOutput());
   }
 }
