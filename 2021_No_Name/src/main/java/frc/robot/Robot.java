@@ -80,8 +80,6 @@ public class Robot extends TimedRobot {
     oi = new OI(); // this comes after the subsystems!
 
     driveBase.setDefaultCommand(new OpenLoopDrive()); // means OpenLoopDrive runs
-    shooter.setDefaultCommand(new OpenLoopShooter());
-    intake.setDefaultCommand(new OpenLoopIntake());
     shifter.setDefaultCommand(new AutoShift());
     //hood.setDefaultCommand(new OpenLoopHood()); //Only happening when left joystick is being held down
     //turret.setDefaultCommand(new OpenLoopTurret());

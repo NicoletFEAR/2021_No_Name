@@ -22,7 +22,12 @@ public class Intake extends SubsystemBase {
     }
 
     public void variableIntake(double speed) {
-        IntakeMAP.intakeMotor.set(speed);
+        if (speed < IntakeMAP.MAX_SPEED) {
+            IntakeMAP.intakeMotor.set(speed);
+        } else {
+            IntakeMAP.intakeMotor.set(IntakeMAP.MAX_SPEED);
+        }
+        
     }
 
     public void up() { // arm up

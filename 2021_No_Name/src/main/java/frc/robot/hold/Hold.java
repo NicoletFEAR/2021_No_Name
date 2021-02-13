@@ -19,7 +19,12 @@ public class Hold extends SubsystemBase {
   }
 
   public void variableHold(double speed) {
-    HoldMAP.holdMotor.set(speed);
+    if (speed*-1 > HoldMAP.MAX_SPEED) {
+      HoldMAP.holdMotor.set(speed);
+    }
+     else {
+      HoldMAP.holdMotor.set(HoldMAP.MAX_SPEED);
+    }
   }
 
   public void stop() {

@@ -9,8 +9,8 @@ public class HoldMAP {
     public static CANSparkMax holdMotor;
 
     // Hold Constants
-    public static double DEFAULT_SPEED = 0.1; //  if we want a default speed for commands
-    public static double MAX_SPEED = 1.0; // if we want to set a maximum intake speed
+    public static double DEFAULT_SPEED = -0.2; //  if we want a default speed for commands
+    public static double MAX_SPEED = -0.5; // if we want to set a maximum intake speed
 
 
     public static void init() {
