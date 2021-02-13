@@ -103,6 +103,11 @@ public class Robot extends TimedRobot {
 
     CommandScheduler.getInstance().run();
 
+    //print encoder value, for testing
+    SmartDashboard.putNumber("Hood Encoder: ", HoodMAP.hoodEncoder.getPosition());
+    SmartDashboard.putNumber("Turret Encoder", TurretMAP.turretEncoder.getAnalogIn());
+
+
     
     if (debugMode) {
       //SmartDashboard.putNumber("Hood Encoder: ", HoodMAP.hoodEncoder.getPosition());

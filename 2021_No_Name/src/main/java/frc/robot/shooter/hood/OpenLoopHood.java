@@ -22,14 +22,14 @@ public class OpenLoopHood extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        movementVal = Robot.oi.getHoldAxis(); //Get Y input from left joystick on mech driver xbox1
-        if (movementVal > 0.3) {
-            Robot.hood.setPoint += 1.0;
-        } else if (movementVal < -0.3) {
-            Robot.hood.setPoint -= 1.0;
-        }
+        movementVal = Robot.oi.getHoodAxis(); //Get Y input from left joystick on mech driver xbox1
+        // if (movementVal > 0.3) {
+        //     Robot.hood.setPoint += 1.0;
+        // } else if (movementVal < -0.3) {
+        //     Robot.hood.setPoint -= 1.0;
+        // }
         //Might need to tune multiplier value
-        // Robot.hood.setHoodSpeed(movementVal*0.2); //Pass adjusted joystick input to move method
+        Robot.hood.setHoodSpeed(movementVal*0.2); //Pass adjusted joystick input to move method
         
         // leave this:
         // long term we really want this joystick input to

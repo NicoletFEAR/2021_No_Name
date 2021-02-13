@@ -12,6 +12,12 @@ public class TurretMAP {
 
     // Turret encoder
     public static SensorCollection turretEncoder;
+
+    public static double DEFAULT_SPEED = 0.1; //  if we want a default speed for commands
+    public static double MAX_SPEED = 1.0; 
+
+    public static int MAX_ENCODER = 1000;
+    public static int MIN_ENCODER = -1000;
     
 
     public static void init() {

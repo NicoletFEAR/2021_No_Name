@@ -35,6 +35,8 @@ public class AutoShift extends CommandBase {
     avgVel = calcAvgVel();
     SmartDashboard.putNumber("avgvel", avgVel);
 
+    avgVel = Math.abs(avgVel);
+
     if (Robot.oi.xbox0.getBumper(Hand.kLeft)) { // check the driver is holding down the low gear button
       if (DriveBaseMAP.shifty.get() == DriveBaseMAP.HIGH_GEAR) { //check that robot is not already in low gear
         Robot.shifter.shiftDown();

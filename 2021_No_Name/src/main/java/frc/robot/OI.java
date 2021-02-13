@@ -171,8 +171,12 @@ public class OI {
     }
 
     //Pass Y of left hand trigger on mech XBox for OpenLoopHood
-    public double getHoldAxis() {
+    public double getHoodAxis() {
         return getXbox1().getY(GenericHID.Hand.kLeft);        
+    }
+
+    public double getTurretAxis() {
+        return getXbox1().getX(GenericHID.Hand.kLeft);
     }
 
     public double getShooterAxis() {

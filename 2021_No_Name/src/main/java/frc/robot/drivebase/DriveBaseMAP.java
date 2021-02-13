@@ -26,8 +26,8 @@ public class DriveBaseMAP {
     
     // Shifter
     public static DoubleSolenoid shifty = new DoubleSolenoid(0, 1);
-    public static double SHIFT_DOWN_THRESHOLD = 16; // NEEDS CALCULATING
-    public static double SHIFT_UP_THRESHOLD = 15; // NEEDS CALCULATING
+    public static double SHIFT_DOWN_THRESHOLD = 1500; // NEEDS CALCULATING
+    public static double SHIFT_UP_THRESHOLD = 3000; // NEEDS CALCULATING
 
     public static final Value LOW_GEAR = Value.kForward;
     public static final Value HIGH_GEAR = Value.kReverse;

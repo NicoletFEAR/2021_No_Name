@@ -18,6 +18,17 @@ public class Turret extends SubsystemBase {
 
   public void setTurretPID(int target) {
     // use can talon srx pid
+    if (target < TurretMAP.MAX_ENCODER && target > TurretMAP.MIN_ENCODER) {
+      // use target value to set
+    } else if (target >= TurretMAP.MAX_ENCODER) {
+      //use max encoder value
+    } else {
+      //use min encoder value
+    }
+  }
+
+  public void addToTurretSetpoint(int targetChange) {
+    // change the setpoint BY a certain value
   }
 
   @Override

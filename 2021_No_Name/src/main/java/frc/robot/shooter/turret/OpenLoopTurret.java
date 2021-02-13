@@ -18,15 +18,16 @@ public class OpenLoopTurret extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        movementVal = Robot.oi.getXbox1().getX(GenericHID.Hand.kLeft); //Get Y input from left joystick on mech driver xbox1
+        movementVal = Robot.oi.getTurretAxis(); //Get Y input from left joystick on mech driver xbox1
         
         //Might need to tune multiplier value
-        Robot.turret.setTurretMotorSpeed(movementVal); //Pass adjusted joystick input to move method
+        Robot.turret.setTurretMotorSpeed(movementVal*0.2); //Pass adjusted joystick input to move method
         
         // leave this:
         // long term we really want this joystick input to

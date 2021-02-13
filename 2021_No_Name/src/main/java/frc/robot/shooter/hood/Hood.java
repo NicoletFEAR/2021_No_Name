@@ -106,7 +106,15 @@ public class Hood extends SubsystemBase {
 
   // will finish later
   public void setHoodTargetPID(int targetVal) {
+
     // set the built in SparkMax PID
+    if (targetVal < HoodMAP.MAX_ENCODER && targetVal > HoodMAP.MIN_ENCODER) {
+      // use target value to set
+    } else if (targetVal >= HoodMAP.MAX_ENCODER) {
+      //use max encoder value
+    } else {
+      //use min encoder value
+    }
   }
 
   @Override

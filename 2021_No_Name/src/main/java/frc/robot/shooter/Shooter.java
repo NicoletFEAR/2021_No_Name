@@ -23,10 +23,6 @@ public class Shooter extends SubsystemBase {
         ShooterMAP.flywheelMotor.set(adjustedSpeed);
     }
 
-    public void setHoodPID(int target) {
-        // ShooterMAP.holdPIDController.setReference(setPoint, ControlType.kPosition);
-        // set to target PID
-    }
 
     public void setFlywheelPID(int target) {
         ShooterMAP.flywheelPIDController.setReference(target, ControlType.kVelocity);
