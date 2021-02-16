@@ -25,7 +25,7 @@ public class OpenLoopShooter extends CommandBase {
         movementVal = Robot.oi.getShooterAxis(); //Get Y input from left joystick on mech driver xbox1
         
         //Might need to tune multiplier value
-        Robot.shooter.setShootSpeed(movementVal*0.2); //Pass adjusted joystick input to move method
+        Robot.shooter.setShootSpeed(movementVal); //Pass adjusted joystick input to move method
         
         // leave this:
         // long term we really want this joystick input to

@@ -3,6 +3,7 @@ package frc.robot.drivebase;
 // Constants mapping for the Drive Base
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
@@ -64,7 +65,20 @@ public class DriveBaseMAP {
         driveMotorR2.follow(driveMotorR1);
         driveMotorR3.follow(driveMotorR1);
 
-        // driveMotorL1.setSmartCurrentLimit(DRIVE_CURRENT_STALL_LIMIT, DRIVE_CURRENT_FREE_LIMIT);
+
+        driveMotorL1.setSmartCurrentLimit(DRIVE_CURRENT_STALL_LIMIT, DRIVE_CURRENT_FREE_LIMIT);
+        driveMotorL2.setSmartCurrentLimit(DRIVE_CURRENT_STALL_LIMIT, DRIVE_CURRENT_FREE_LIMIT);
+        driveMotorL3.setSmartCurrentLimit(DRIVE_CURRENT_STALL_LIMIT, DRIVE_CURRENT_FREE_LIMIT);
+        driveMotorR1.setSmartCurrentLimit(DRIVE_CURRENT_STALL_LIMIT, DRIVE_CURRENT_FREE_LIMIT);
+        driveMotorR2.setSmartCurrentLimit(DRIVE_CURRENT_STALL_LIMIT, DRIVE_CURRENT_FREE_LIMIT);
+        driveMotorR3.setSmartCurrentLimit(DRIVE_CURRENT_STALL_LIMIT, DRIVE_CURRENT_FREE_LIMIT);
+
+        driveMotorL1.setIdleMode(IdleMode.kBrake);
+        driveMotorL2.setIdleMode(IdleMode.kBrake);
+        driveMotorL3.setIdleMode(IdleMode.kBrake);
+        driveMotorR1.setIdleMode(IdleMode.kBrake);
+        driveMotorR2.setIdleMode(IdleMode.kBrake);
+        driveMotorR3.setIdleMode(IdleMode.kBrake);
         // driveMotorL1.setOpenLoopRampRate(DRIVE_RAMP_RATE);
 
     }

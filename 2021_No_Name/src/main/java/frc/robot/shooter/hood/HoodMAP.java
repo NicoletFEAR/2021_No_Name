@@ -1,9 +1,10 @@
 package frc.robot.shooter.hood; // the package where this file lives
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANPIDController;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 
 public class HoodMAP {
@@ -25,6 +26,11 @@ public class HoodMAP {
     public static void init() {
 
         hoodMotor = new CANSparkMax(32, MotorType.kBrushless); 
+        
+        hoodMotor.setSmartCurrentLimit(80, 80);
+
+        hoodMotor.setIdleMode(IdleMode.kBrake);
+
         hoodEncoder = hoodMotor.getEncoder();
 
     }

@@ -1,25 +1,12 @@
 package frc.robot.shooter; // the package where this file lives
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-import com.ctre.phoenix.motorcontrol.InvertType;
-import com.ctre.phoenix.motorcontrol.SensorCollection;
-import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANPIDController;
-import frc.robot.Robot;
-
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.ControlType;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import frc.robot.Robot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class ShooterMAP {
@@ -46,6 +33,10 @@ public class ShooterMAP {
         // holdMotor = new CANSparkMax(33, MotorType.kBrushless);
         
         
+        flywheelMotor.setSmartCurrentLimit(80, 80);
+
+        flywheelMotor.setIdleMode(IdleMode.kBrake);
+
         setUpFlywheelPID();
 
         

@@ -29,7 +29,7 @@ public class OpenLoopHood extends CommandBase {
         //     Robot.hood.setPoint -= 1.0;
         // }
         //Might need to tune multiplier value
-        Robot.hood.setHoodSpeed(movementVal*0.2); //Pass adjusted joystick input to move method
+        Robot.hood.setHoodSpeed(movementVal); //Pass adjusted joystick input to move method
         
         // leave this:
         // long term we really want this joystick input to

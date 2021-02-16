@@ -20,9 +20,9 @@ public class DriveBase extends SubsystemBase {
     public void RacingDrive(double robotOutput, double turnAmount) { // range from -1.0 to 1.0
     
 		//turnAmount *= DriveBaseMAP.TURN_SCALING; // in case we wanted to scale down all turning
-        turnAmount = turnAmount < 0 ? -(turnAmount*turnAmount) : (turnAmount*turnAmount); // gives more precise low speed tunring (0->0, .5->.25, 1->1)
-        outputLeft = -robotOutput + turnAmount; // sets the outputs for each side
-        outputRight = robotOutput + turnAmount; // based on our desired speed and turning
+        turnAmount = turnAmount < 0 ? -(turnAmount*turnAmount*turnAmount) : (turnAmount*turnAmount*turnAmount); // gives more precise low speed tunring (0->0, .5->.25, 1->1)
+        outputLeft = -robotOutput - turnAmount; // sets the outputs for each side
+        outputRight = robotOutput - turnAmount; // based on our desired speed and turning
 		max = outputLeft < outputRight ? outputRight : outputLeft; 
 
         if (max > DriveBaseMAP.SPEED_SCALING)

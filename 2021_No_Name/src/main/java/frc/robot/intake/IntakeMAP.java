@@ -1,7 +1,9 @@
 package frc.robot.intake; // the package where this file lives
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 public class IntakeMAP {
@@ -19,6 +21,10 @@ public class IntakeMAP {
     public static void init() {
 
         intakeMotor = new CANSparkMax(21, MotorType.kBrushless);
+
+        intakeMotor.setSmartCurrentLimit(80, 80);
+
+        intakeMotor.setIdleMode(IdleMode.kBrake);
 
         intakePiston = new DoubleSolenoid(2, 3);
 

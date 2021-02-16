@@ -21,7 +21,7 @@ public class TurretMAP {
     
 
     public static void init() {
-        turretMotor = new TalonSRX(34);  
+        turretMotor = new TalonSRX(34); 
 
         turretMotor.setNeutralMode(NeutralMode.Brake);
         turretMotor.setInverted(false);
