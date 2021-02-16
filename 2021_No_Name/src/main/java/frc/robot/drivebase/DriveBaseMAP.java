@@ -44,11 +44,16 @@ public class DriveBaseMAP {
 
     public static final double DRIVE_RAMP_RATE = 0.0; // bigger number = less acceleration
 
+    // enable prints
+    public static boolean debugMode;
+
     // Dimensions
     // public static double WHEEL_RADIUS = 3.0; // wheel radius in inches
     // public static double WHEEL_WIDTH_DST = 26.0; // ESTIMATE CHANGE
 
     public static void init() {
+
+        debugMode = false;
 
         // Speed Controller/Motors
         driveMotorL1 = new CANSparkMax(11, MotorType.kBrushless);
@@ -94,5 +99,11 @@ public class DriveBaseMAP {
     public static void resetEncoderNEO(CANSparkMax spark, double position) {
         spark.getEncoder().setPosition(position); // in # of rotations
     }
+
+    public static void setDebugMode(boolean isTrue) {
+        debugMode = isTrue;
+    }
+
+  
     
 }

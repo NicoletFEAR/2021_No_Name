@@ -6,11 +6,13 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
-import frc.robot.shooter.*;
-import frc.robot.shooter.hood.*;
-import frc.robot.shooter.turret.*;
-import frc.robot.intake.*;
+import frc.robot.drivebase.DriveBaseMAP;
 // import frc.robot.drivebase.*
+import frc.robot.intake.In;
+import frc.robot.intake.OpenLoopIntake;
+import frc.robot.shooter.OpenLoopShooter;
+import frc.robot.shooter.hood.OpenLoopHood;
+import frc.robot.shooter.turret.OpenLoopTurret;
 
 /**
  * interface to the commands and command groups that allow control of the robot.
@@ -143,7 +145,8 @@ public class OI {
         xbox1RBumper.whenHeld(new OpenLoopTurret()); //Manual control of turret turning
         xbox1RBumper.whenHeld(new OpenLoopShooter()); //Manual control of flywheel speed
         xbox1RBumper.whenHeld(new OpenLoopIntake()); //Manual control of intake speed
-       
+        xbox1RBumper.whenPressed(() -> DriveBaseMAP.setDebugMode(true));
+        xbox1RBumper.whenPressed(() -> DriveBaseMAP.setDebugMode(false));
     }
 
     // Driver

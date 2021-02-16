@@ -3,22 +3,25 @@
 // the WPILib BSD license file in the root directory o
 package frc.robot;
 
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.drivebase.*;
-import frc.robot.intake.*;
-import frc.robot.shooter.*;
-import frc.robot.hold.*;
-import frc.robot.shooter.hood.*;
-import frc.robot.drivebase.shifter.*;
+import frc.robot.drivebase.DriveBase;
+import frc.robot.drivebase.DriveBaseMAP;
+import frc.robot.drivebase.OpenLoopDrive;
 import frc.robot.drivebase.shifter.AutoShift;
-import frc.robot.shooter.turret.*;
+import frc.robot.drivebase.shifter.Shifter;
+import frc.robot.hold.Hold;
+import frc.robot.hold.HoldMAP;
+import frc.robot.intake.Intake;
+import frc.robot.intake.IntakeMAP;
+import frc.robot.shooter.Shooter;
+import frc.robot.shooter.ShooterMAP;
+import frc.robot.shooter.hood.Hood;
+import frc.robot.shooter.hood.HoodMAP;
+import frc.robot.shooter.turret.Turret;
+import frc.robot.shooter.turret.TurretMAP;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -40,7 +43,7 @@ public class Robot extends TimedRobot {
   public static Turret turret;
 
 
-  public static boolean debugMode; // Enable or disable printing of diagnostics to smart dashboard
+   // Enable or disable printing of diagnostics to smart dashboard
     // Also being used in the ShooterMAP to enable/disable putting of various PID
     // diagnostics
 
@@ -57,7 +60,6 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
 
-    debugMode = true; //See Above
 
     // RobotMAP.init(); // we might not need this
     DriveBaseMAP.init();
@@ -78,6 +80,8 @@ public class Robot extends TimedRobot {
     turret = new Turret();
 
     oi = new OI(); // this comes after the subsystems!
+
+    DriveBaseMAP.debugMode = false; //See Above
 
     driveBase.setDefaultCommand(new OpenLoopDrive()); // means OpenLoopDrive runs
     shifter.setDefaultCommand(new AutoShift());
@@ -109,9 +113,9 @@ public class Robot extends TimedRobot {
 
 
     
-    if (debugMode) {
-      //SmartDashboard.putNumber("Hood Encoder: ", HoodMAP.hoodEncoder.getPosition());
-      // SmartDashboard.putNumber("Turret Encoder: ", ) //probably being added from
+    if (DriveBaseMAP.debugMode) {
+      SmartDashboard.putNumber("Hood Encoder: ", HoodMAP.hoodEncoder.getPosition());
+      SmartDashboard.putNumber("Turret Encoder: ", TurretMAP.turretEncoder.getAnalogIn()); //probably being added from
       // Anything else you think we should add?
     }
   }

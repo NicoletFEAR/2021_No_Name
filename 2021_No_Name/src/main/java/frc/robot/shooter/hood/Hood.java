@@ -7,6 +7,8 @@ package frc.robot.shooter.hood;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
+import frc.robot.drivebase.DriveBaseMAP;
+
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.CANEncoder;
@@ -72,7 +74,7 @@ public class Hood extends SubsystemBase {
     HoodMAP.hoodController.setSmartMotionAllowedClosedLoopError(allowedErr, smartMotionSlot);
 
 
-    if (Robot.debugMode) {
+    if (DriveBaseMAP.debugMode) {
       // display PID coefficients on SmartDashboard
       SmartDashboard.putNumber("Hood P Gain", kP);
       SmartDashboard.putNumber("Hood I Gain", kI);
@@ -122,7 +124,7 @@ public class Hood extends SubsystemBase {
     // This method will be called once per scheduler run
 
     // read PID coefficients from SmartDashboard
-    if (Robot.debugMode) {
+    if (DriveBaseMAP.debugMode) {
       double p = SmartDashboard.getNumber("Hood P Gain", 0);
       double i = SmartDashboard.getNumber("Hood I Gain", 0);
       double d = SmartDashboard.getNumber("Hood D Gain", 0);
