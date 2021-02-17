@@ -26,11 +26,13 @@ public class TurretMAP {
         turretMotor.setNeutralMode(NeutralMode.Brake);
         turretMotor.setInverted(false);
 
+        
+
         turretEncoder = turretMotor.getSensorCollection();
 
         // How You Would Get and Set Encoder Pos From Other Classes:
         //turretEncoder.getQuadraturePosition();
-        //turretEncoder.getAnalogIn();
+        //turretEncoder.getPulseWidth();
         //turretEncoder.setAnalogPosition(int new position, int timeoutMs);
 
         //Add Turret PID later

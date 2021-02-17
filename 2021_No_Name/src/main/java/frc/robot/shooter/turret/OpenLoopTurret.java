@@ -9,6 +9,7 @@ import frc.robot.Robot;
 // used mostly for tuning & testing purposes
 public class OpenLoopTurret extends CommandBase {
     double movementVal;
+    double encoderPos;
     
     public OpenLoopTurret() {
         // Use addRequirements() here to declare subsystem dependencies.
@@ -25,8 +26,16 @@ public class OpenLoopTurret extends CommandBase {
     @Override
     public void execute() {
         movementVal = Robot.oi.getTurretAxis(); //Get Y input from left joystick on mech driver xbox1
+        encoderPos = (TurretMAP.turretEncoder.getPulseWidthRiseToFallUs() - 1024) / (8*4095);
+
+        if (Math.abs(movementVal) < 0.05) {
+            movementVal = 0;
+        } else if (movementVal > 0 && encoderPos > TurretMAP.MAX_ENCODER) {
+            movementVal = 0;
+        } else if (movementVal < 0 && encoderPos < TurretMAP.MIN_ENCODER) {
+            movementVal = 0;
+        }
         
-        //Might need to tune multiplier value
         Robot.turret.setTurretMotorSpeed(movementVal*0.2); //Pass adjusted joystick input to move method
         
         // leave this:

@@ -91,6 +91,11 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
+
+    try{
+      TurretMAP.turretEncoder.setPulseWidthPosition(0, 100);
+    } catch (Exception e) {}
+
   }
 
   /**
@@ -108,14 +113,15 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
 
     //print encoder value, for testing
-    SmartDashboard.putNumber("Hood Encoder: ", HoodMAP.hoodEncoder.getPosition());
-    SmartDashboard.putNumber("Turret Encoder", TurretMAP.turretEncoder.getAnalogIn());
+    //SmartDashboard.putNumber("Hood Encoder: ", HoodMAP.hoodEncoder.getPosition());
+    //SmartDashboard.putNumber("Turret Encoder", TurretMAP.turretEncoder.getAnalogIn());
+    //SmartDashboard.putNumber("Turret Encoder", TurretMAP.turretEncoder.getPulseWidthPosition());
 
 
-    
+    // to reduce prints
     if (DriveBaseMAP.debugMode) {
       SmartDashboard.putNumber("Hood Encoder: ", HoodMAP.hoodEncoder.getPosition());
-      SmartDashboard.putNumber("Turret Encoder: ", TurretMAP.turretEncoder.getAnalogIn()); //probably being added from
+      SmartDashboard.putNumber("Turret Encoder: ", (TurretMAP.turretEncoder.getPulseWidthRiseToFallUs() - 1024) / (8*4095)); //probably being added from
       // Anything else you think we should add?
     }
   }

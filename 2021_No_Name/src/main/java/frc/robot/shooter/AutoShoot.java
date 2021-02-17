@@ -18,7 +18,7 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
-
+import frc.robot.drivebase.*;
 
 
 public class AutoShoot extends CommandBase {
@@ -80,9 +80,10 @@ public class AutoShoot extends CommandBase {
 
     
     //print encoder value, for testing
-    SmartDashboard.putNumber("Hood Encoder: ", HoodMAP.hoodEncoder.getPosition());
-    SmartDashboard.putNumber("Turret Encoder", TurretMAP.turretEncoder.getAnalogIn());
-
+    if (DriveBaseMAP.debugMode){
+      SmartDashboard.putNumber("Hood Encoder: ", HoodMAP.hoodEncoder.getPosition());
+      SmartDashboard.putNumber("Turret Encoder", (TurretMAP.turretEncoder.getPulseWidthRiseToFallUs() - 1024) / (8*4095));
+    }
 
     // GET LIMELIGHT VALUES
     x = tx.getDouble(25.0);
