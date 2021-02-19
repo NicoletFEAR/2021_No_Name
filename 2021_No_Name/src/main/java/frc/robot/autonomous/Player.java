@@ -17,6 +17,7 @@ import com.google.gson.reflect.TypeToken;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
+import frc.robot.drivebase.DriveBaseMAP;
 
 public class Player extends CommandBase {
 
@@ -109,7 +110,22 @@ public class Player extends CommandBase {
     double[] thisLine = allLines.get(currentLine);
     
     // RUN LINE
+
+     // DRIVE:
+     Robot.driveBase.RacingDrive(thisLine[5]-thisLine[4], thisLine[0] * DriveBaseMAP.TURN_SCALING);
+
+     // SWITCH FRONT
+     if (thisLine[8] == 1.0) {Robot.driveBase.switchFront();} 
     
+     // SHIFTER (IGNORE)
+
+     // SPIN INTAKE
+     if (thisLine[10] == 1.0) {Robot.intake.intake();}
+
+     // SPIN HOLD
+     if (thisLine[11] == 1.0) {Robot.hold.toShooter();}
+
+
 
 
     // END RUN LINE
