@@ -42,7 +42,7 @@ public class DriveBaseMAP {
     public static final int DRIVE_CURRENT_STALL_LIMIT = 80; // default is 80A
     public static final int DRIVE_CURRENT_FREE_LIMIT = 80; // default is 80A
 
-    public static final double DRIVE_RAMP_RATE = 0.0; // bigger number = less acceleration
+    public static final double DRIVE_RAMP_RATE = 0.05; // bigger number = less acceleration
 
     // enable prints
     public static boolean debugMode;
@@ -85,6 +85,13 @@ public class DriveBaseMAP {
         driveMotorR2.setIdleMode(IdleMode.kBrake);
         driveMotorR3.setIdleMode(IdleMode.kBrake);
         // driveMotorL1.setOpenLoopRampRate(DRIVE_RAMP_RATE);
+
+        driveMotorL1.setInverted(false);
+        driveMotorL2.setInverted(false);
+        driveMotorL3.setInverted(false);
+        driveMotorR1.setInverted(true);
+        driveMotorR2.setInverted(true);
+        driveMotorR3.setInverted(true);
 
     }
 
