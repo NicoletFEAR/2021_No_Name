@@ -87,10 +87,13 @@ public class Robot extends TimedRobot {
     shifter.setDefaultCommand(new AutoShift());
     //hood.setDefaultCommand(new OpenLoopHood()); //Only happening when left joystick is being held down
     //turret.setDefaultCommand(new OpenLoopTurret());
+    SmartDashboard.putString("newPlayName", "defaultEmpty"); // should be in robotInit
+    SmartDashboard.putBoolean("OverwriteModeisTrue", false); // should be in robotinit
+    SmartDashboard.putString("autoToPlay", "backupAuto");
 
-    m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
-    m_chooser.addOption("My Auto", kCustomAuto);
-    SmartDashboard.putData("Auto choices", m_chooser);
+    //m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
+    //m_chooser.addOption("My Auto", kCustomAuto);
+    //SmartDashboard.putData("Auto choices", m_chooser);
 
     try{
       TurretMAP.turretEncoder.setPulseWidthPosition(0, 100);
