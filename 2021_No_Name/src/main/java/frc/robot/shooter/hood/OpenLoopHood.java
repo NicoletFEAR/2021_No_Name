@@ -32,7 +32,16 @@ public class OpenLoopHood extends CommandBase {
         if (Math.abs(movementVal) < 0.1) {   
             movementVal = 0; 
         }
-        Robot.hood.setHoodSpeed(movementVal); //Pass adjusted joystick input to move method
+        if (Math.abs(movementVal) > HoodMAP.MAX_SPEED) {
+            if (movementVal > 0) {
+                Robot.hood.setHoodSpeed(HoodMAP.MAX_SPEED);
+            } else {
+                Robot.hood.setHoodSpeed(-HoodMAP.MAX_SPEED);
+            }
+            Robot.hood.setHoodSpeed(HoodMAP.MAX_SPEED);
+        } else {
+            Robot.hood.setHoodSpeed(movementVal); //Pass adjusted joystick input to move method
+        }
         // leave this:
         // long term we really want this joystick input to
         // be changing the setpoint for the Sparkmax built in PID
