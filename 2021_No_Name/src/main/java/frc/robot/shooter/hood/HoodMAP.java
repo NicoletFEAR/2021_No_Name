@@ -16,6 +16,7 @@ public class HoodMAP {
 
     // Hold Constants
     public static double DEFAULT_SPEED = 0.1; //  if we want a default speed for commands
+    public static double HOOD_MULTIPLIER = 0.05;
     public static double MAX_SPEED = 0.25; // set a maximum hood movement speed
 
     public static double MAX_ENCODER = 2.4;

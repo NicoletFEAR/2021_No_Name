@@ -23,15 +23,17 @@ public class OpenLoopHood extends CommandBase {
     @Override
     public void execute() {
         movementVal = Robot.oi.getHoodAxis(); //Get Y input from left joystick on mech driver xbox1
+        if (Math.abs(movementVal) < 0.05) {   
+            movementVal = 0; 
+        }
         // if (movementVal > 0.3) {
         //     Robot.hood.setPoint += 1.0;
         // } else if (movementVal < -0.3) {
         //     Robot.hood.setPoint -= 1.0;
         // }
         //Might need to tune multiplier value
-        if (Math.abs(movementVal) < 0.1) {   
-            movementVal = 0; 
-        }
+        movementVal *= HoodMAP.HOOD_MULTIPLIER;
+        
         if (Math.abs(movementVal) > HoodMAP.MAX_SPEED) {
             if (movementVal > 0) {
                 Robot.hood.setHoodSpeed(HoodMAP.MAX_SPEED);

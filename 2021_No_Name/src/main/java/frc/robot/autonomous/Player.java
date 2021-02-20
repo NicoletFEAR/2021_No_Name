@@ -17,6 +17,7 @@ import com.google.gson.reflect.TypeToken;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
+import frc.robot.shooter.AutoShoot;
 import frc.robot.drivebase.DriveBaseMAP;
 
 public class Player extends CommandBase {
@@ -32,10 +33,13 @@ public class Player extends CommandBase {
 
   boolean onTime = true;
   double nextDouble;
-  String autoToPlay = "BackupAuto";
+  String autoToPlay;
   Gson gson;
 
-  boolean isFinished = false;
+  boolean isFinished;
+  FileReader fileReader;
+
+  AutoShoot shooty;
 
   ArrayList<double[]> allLines;
   /** Creates a new Player. */
@@ -49,26 +53,40 @@ public class Player extends CommandBase {
   @Override
   public void initialize() {
     gson = new Gson();
+    currentLine = 0;
+    isFinished = false;
+    autoToPlay = "defaultEmpty";
+
+    isPlaying = true;
+    SmartDashboard.putBoolean("isPlaying", isPlaying);
 
     //String file = "src/test/resources/myFile.json";
     // writer = new FileWriter("/u/recordings" + newPlayName + ".json");
-
+    try {fileReader = new FileReader("/c/" + autoToPlay + ".json");}
+    catch (Exception e) {
+      isFinished = true;
+      System.out.println("could not create FileReader");
+      System.out.println(e);
+    }
     //String stringJson = String(Files.readAllBytes(Paths.get(file)));
-    autoToPlay = SmartDashboard.getString("autoToPlay", "backupAuto");
+    autoToPlay = SmartDashboard.getString("autoToPlay", "defaultEmpty");
     System.out.println("playing auto " + autoToPlay);
 
     
     try {
-      allLines = gson.fromJson(new FileReader("/u/recordings" + autoToPlay + ".json"), new TypeToken<List<double[]>>(){}.getType());
+      allLines = gson.fromJson(fileReader, new TypeToken<List<double[]>>(){}.getType());
 
     } catch (Exception e) {
       System.out.println("failed to open read file");
+      System.out.println(e);
+
       //Robot.player.endPlaying();
     }
 		
 		//let scanner know that the numbers are separated by a comma or a newline, as it is a .csv file
     
     isPlaying = true;
+    SmartDashboard.putBoolean("isPlaying", isPlaying);
 		
 		//lets set start time to the current time you begin autonomous
     //startTime = System.currentTimeMillis();
@@ -121,9 +139,23 @@ public class Player extends CommandBase {
 
      // SPIN INTAKE
      if (thisLine[10] == 1.0) {Robot.intake.intake();}
+     if (thisLine[10] == 3.0) {Robot.intake.stop();}
 
-     // SPIN HOLD
+     // SPIN HOLD TO SHOOT
      if (thisLine[11] == 1.0) {Robot.hold.toShooter();}
+     if (thisLine[11] == 3.0) {Robot.hold.stop();}
+
+     // AUTO AIM
+     if (thisLine[9] == 1.0) {shooty = new AutoShoot(); shooty.schedule();} else if (thisLine[9] == 3.0) {shooty.cancel();}
+
+     // INTAKE UP
+    if (thisLine[14] == 1.0) {Robot.intake.up();}
+
+     // INTAKE DOWN
+     if (thisLine[16] == 1.0) {Robot.intake.down();}
+
+
+
 
 
 
@@ -132,14 +164,19 @@ public class Player extends CommandBase {
 
     currentLine ++;
 
-    if (currentLine >= allLines.size()) {
+    if (currentLine >= allLines.size() - 1) {
       isFinished = true;
     }
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    isPlaying = false;
+    SmartDashboard.putBoolean("isPlaying", isPlaying);
+    try {fileReader.close();}
+    catch(Exception e) {}
+  }
 
   // Returns true when the command should end.
   @Override

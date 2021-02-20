@@ -89,7 +89,7 @@ public class Robot extends TimedRobot {
     //turret.setDefaultCommand(new OpenLoopTurret());
     SmartDashboard.putString("newPlayName", "defaultEmpty"); // should be in robotInit
     SmartDashboard.putBoolean("OverwriteModeisTrue", false); // should be in robotinit
-    SmartDashboard.putString("autoToPlay", "backupAuto");
+    SmartDashboard.putString("autoToPlay", "defaultEmpty");
 
     //m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     //m_chooser.addOption("My Auto", kCustomAuto);

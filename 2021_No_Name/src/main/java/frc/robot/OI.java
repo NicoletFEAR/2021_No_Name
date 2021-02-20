@@ -6,6 +6,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
+import frc.robot.autonomous.Player;
+import frc.robot.autonomous.Record;
 import frc.robot.drivebase.DriveBaseMAP;
 // import frc.robot.drivebase.*
 import frc.robot.intake.In;
@@ -124,6 +126,9 @@ public class OI {
         //xbox0A.whenReleased(() -> Robot.intake.stop()); // have to stop the motor
         xbox0A.whenHeld(new In()); //  for now want real command for interruptible logic
 
+        xbox0Back.whenPressed(new Record());
+        xbox0Start.whenHeld(new Player());
+
 
 
         // left joy y axis for intake variable
@@ -147,6 +152,9 @@ public class OI {
         xbox1RBumper.whenHeld(new OpenLoopIntake()); //Manual control of intake speed
         xbox1RBumper.whenPressed(() -> DriveBaseMAP.setDebugMode(true));
         xbox1RBumper.whenPressed(() -> DriveBaseMAP.setDebugMode(false));
+
+
+        
     }
 
     // Driver

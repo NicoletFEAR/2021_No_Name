@@ -86,12 +86,12 @@ public class DriveBaseMAP {
         driveMotorR3.setIdleMode(IdleMode.kBrake);
         // driveMotorL1.setOpenLoopRampRate(DRIVE_RAMP_RATE);
 
-        driveMotorL1.setInverted(false);
-        driveMotorL2.setInverted(false);
-        driveMotorL3.setInverted(false);
-        driveMotorR1.setInverted(true);
-        driveMotorR2.setInverted(true);
-        driveMotorR3.setInverted(true);
+        driveMotorL1.setInverted(true);
+        driveMotorL2.setInverted(true);
+        driveMotorL3.setInverted(true);
+        driveMotorR1.setInverted(false);
+        driveMotorR2.setInverted(false);
+        driveMotorR3.setInverted(false);
 
     }
 
