@@ -56,8 +56,8 @@ public class AutoShoot extends CommandBase {
     ta = table.getEntry("ta");
     ledState = table.getEntry("ledMode");
 
-    
-    x = tx.getDouble(25.0);
+    // 320 x 240
+    x = tx.getDouble(160.0);
     y = ty.getDouble(0.0);
     area = ta.getDouble(0.0);
 
@@ -67,11 +67,11 @@ public class AutoShoot extends CommandBase {
   }
 
   // each value corresponds to a ten pixel change in height.
-  private int[] yLookup = {1,2,3,4,5,6,7,8,9,10};
+  private int[] yLookup = {0,1400,1600,1800,2000,2200,2400,2600,2800,3000,3200,3400,3600,3800,4000,4200,4400,4600,4800,5000,5200,5400,5600,5800};
 
   public int useYLookup(int yPixels) {
-    int lookup = (int) yPixels/10;
-    return yLookup[lookup];
+    int lookupIndex = (int) yPixels/10;
+    return yLookup[lookupIndex];
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -86,7 +86,7 @@ public class AutoShoot extends CommandBase {
     }
 
     // GET LIMELIGHT VALUES
-    x = tx.getDouble(25.0);
+    x = tx.getDouble(160.0);
     y = ty.getDouble(0.0);
     area = ta.getDouble(0.0);
 
@@ -100,9 +100,10 @@ public class AutoShoot extends CommandBase {
 
 
     // SET HOOD
-    Robot.hood.setHoodTargetPID(useYLookup((int) y));
+    //Robot.hood.setHoodTargetPID(useYLookup((int) y));
     // SET FLYWHEEL
-    Robot.shooter.setFlywheelPID(1); // full speed for now
+    ShooterMAP.setPoint = useYLookup((int) y);
+    //Robot.shooter.setFlywheelPID(useYLookup((int) y)); // full speed for now
     // SET TURRET
     Robot.turret.addToTurretSetpoint((int) (x - 160));
     // RUN HOLD?
@@ -111,7 +112,11 @@ public class AutoShoot extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    ShooterMAP.setPoint = 0;
+    ShooterMAP.flywheelMotor.set(0.0);
+    Robot.turret.stop();
+  }
 
   // Returns true when the command should end.
   @Override

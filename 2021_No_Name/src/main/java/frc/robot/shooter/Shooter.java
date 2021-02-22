@@ -14,6 +14,12 @@ public class Shooter extends SubsystemBase {
      */
 
     // Our Methods HERE
+    //private Joystick m_stick;
+  private static final int deviceID = 1;
+  //private CANSparkMax m_motor;
+  //private CANPIDController m_pidController;
+  //private CANEncoder m_encoder;
+  public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput, maxRPM;
 
     public void stop() {
         ShooterMAP.flywheelMotor.set(0.0);
@@ -33,5 +39,7 @@ public class Shooter extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
+        ShooterMAP.periodCheckFlywheelPIDTuning(); // puts and sets PID Values from smart dashboard
+
     }
 }

@@ -44,6 +44,16 @@ public class Turret extends SubsystemBase {
     TurretMAP.turretMotor.set(ControlMode.PercentOutput, movementVal);
   }
 
+  public void turretToZero() {
+    encoderPos = (TurretMAP.turretEncoder.getPulseWidthRiseToFallUs() - 1024) / (8*4095);
+    movementVal = - (encoderPos/2);
+    TurretMAP.turretMotor.set(ControlMode.PercentOutput, movementVal);
+
+  }
+  public void stop() {
+    TurretMAP.turretMotor.set(ControlMode.PercentOutput, 0.0);
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

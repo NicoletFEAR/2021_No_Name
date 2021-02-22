@@ -5,6 +5,7 @@ import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.ControlType;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -15,7 +16,7 @@ public class ShooterMAP {
     public static CANSparkMax flywheelMotor; // the big shooter flywheel
     //public static CANSparkMax hoodMotor;
     //public static CANSparkMax holdMotor;
-    
+    public static double setPoint;
 
     // Flywheel PID
     public static double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput, maxRPM, maxVel, minVel, maxAcc, allowedErr;
@@ -51,71 +52,41 @@ public class ShooterMAP {
         flywheelPIDController = flywheelMotor.getPIDController();
         flywheelEncoder = flywheelMotor.getEncoder();
         // PID coefficients
-        kP = 5e-5; 
-        kI = 1e-6;
-        kD = 0; 
-        kIz = 0; 
-        kFF = 0.000156; 
-        kMaxOutput = 1; 
-        kMinOutput = -1;
-        maxRPM = 5700;
+        kP = 6e-5; 
+      kI = 0;
+     kD = 0; 
+      kIz = 0; 
+    kFF = 0.000015; 
+    kMaxOutput = 1; 
+    kMinOutput = -1;
+    maxRPM = 5700;
 
-        // Smart Motion Coefficients
-        maxVel = 2000; // rpm
-        maxAcc = 1500;
-
-        // set PID coefficients
-        flywheelPIDController.setP(kP);
-        flywheelPIDController.setI(kI);
-        flywheelPIDController.setD(kD);
-        flywheelPIDController.setIZone(kIz);
-        flywheelPIDController.setFF(kFF);
-        flywheelPIDController.setOutputRange(kMinOutput, kMaxOutput);
-        int smartMotionSlot = 0;
-        flywheelPIDController.setSmartMotionMaxVelocity(maxVel, smartMotionSlot);
-        flywheelPIDController.setSmartMotionMinOutputVelocity(minVel, smartMotionSlot);
-        flywheelPIDController.setSmartMotionMaxAccel(maxAcc, smartMotionSlot);
-        flywheelPIDController.setSmartMotionAllowedClosedLoopError(allowedErr, smartMotionSlot);
-
-        // if (Robot.debugMode) { 
-          // display PID coefficients on SmartDashboard
-          SmartDashboard.putNumber("P Gain", kP);
-          SmartDashboard.putNumber("I Gain", kI);
-          SmartDashboard.putNumber("D Gain", kD);
-          SmartDashboard.putNumber("I Zone", kIz);
-          SmartDashboard.putNumber("Feed Forward", kFF);
-          SmartDashboard.putNumber("Max Output", kMaxOutput);
-          SmartDashboard.putNumber("Min Output", kMinOutput);
-
-          // display Smart Motion coefficients
-          SmartDashboard.putNumber("Max Velocity", maxVel);
-          SmartDashboard.putNumber("Min Velocity", minVel);
-          SmartDashboard.putNumber("Max Acceleration", maxAcc);
-          SmartDashboard.putNumber("Allowed Closed Loop Error", allowedErr);
-          SmartDashboard.putNumber("Set Position", 0);
-          SmartDashboard.putNumber("Set Velocity", 0);
-        // }
-          // button to toggle between velocity and smart motion modes
-          SmartDashboard.putBoolean("Mode", true);
+        
+    // display PID coefficients on SmartDashboard
+    SmartDashboard.putNumber("P Gain", kP);
+    SmartDashboard.putNumber("I Gain", kI);
+    SmartDashboard.putNumber("D Gain", kD);
+    SmartDashboard.putNumber("I Zone", kIz);
+    SmartDashboard.putNumber("Feed Forward", kFF);
+    SmartDashboard.putNumber("Max Output", kMaxOutput);
+    SmartDashboard.putNumber("Min Output", kMinOutput);
+    
       
     }
 
     public static void periodCheckFlywheelPIDTuning() { // puts and sets PID Values from smart dashboard
         // PID TUNING FLYWHEEL
-        double p = SmartDashboard.getNumber("P Gain", 0);
-        double i = SmartDashboard.getNumber("I Gain", 0);
-        double d = SmartDashboard.getNumber("D Gain", 0);
-        double iz = SmartDashboard.getNumber("I Zone", 0);
-        double ff = SmartDashboard.getNumber("Feed Forward", 0);
-        double max = SmartDashboard.getNumber("Max Output", 0);
-        double min = SmartDashboard.getNumber("Min Output", 0);
-        double maxV = SmartDashboard.getNumber("Max Velocity", 0);
-        double minV = SmartDashboard.getNumber("Min Velocity", 0);
-        double maxA = SmartDashboard.getNumber("Max Acceleration", 0);
-        double allE = SmartDashboard.getNumber("Allowed Closed Loop Error", 0);
+        // read PID coefficients from SmartDashboard
+    double p = SmartDashboard.getNumber("P Gain", 0);
+    double i = SmartDashboard.getNumber("I Gain", 0);
+    double d = SmartDashboard.getNumber("D Gain", 0);
+    double iz = SmartDashboard.getNumber("I Zone", 0);
+    double ff = SmartDashboard.getNumber("Feed Forward", 0);
+    double max = SmartDashboard.getNumber("Max Output", 0);
+    double min = SmartDashboard.getNumber("Min Output", 0);
 
-        // if PID coefficients on SmartDashboard have changed, write new values to controller
-        if((p != kP)) { flywheelPIDController.setP(p); kP = p; }
+    // if PID coefficients on SmartDashboard have changed, write new values to controller
+    if((p != kP)) { flywheelPIDController.setP(p); kP = p; }
     if((i != kI)) { flywheelPIDController.setI(i); kI = i; }
     if((d != kD)) { flywheelPIDController.setD(d); kD = d; }
     if((iz != kIz)) { flywheelPIDController.setIZone(iz); kIz = iz; }
@@ -124,31 +95,30 @@ public class ShooterMAP {
       flywheelPIDController.setOutputRange(min, max); 
       kMinOutput = min; kMaxOutput = max; 
     }
-    if((maxV != maxVel)) { flywheelPIDController.setSmartMotionMaxVelocity(maxV,0); maxVel = maxV; }
-    if((minV != minVel)) { flywheelPIDController.setSmartMotionMinOutputVelocity(minV,0); minVel = minV; }
-    if((maxA != maxAcc)) { flywheelPIDController.setSmartMotionMaxAccel(maxA,0); maxAcc = maxA; }
-    if((allE != allowedErr)) { flywheelPIDController.setSmartMotionAllowedClosedLoopError(allE,0); allowedErr = allE; }
 
-    double setPoint, processVariable;
-    boolean mode = SmartDashboard.getBoolean("Mode", false);
-    if(mode) {
-      setPoint = SmartDashboard.getNumber("Set Velocity", 0);
-      //flywheelPIDController.setReference(setPoint, ControlType.kVelocity); // THIS BIT ACTUALLY SETS THE PID CONTROLLER SET POINT
-      processVariable = flywheelEncoder.getVelocity();
-    } else {
-      setPoint = SmartDashboard.getNumber("Set Position", 0);
-      /**
-       * As with other PID modes, Smart Motion is set by calling the
-       * setReference method on an existing pid object and setting
-       * the control type to kSmartMotion
-       */
-      //flywheelPIDController.setReference(setPoint, ControlType.kSmartMotion); // THIS BIT ACTUALLY SETS THE PID CONTROLLER SET POINT
-      processVariable = flywheelEncoder.getPosition();
-    }
+    /**
+     * PIDController objects are commanded to a set point using the 
+     * SetReference() method.
+     * 
+     * The first parameter is the value of the set point, whose units vary
+     * depending on the control type set in the second parameter.
+     * 
+     * The second parameter is the control type can be set to one of four 
+     * parameters:
+     *  com.revrobotics.ControlType.kDutyCycle
+     *  com.revrobotics.ControlType.kPosition
+     *  com.revrobotics.ControlType.kVelocity
+     *  com.revrobotics.ControlType.kVoltage
+     */
+    //double setPoint = m_stick.getY()*maxRPM;
+    flywheelPIDController.setReference(setPoint, ControlType.kVelocity);
     
     SmartDashboard.putNumber("SetPoint", setPoint);
-    SmartDashboard.putNumber("Process Variable", processVariable);
-    SmartDashboard.putNumber("Output", flywheelMotor.getAppliedOutput());
+    SmartDashboard.putNumber("ProcessVariable", flywheelEncoder.getVelocity());
+    }
+
+    public static void incrementPID(double incrementValue) {
+      setPoint += incrementValue;
     }
 
 }

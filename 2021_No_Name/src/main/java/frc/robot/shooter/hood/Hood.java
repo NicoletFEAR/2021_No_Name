@@ -52,7 +52,7 @@ public class Hood extends SubsystemBase {
     maxAcc = 10; // 1500
 
     allowedErr = 0.2;
-
+    /*
      // set PID coefficients
      HoodMAP.hoodController.setP(kP);
      HoodMAP.hoodController.setI(kI);
@@ -60,7 +60,7 @@ public class Hood extends SubsystemBase {
      HoodMAP.hoodController.setIZone(kIz);
      HoodMAP.hoodController.setFF(kFF);
      HoodMAP.hoodController.setOutputRange(kMinOutput, kMaxOutput);
-
+    */
      /**
      * Smart Motion coefficients are set on a CANPIDController object
      * 
@@ -74,12 +74,13 @@ public class Hood extends SubsystemBase {
      * error for the pid controller in Smart Motion mode
      */
 
+     /*
     int smartMotionSlot = 0;
     HoodMAP.hoodController.setSmartMotionMaxVelocity(maxVel, smartMotionSlot);
     HoodMAP.hoodController.setSmartMotionMinOutputVelocity(minVel, smartMotionSlot);
     HoodMAP.hoodController.setSmartMotionMaxAccel(maxAcc, smartMotionSlot);
     HoodMAP.hoodController.setSmartMotionAllowedClosedLoopError(allowedErr, smartMotionSlot);
-
+    */
 /*
     // display PID coefficients on SmartDashboard
     SmartDashboard.putNumber("Hood P Gain", kP);
@@ -105,7 +106,9 @@ public class Hood extends SubsystemBase {
 
   //Passed adjusted input from OpenLoopHood
   public void setHoodSpeed(double adjustedInput) {
+    /*
     HoodMAP.hoodMotor.set(adjustedInput);
+    */
   }
 
   public void stop() {
@@ -114,7 +117,7 @@ public class Hood extends SubsystemBase {
 
   // will finish later
   public void setHoodTargetPID(int targetVal) {
-
+    /*
     // set the built in SparkMax PID
     if (targetVal < HoodMAP.MAX_ENCODER && targetVal > HoodMAP.MIN_ENCODER) {
       // use target value to set
@@ -122,16 +125,19 @@ public class Hood extends SubsystemBase {
       //use max encoder value
     } else {
       //use min encoder value
-    }
+    } */
   }
 
   public void changePID(double changeVal) {
+    /*
     setPoint += changeVal;
     System.out.println(setPoint);
+    */
   }
   @Override
   public void periodic() {
   
+    /*
     encoderPos = HoodMAP.hoodEncoder.getPosition();
     //setSpeed = encoderPos - setPoint;
     
@@ -152,9 +158,10 @@ public class Hood extends SubsystemBase {
     } else {
       HoodMAP.hoodMotor.set(-0.05);
     }
+    */
   }
   
-  }
+  
   // @Override
   // public void periodic() {
   //   // This method will be called once per scheduler run
