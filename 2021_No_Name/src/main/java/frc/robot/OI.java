@@ -12,6 +12,7 @@ import frc.robot.drivebase.DriveBaseMAP;
 // import frc.robot.drivebase.*
 import frc.robot.intake.In;
 import frc.robot.intake.OpenLoopIntake;
+import frc.robot.shooter.AutoShoot;
 import frc.robot.shooter.OpenLoopShooter;
 import frc.robot.shooter.hood.OpenLoopHood;
 import frc.robot.shooter.turret.OpenLoopTurret;
@@ -118,6 +119,12 @@ public class OI {
         xbox0DpadUp.whenPressed(() -> Robot.intake.up());
         xbox0DpadDown.whenPressed(() -> Robot.intake.down());
         
+        xbox0B.whenPressed(() -> Robot.hold.toShooter());
+        xbox0B.whenReleased(() -> Robot.hold.stop());
+
+        xbox0Y.whenHeld(new AutoShoot());
+
+
         // Y for automatic shooting (whenHeld we think)
         //xbox0Y.whenHeld(whatever out full auto shooting is)
 
