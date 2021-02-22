@@ -20,6 +20,7 @@ import frc.robot.shooter.Shooter;
 import frc.robot.shooter.ShooterMAP;
 import frc.robot.shooter.hood.Hood;
 import frc.robot.shooter.hood.HoodMAP;
+import frc.robot.shooter.hood.ResetHood;
 import frc.robot.shooter.turret.Turret;
 import frc.robot.shooter.turret.TurretMAP;
 
@@ -85,6 +86,10 @@ public class Robot extends TimedRobot {
 
     driveBase.setDefaultCommand(new OpenLoopDrive()); // means OpenLoopDrive runs
     shifter.setDefaultCommand(new AutoShift());
+
+    // ResetHood resetHood = new ResetHood();
+    // resetHood.schedule();
+
     //hood.setDefaultCommand(new OpenLoopHood()); //Only happening when left joystick is being held down
     //turret.setDefaultCommand(new OpenLoopTurret());
     SmartDashboard.putString("newPlayName", "defaultEmpty"); // should be in robotInit

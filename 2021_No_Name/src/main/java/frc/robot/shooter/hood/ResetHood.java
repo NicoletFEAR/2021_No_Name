@@ -14,9 +14,9 @@ public class ResetHood extends SequentialCommandGroup {
     public ResetHood() {
         addCommands(
 
-            new SetHoodSpeed(-0.2),
+            //new SetHoodSpeed(-0.2),
     
-            new WaitCommand(2),
+            //new WaitCommand(2),
 
             new HoodEncoderReset(),
 

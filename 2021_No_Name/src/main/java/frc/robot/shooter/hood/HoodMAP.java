@@ -32,6 +32,8 @@ public class HoodMAP {
 
         hoodEncoder = hoodMotor.getEncoder();
 
+        hoodController = hoodMotor.getPIDController();
+
     }
 
 

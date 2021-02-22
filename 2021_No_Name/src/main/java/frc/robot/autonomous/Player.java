@@ -58,6 +58,7 @@ public class Player extends CommandBase {
     autoToPlay = "defaultEmpty";
 
     isPlaying = true;
+    
     SmartDashboard.putBoolean("isPlaying", isPlaying);
 
     //String file = "src/test/resources/myFile.json";
