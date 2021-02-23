@@ -22,8 +22,8 @@ public class DriveBase extends SubsystemBase {
 		//turnAmount *= DriveBaseMAP.TURN_SCALING; // in case we wanted to scale down all turning
         turnAmount = turnAmount*turnAmount*turnAmount;
         //turnAmount = turnAmount < 0 ? -(turnAmount*turnAmount) : (turnAmount*turnAmount); // gives more precise low speed tunring (0->0, .5->.25, 1->1)
-        outputLeft =  robotOutput + turnAmount; // sets the outputs for each side
-        outputRight = robotOutput - turnAmount; // based on our desired speed and turning
+        outputLeft =  robotOutput + 0.5*turnAmount; // sets the outputs for each side
+        outputRight = robotOutput - 0.5*turnAmount; // based on our desired speed and turning
 		max = Math.abs(outputLeft) < Math.abs(outputRight) ? Math.abs(outputRight) : Math.abs(outputLeft); 
 
         if (max > DriveBaseMAP.SPEED_SCALING)

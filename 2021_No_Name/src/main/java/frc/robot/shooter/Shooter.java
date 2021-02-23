@@ -15,7 +15,6 @@ public class Shooter extends SubsystemBase {
 
     // Our Methods HERE
     //private Joystick m_stick;
-  private static final int deviceID = 1;
   //private CANSparkMax m_motor;
   //private CANPIDController m_pidController;
   //private CANEncoder m_encoder;

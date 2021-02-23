@@ -151,6 +151,7 @@ public class Robot extends TimedRobot {
     m_autoSelected = m_chooser.getSelected();
     // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
     System.out.println("Auto selected: " + m_autoSelected);
+    TurretMAP.initEncoderZero = TurretMAP.turretEncoder.getPulseWidthPosition();
   }
 
   /** This function is called periodically during autonomous. */
@@ -170,6 +171,8 @@ public class Robot extends TimedRobot {
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() {
+    //If you are reading this and things are going poorly with vision it's probably because of this.
+    TurretMAP.initEncoderZero = TurretMAP.turretEncoder.getPulseWidthPosition();
   }
 
   /** This function is called periodically during operator control. */

@@ -12,6 +12,7 @@ public class TurretMAP {
 
     // Turret encoder
     public static SensorCollection turretEncoder;
+    public static int initEncoderZero;
 
     public static double DEFAULT_SPEED = 0.1; //  if we want a default speed for commands
     public static double MAX_SPEED = 1.0; 
@@ -29,6 +30,7 @@ public class TurretMAP {
         
 
         turretEncoder = turretMotor.getSensorCollection();
+        initEncoderZero = turretEncoder.getPulseWidthPosition();
 
         // How You Would Get and Set Encoder Pos From Other Classes:
         //turretEncoder.getQuadraturePosition();

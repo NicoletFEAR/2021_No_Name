@@ -26,7 +26,8 @@ public class OpenLoopTurret extends CommandBase {
     @Override
     public void execute() {
         movementVal = Robot.oi.getTurretAxis(); //Get Y input from left joystick on mech driver xbox1
-        encoderPos = (TurretMAP.turretEncoder.getPulseWidthRiseToFallUs() - 1024) / (8*4095);
+        //encoderPos = (TurretMAP.turretEncoder.getPulseWidthRiseToFallUs() - 1024) / (8*4095);
+        encoderPos = (TurretMAP.turretEncoder.getPulseWidthPosition() - TurretMAP.initEncoderZero);
 
         if (Math.abs(movementVal) < 0.05) {
             movementVal = 0;

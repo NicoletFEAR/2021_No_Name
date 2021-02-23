@@ -17,7 +17,7 @@ public class ShooterMAP {
     //public static CANSparkMax hoodMotor;
     //public static CANSparkMax holdMotor;
     public static double setPoint;
-
+  private static double adjustableSpeed;
     // Flywheel PID
     public static double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput, maxRPM, maxVel, minVel, maxAcc, allowedErr;
     public static CANPIDController flywheelPIDController;
@@ -39,6 +39,11 @@ public class ShooterMAP {
         flywheelMotor.setIdleMode(IdleMode.kBrake);
 
         setUpFlywheelPID();
+
+        adjustableSpeed = 0.75;
+
+        SmartDashboard.putNumber("SHOOT SPD", adjustableSpeed);
+
 
         
 		// How You Would Get and Set Encoder Pos From Other Classes:
@@ -75,7 +80,8 @@ public class ShooterMAP {
     }
 
     public static void periodCheckFlywheelPIDTuning() { // puts and sets PID Values from smart dashboard
-        // PID TUNING FLYWHEEL
+    
+    /*  // PID TUNING FLYWHEEL
         // read PID coefficients from SmartDashboard
     double p = SmartDashboard.getNumber("P Gain", 0);
     double i = SmartDashboard.getNumber("I Gain", 0);
@@ -94,6 +100,7 @@ public class ShooterMAP {
     if((max != kMaxOutput) || (min != kMinOutput)) { 
       flywheelPIDController.setOutputRange(min, max); 
       kMinOutput = min; kMaxOutput = max; 
+      */
     }
 
     /**
@@ -111,11 +118,14 @@ public class ShooterMAP {
      *  com.revrobotics.ControlType.kVoltage
      */
     //double setPoint = m_stick.getY()*maxRPM;
+    /*
     flywheelPIDController.setReference(setPoint, ControlType.kVelocity);
     
     SmartDashboard.putNumber("SetPoint", setPoint);
     SmartDashboard.putNumber("ProcessVariable", flywheelEncoder.getVelocity());
+    
     }
+    */
 
     public static void incrementPID(double incrementValue) {
       setPoint += incrementValue;
