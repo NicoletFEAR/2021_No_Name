@@ -63,7 +63,7 @@ public class Player extends CommandBase {
     autoToPlay = SmartDashboard.getString("autoToPlay", "defaultEmpty");
     System.out.println("playing auto " + autoToPlay);
     //String file = "src/test/resources/myFile.json";
-    // writer = new FileWriter("/u/recordings" + newPlayName + ".json");
+    // writer = new FileWriter("/c/recordings" + newPlayName + ".json");
     try {fileReader = new FileReader("/c/" + autoToPlay + ".json");}
     catch (Exception e) {
       isFinished = true;
@@ -176,6 +176,7 @@ public class Player extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     isPlaying = false;
+    
     SmartDashboard.putBoolean("isPlaying", isPlaying);
     try {fileReader.close();}
     catch(Exception e) {}

@@ -43,7 +43,7 @@ public class Record extends CommandBase {
   public boolean isRecording;
   FileWriter writer;
 
-  private ArrayList<double[]> arrayOfLines = new ArrayList<double[]>();
+  private ArrayList<double[]> arrayOfLines;// = new ArrayList<double[]>();
   private double lastLine[] = new double[40];
   //double thisLine[] = new double[40]; // for two controllers
   // double thisLine[] = new double[14];
@@ -68,7 +68,7 @@ public class Record extends CommandBase {
 
     // set last array to 0
 
-
+    arrayOfLines = new ArrayList<double[]>();
     isFinished = false;
     gson = new Gson();
     // gson.toJson();
@@ -297,6 +297,7 @@ public class Record extends CommandBase {
 
       try {
     gson.toJson(arrayOfLines, writer);
+    arrayOfLines.clear();
         System.out.println("saved to json recording!!!!!!!!!!");
 
       } catch (Exception e) {
