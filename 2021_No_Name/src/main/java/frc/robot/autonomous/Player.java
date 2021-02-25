@@ -60,23 +60,25 @@ public class Player extends CommandBase {
     isPlaying = true;
     
     SmartDashboard.putBoolean("isPlaying", isPlaying);
-
+    autoToPlay = SmartDashboard.getString("autoToPlay", "defaultEmpty");
+    System.out.println("playing auto " + autoToPlay);
     //String file = "src/test/resources/myFile.json";
     // writer = new FileWriter("/u/recordings" + newPlayName + ".json");
     try {fileReader = new FileReader("/c/" + autoToPlay + ".json");}
     catch (Exception e) {
       isFinished = true;
+      isPlaying = false;
       System.out.println("could not create FileReader");
       System.out.println(e);
     }
     //String stringJson = String(Files.readAllBytes(Paths.get(file)));
-    autoToPlay = SmartDashboard.getString("autoToPlay", "defaultEmpty");
-    System.out.println("playing auto " + autoToPlay);
-
+    if (allLines != null) {
+      allLines.clear();
+    }
     
     try {
       allLines = gson.fromJson(fileReader, new TypeToken<List<double[]>>(){}.getType());
-
+      System.out.println("opened read file");
     } catch (Exception e) {
       System.out.println("failed to open read file");
       System.out.println(e);

@@ -69,7 +69,7 @@ public class Record extends CommandBase {
     // set last array to 0
 
 
-
+    isFinished = false;
     gson = new Gson();
     // gson.toJson();
     // localScheduler = Scheduler.getInstance();
@@ -81,15 +81,20 @@ public class Record extends CommandBase {
 
     if (OverwriteModeisTrue || !(Files.isRegularFile(Paths.get("/c/" + newPlayName + ".json")))) { 
       try {
-        writer = new FileWriter("/c/" + newPlayName + ".json");
+        writer = new FileWriter("/c/" + newPlayName + ".json", false);
+              System.out.println("successfully made writer !!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println(writer.toString());
       } catch (IOException e) {
-        System.out.println("IOException FileWriter bad");
+        System.out.println("IOException FileWriter bad !!!!!!!!!!!!!!!!!!!!!!!!");
         System.out.println(e);
+        isFinished = true;
+
       }
-      System.out.println("successfully made writer");
+      
     } else {
       System.out.println("file name already existed and overwrite mode is false. Will not record");
       isRecording = false;
+      isFinished = true;
       //this.cancel();
     }
 
@@ -271,18 +276,18 @@ public class Record extends CommandBase {
   public void execute() {
     // plan to implement scheduler stuff later to make more adaptable
     // localScheduler.
-    
-    double[] theLine = checkButtons();
+    if (!isFinished) {    
+      double[] theLine = checkButtons();
     arrayOfLines.add(theLine);
     currentLine++;
 
     if (Robot.oi.getXbox0().getBackButton() && currentLine >= 50) { // if you pressed the record
       // button again (after 1s)
-      System.out.println("finished due to button press");
+      System.out.println("finished due to button press!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
       isFinished = true;
     }
 
-
+  }
 
   }
 
@@ -290,10 +295,15 @@ public class Record extends CommandBase {
   @Override
   public void end(boolean interrupted) {
 
+      try {
     gson.toJson(arrayOfLines, writer);
-    System.out.println("saved to json recording");
-    try {writer.close();} catch (IOException e) {System.out.println(e);}
+        System.out.println("saved to json recording!!!!!!!!!!");
 
+      } catch (Exception e) {
+        System.out.println(e);
+      }
+    try {writer.flush(); writer.close(); System.out.println("######################################################");} catch (Exception e) {System.out.println(e); System.out.println("^^^^^^^^^&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");}
+      
   }
 
   // Returns true when the command should end.
@@ -303,7 +313,7 @@ public class Record extends CommandBase {
 
     if (isFinished) {
       isRecording = false;
-    SmartDashboard.putBoolean("isRecording", isRecording);
+      SmartDashboard.putBoolean("isRecording", isRecording);
 
       return true;
     } else {
