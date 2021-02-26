@@ -103,52 +103,44 @@ public class AutoShoot extends CommandBase {
     // SET HOOD
     // Robot.hood.setHoodTargetPID(useYLookup((int) y));
     // SET FLYWHEEL
-    /*
-     * 
-     * if (y > 13) {speedVal = 0.8;} else if (y > 12) {speedVal = 0.7;} else if (y >
-     * 11) {speedVal = 0.65;} else if (y > 10) {speedVal = 0.7;} else if (y > 9)
-     * {speedVal = 0.7;} else if (y > 8) {speedVal = 0.7;} else if (y > 7) {speedVal
-     * = 0.7;} else if (y > 6) {speedVal = 0.7;} else if (y > 9) {speedVal = 0.7;}
-     * else if (y > 8) {speedVal = 0.7;} else if (y > 7) {speedVal = 0.7;} else if
-     * (y > 6) {speedVal = 0.7;}
-     */
-    // switch (y)
-    // case y > 13:
-    // speedVal = .8;
-    // break;
-    // case y > 11:
-    // speedVal = .75;
-    // break;
-    // case y > 10:
-    // speedVal = 8;
-    // break;
-    // case y > 9:
-    // speedVal = 8;
-    // break;
-    // case y > 8:
-    // speedVal = 8;
-    // break;
-    // case y > 6:
-    // speedVal = 8;
-    // break;
-    // case y > 4.5:
-    // speedVal = 8;
-    // break;
-    // case y > 1:
-    // speedVal = .55;
-    // break;
-    // case y > -2:
-    // speedVal = .62;
-    // break;
-    // default:
-    // speedVal = .63;
-    // break;
 
-    double newAdjSpd = SmartDashboard.getNumber("SHOOT SPD", 0.75);
-    if ((newAdjSpd != adjustableSpd)) {
-      adjustableSpd = newAdjSpd;
+    if (y > 13) {
+      speedVal = 0.7;
+    } else if (y > 12) {
+      speedVal = 0.62;//0.7;
+    } else if (y > 11) {
+      speedVal = 0.58;//0.65;
+    } else if (y > 10) {
+      speedVal = 0.55;//0.65;
+    } else if (y > 9) {
+      speedVal = 0.60;//0.68;
+    } else if (y > 8) {
+      speedVal = 0.61;//0.7;
+    } else if (y > 7) {
+      speedVal = 0.63;//0.69;
+    } else if (y > 6) {
+      speedVal = 0.60;
+    } else if (y > 5) {
+      speedVal = 0.53;
+    } else if (y > 3) {
+      speedVal = 0.52;
+    } else if (y > 0) {
+      speedVal = 0.54;
+    } else if (y > -3) {
+      speedVal = 0.8;
+    } else if (y > -5) {
+      speedVal = 1.0;
+    } else if (y > -8) {
+      speedVal = 1.0;
+    } else {
+      speedVal = 1.0;
     }
-    ShooterMAP.flywheelMotor.set(adjustableSpd);
+
+    // double newAdjSpd = SmartDashboard.getNumber("SHOOT SPD", 0.75);
+    // if ((newAdjSpd != adjustableSpd)) {
+    // adjustableSpd = newAdjSpd;
+    // }
+    ShooterMAP.flywheelMotor.set(speedVal);
     // Robot.shooter.setPoint = useYLookup((int) y);
     // SmartDashboard.putNumber("setPoint SHOOT", Robot.shooter.setPoint);
     // Robot.shooter.setFlywheelPID(useYLookup((int) y)); // full speed for now

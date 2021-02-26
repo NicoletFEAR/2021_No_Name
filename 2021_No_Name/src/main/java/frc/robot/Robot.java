@@ -85,7 +85,7 @@ public class Robot extends TimedRobot {
     DriveBaseMAP.debugMode = false; //See Above
 
     driveBase.setDefaultCommand(new OpenLoopDrive()); // means OpenLoopDrive runs
-    shifter.setDefaultCommand(new AutoShift());
+    //shifter.setDefaultCommand(new AutoShift());
 
     // ResetHood resetHood = new ResetHood();
     // resetHood.schedule();
