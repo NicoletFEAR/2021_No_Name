@@ -28,7 +28,7 @@ public class DriveBaseMAP {
     // Shifter
     public static DoubleSolenoid shifty = new DoubleSolenoid(0, 1);
     public static double SHIFT_DOWN_THRESHOLD = 1500; // NEEDS CALCULATING
-    public static double SHIFT_UP_THRESHOLD = 3000; // NEEDS CALCULATING
+    public static double SHIFT_UP_THRESHOLD = 3500; // NEEDS CALCULATING
 
     public static final Value LOW_GEAR = Value.kForward;
     public static final Value HIGH_GEAR = Value.kReverse;
@@ -78,13 +78,27 @@ public class DriveBaseMAP {
         driveMotorR2.setSmartCurrentLimit(DRIVE_CURRENT_STALL_LIMIT, DRIVE_CURRENT_FREE_LIMIT);
         driveMotorR3.setSmartCurrentLimit(DRIVE_CURRENT_STALL_LIMIT, DRIVE_CURRENT_FREE_LIMIT);
 
+        
         driveMotorL1.setIdleMode(IdleMode.kBrake);
         driveMotorL2.setIdleMode(IdleMode.kBrake);
         driveMotorL3.setIdleMode(IdleMode.kBrake);
         driveMotorR1.setIdleMode(IdleMode.kBrake);
         driveMotorR2.setIdleMode(IdleMode.kBrake);
         driveMotorR3.setIdleMode(IdleMode.kBrake);
-        // driveMotorL1.setOpenLoopRampRate(DRIVE_RAMP_RATE);
+        /*
+        driveMotorL1.setIdleMode(IdleMode.kCoast);
+        driveMotorL2.setIdleMode(IdleMode.kCoast);
+        driveMotorL3.setIdleMode(IdleMode.kCoast);
+        driveMotorR1.setIdleMode(IdleMode.kCoast);
+        driveMotorR2.setIdleMode(IdleMode.kCoast);
+        driveMotorR3.setIdleMode(IdleMode.kCoast);
+        */
+        driveMotorL1.setOpenLoopRampRate(DRIVE_RAMP_RATE);
+        driveMotorL2.setOpenLoopRampRate(DRIVE_RAMP_RATE);
+        driveMotorL3.setOpenLoopRampRate(DRIVE_RAMP_RATE);
+        driveMotorR1.setOpenLoopRampRate(DRIVE_RAMP_RATE);
+        driveMotorR2.setOpenLoopRampRate(DRIVE_RAMP_RATE);
+        driveMotorR3.setOpenLoopRampRate(DRIVE_RAMP_RATE);
 
         driveMotorL1.setInverted(true);
         driveMotorL2.setInverted(true);

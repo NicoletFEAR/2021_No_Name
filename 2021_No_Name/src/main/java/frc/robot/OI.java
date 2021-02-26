@@ -123,6 +123,7 @@ public class OI {
         xbox0B.whenReleased(() -> Robot.hold.stop());
 
         xbox0Y.whenHeld(new AutoShoot());
+        xbox1Y.whenHeld(new AutoShoot());
 
 
         // Y for automatic shooting (whenHeld we think)
@@ -136,7 +137,7 @@ public class OI {
         xbox0Back.whenPressed(new Record());
         xbox0Start.whenHeld(new Player());
 
-
+        xbox1A.whenHeld(new In());
 
         // left joy y axis for intake variable
         // i think this might just be inside of a default command im not sure tho
@@ -147,8 +148,8 @@ public class OI {
         // left joystick x axis for turret manual
 
         // a button when held for hold noodles to actually fire balls
-        xbox1A.whileHeld(() -> Robot.hold.toShooter()); // 
-        xbox1A.whenReleased(() -> Robot.hold.stop());
+        //xbox1A.whileHeld(() -> Robot.hold.toShooter()); // 
+        //xbox1A.whenReleased(() -> Robot.hold.stop());
         
 
         //Enable Manual Control of the Hood Mech and shooter speed when held
