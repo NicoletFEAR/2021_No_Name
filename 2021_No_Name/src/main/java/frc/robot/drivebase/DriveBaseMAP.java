@@ -42,7 +42,7 @@ public class DriveBaseMAP {
     public static final int DRIVE_CURRENT_STALL_LIMIT = 80; // default is 80A
     public static final int DRIVE_CURRENT_FREE_LIMIT = 80; // default is 80A
 
-    public static final double DRIVE_RAMP_RATE = 0.05; // bigger number = less acceleration
+    public static final double DRIVE_RAMP_RATE = 0.10; // bigger number = less acceleration
 
     // enable prints
     public static boolean debugMode;

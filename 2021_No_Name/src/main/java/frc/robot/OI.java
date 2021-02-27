@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.autonomous.Player;
 import frc.robot.autonomous.Record;
 import frc.robot.drivebase.DriveBaseMAP;
+import frc.robot.drivebase.shifter.ManualDown;
+import frc.robot.drivebase.shifter.ManualUp;
 // import frc.robot.drivebase.*
 import frc.robot.intake.In;
 import frc.robot.intake.OpenLoopIntake;
@@ -114,6 +116,10 @@ public class OI {
 
         // xbox0 for normal operation
         xbox0X.whenPressed(() -> Robot.driveBase.switchFront()); 
+
+        // xbox0 bumpers for shift up and down
+        xbox0LBumper.whenPressed(new ManualDown());
+        xbox0RBumper.whenPressed(new ManualUp());
 
         // D pad up and down for intake piston
         xbox0DpadUp.whenPressed(() -> Robot.intake.up());

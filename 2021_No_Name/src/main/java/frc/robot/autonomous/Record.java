@@ -52,7 +52,7 @@ public class Record extends CommandBase {
   public Record() {
     // no dependencies so that all of the other normal commands can run
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.shifter);
+    //addRequirements(Robot.shifter);
 
   }
 

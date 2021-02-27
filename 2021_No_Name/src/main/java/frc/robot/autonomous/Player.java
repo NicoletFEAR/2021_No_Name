@@ -46,7 +46,7 @@ public class Player extends CommandBase {
   public Player() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.driveBase);
-    addRequirements(Robot.shifter);
+    //addRequirements(Robot.shifter);
   }
 
   // Called when the command is initially scheduled.
