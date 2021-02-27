@@ -21,7 +21,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import frc.robot.drivebase.*;
 import frc.robot.hold.HoldMAP;
 
-public class AutoShoot extends CommandBase {
+public class AutoShootHood extends CommandBase {
 
   private NetworkTable table;
   private NetworkTableEntry tx;
@@ -36,9 +36,10 @@ public class AutoShoot extends CommandBase {
 
   public double adjustableSpd;
   public double speedVal;
+  public double hoodSet;
 
   /** Creates a new AutoShoot. */
-  public AutoShoot() {
+  public AutoShootHood() {
     addRequirements(Robot.shooter);
     addRequirements(Robot.turret);
     addRequirements(Robot.hood);
@@ -68,7 +69,6 @@ public class AutoShoot extends CommandBase {
     //
   }
 
- 
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -96,6 +96,8 @@ public class AutoShoot extends CommandBase {
     // Robot.hood.setHoodTargetPID(useYLookup((int) y));
     // SET FLYWHEEL
 
+    // FOR FLYWHEEL:
+    /*
     if (y > 13) {
       speedVal = 0.63;
     } else if (y > 12) {
@@ -127,12 +129,58 @@ public class AutoShoot extends CommandBase {
     } else {
       speedVal = 1.0;
     }
+    */
 
-    // double newAdjSpd = SmartDashboard.getNumber("SHOOT SPD", 0.75);
-    // if ((newAdjSpd != adjustableSpd)) {
-    // adjustableSpd = newAdjSpd;
-    // }
-    ShooterMAP.flywheelMotor.set(speedVal);
+    // FOR HOOD:
+    /*
+    if (y > 13) {
+      hoodSet = 0.63;
+    } else if (y > 12) {
+      hoodSet = 0.57;//0.7;
+    } else if (y > 11) {
+      hoodSet = 0.55;//0.65;
+    } else if (y > 10) {
+      hoodSet = 0.53;//0.65;
+    } else if (y > 9) {
+      hoodSet = 0.57;//0.68;
+    } else if (y > 8) {
+      hoodSet = 0.57;//0.7;
+    } else if (y > 7) {
+      hoodSet = 0.56;//0.69;
+    } else if (y > 6) {
+      hoodSet = 0.56;
+    } else if (y > 5) {
+      hoodSet = 0.56;
+    } else if (y > 3) {
+      hoodSet = 0.56;
+    } else if (y > 0) {
+      hoodSet = 0.53;
+    } else if (y > -3) {
+      hoodSet = 0.8;
+    } else if (y > -5) {
+      hoodSet = 1.0;
+    } else if (y > -8) {
+      hoodSet = 1.0;
+    } else {
+      hoodSet = 1.0;
+    }
+    */
+
+    double newAdjSpd = SmartDashboard.getNumber("SHOOT SPD", 0.75);
+    if ((newAdjSpd != adjustableSpd)) {
+      adjustableSpd = newAdjSpd;
+    }
+    //ShooterMAP.flywheelMotor.set(speedVal);
+    ShooterMAP.flywheelMotor.set(adjustableSpd);
+
+
+    double smartHoodSet = SmartDashboard.getNumber("HOOD SET", 0.0);
+    if ((smartHoodSet != hoodSet)) {
+      hoodSet = smartHoodSet;
+    }
+    Robot.hood.setHoodSetpoint(hoodSet);
+
+
     // Robot.shooter.setPoint = useYLookup((int) y);
     // SmartDashboard.putNumber("setPoint SHOOT", Robot.shooter.setPoint);
     // Robot.shooter.setFlywheelPID(useYLookup((int) y)); // full speed for now

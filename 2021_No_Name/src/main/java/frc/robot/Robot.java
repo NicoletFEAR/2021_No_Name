@@ -152,6 +152,8 @@ public class Robot extends TimedRobot {
     // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
     System.out.println("Auto selected: " + m_autoSelected);
     TurretMAP.initEncoderZero = TurretMAP.turretEncoder.getPulseWidthPosition();
+    HoodMAP.initEncoderZero = HoodMAP.hoodEncoder.getPosition();
+
   }
 
   /** This function is called periodically during autonomous. */
