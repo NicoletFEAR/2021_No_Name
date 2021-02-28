@@ -42,7 +42,7 @@ public class DriveBase extends SubsystemBase {
 
 
 
-        DriveBaseMAP.driveMotorL1.set(outputLeft);    
+        DriveBaseMAP.driveMotorL1.set(outputLeft * 0.97);    
         DriveBaseMAP.driveMotorR1.set(outputRight);  
         
 

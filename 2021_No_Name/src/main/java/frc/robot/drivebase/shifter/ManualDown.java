@@ -6,6 +6,7 @@ package frc.robot.drivebase.shifter;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.Robot;
+import frc.robot.drivebase.DriveBaseMAP;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -19,5 +20,13 @@ public class ManualDown extends InstantCommand {
   @Override
   public void initialize() {
     Robot.shifter.shiftDown();
+
+    
+    DriveBaseMAP.driveMotorL1.setOpenLoopRampRate(DriveBaseMAP.DRIVE_RAMP_RATE_LOW);
+    DriveBaseMAP.driveMotorL2.setOpenLoopRampRate(DriveBaseMAP.DRIVE_RAMP_RATE_LOW);
+    DriveBaseMAP.driveMotorL3.setOpenLoopRampRate(DriveBaseMAP.DRIVE_RAMP_RATE_LOW);
+    DriveBaseMAP.driveMotorR1.setOpenLoopRampRate(DriveBaseMAP.DRIVE_RAMP_RATE_LOW);
+    DriveBaseMAP.driveMotorR2.setOpenLoopRampRate(DriveBaseMAP.DRIVE_RAMP_RATE_LOW);
+    DriveBaseMAP.driveMotorR3.setOpenLoopRampRate(DriveBaseMAP.DRIVE_RAMP_RATE_LOW);
   }
 }

@@ -171,7 +171,7 @@ public class AutoShootHood extends CommandBase {
       adjustableSpd = newAdjSpd;
     }
     //ShooterMAP.flywheelMotor.set(speedVal);
-    ShooterMAP.flywheelMotor.set(adjustableSpd);
+    //***ShooterMAP.flywheelMotor.set(adjustableSpd);
 
 
     double smartHoodSet = SmartDashboard.getNumber("HOOD SET", 0.0);
@@ -185,9 +185,11 @@ public class AutoShootHood extends CommandBase {
     // SmartDashboard.putNumber("setPoint SHOOT", Robot.shooter.setPoint);
     // Robot.shooter.setFlywheelPID(useYLookup((int) y)); // full speed for now
     // SET TURRET
-    Robot.turret.addToTurretSetpoint((int) (x));
-    HoldMAP.holdMotor.set(HoldMAP.DEFAULT_SPEED);
-    // RUN HOLD?
+    
+    
+    //***Robot.turret.addToTurretSetpoint((int) (x));
+    //***HoldMAP.holdMotor.set(HoldMAP.DEFAULT_SPEED);
+
   }
 
   // Called once the command ends or is interrupted.
@@ -197,6 +199,7 @@ public class AutoShootHood extends CommandBase {
     ShooterMAP.flywheelMotor.set(0.0);
     Robot.turret.stop();
     HoldMAP.holdMotor.set(0.0);
+    HoodMAP.hoodMotor.set(0.0);
   }
 
   // Returns true when the command should end.

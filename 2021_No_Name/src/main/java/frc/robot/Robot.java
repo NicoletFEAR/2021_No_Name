@@ -125,10 +125,10 @@ public class Robot extends TimedRobot {
     //SmartDashboard.putNumber("Turret Encoder", TurretMAP.turretEncoder.getAnalogIn());
     //SmartDashboard.putNumber("Turret Encoder", TurretMAP.turretEncoder.getPulseWidthPosition());
 
+      SmartDashboard.putNumber("Hood Encoder: ", HoodMAP.hoodEncoder.getPosition());
 
     // to reduce prints
     if (DriveBaseMAP.debugMode) {
-      SmartDashboard.putNumber("Hood Encoder: ", HoodMAP.hoodEncoder.getPosition());
       SmartDashboard.putNumber("Turret Encoder: ", (TurretMAP.turretEncoder.getPulseWidthRiseToFallUs() - 1024) / (8*4095)); //probably being added from
       // Anything else you think we should add?
     }
@@ -153,21 +153,15 @@ public class Robot extends TimedRobot {
     System.out.println("Auto selected: " + m_autoSelected);
     TurretMAP.initEncoderZero = TurretMAP.turretEncoder.getPulseWidthPosition();
     HoodMAP.initEncoderZero = HoodMAP.hoodEncoder.getPosition();
+    SmartDashboard.putNumber("HOOD SET", 0.0);
+
 
   }
 
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
-    switch (m_autoSelected) {
-      case kCustomAuto:
-        // Put custom auto code here
-        break;
-      case kDefaultAuto:
-      default:
-        // Put default auto code here
-        break;
-    }
+    
   }
 
   /** This function is called once when teleop is enabled. */

@@ -41,8 +41,10 @@ public class ShooterMAP {
         setUpFlywheelPID();
 
         adjustableSpeed = 0.75;
+        //hoodSet = 0.0;
 
         SmartDashboard.putNumber("SHOOT SPD", adjustableSpeed);
+        SmartDashboard.putNumber("HOOD SET", 0.0);
 
 
         

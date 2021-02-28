@@ -16,6 +16,7 @@ import frc.robot.intake.In;
 import frc.robot.intake.OpenLoopIntake;
 import frc.robot.shooter.AutoShootHood;
 import frc.robot.shooter.OpenLoopShooter;
+import frc.robot.shooter.hood.HoodEncoderReset;
 import frc.robot.shooter.hood.OpenLoopHood;
 import frc.robot.shooter.turret.OpenLoopTurret;
 
@@ -167,8 +168,9 @@ public class OI {
         xbox1RBumper.whenHeld(new OpenLoopShooter()); //Manual control of flywheel speed
         xbox1RBumper.whenHeld(new OpenLoopIntake()); //Manual control of intake speed
         xbox1RBumper.whenPressed(() -> DriveBaseMAP.setDebugMode(true));
-        xbox1RBumper.whenPressed(() -> DriveBaseMAP.setDebugMode(false));
+        xbox1RBumper.whenReleased(() -> DriveBaseMAP.setDebugMode(false));
 
+        xbox1Start.whenPressed(new HoodEncoderReset());
 
         
     }

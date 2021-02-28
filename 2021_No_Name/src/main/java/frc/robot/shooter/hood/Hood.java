@@ -6,6 +6,7 @@ package frc.robot.shooter.hood;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Hood extends SubsystemBase {
@@ -109,11 +110,21 @@ public class Hood extends SubsystemBase {
 
   public void setHoodSetpoint(double hoodSet) {
     encoderPos = (HoodMAP.hoodEncoder.getPosition() - HoodMAP.initEncoderZero);
-    movementVal = (hoodSet - encoderPos) / 2; // scale
+    if (hoodSet > HoodMAP.MAX_ENCODER) {
+      hoodSet = HoodMAP.MAX_ENCODER;
+    } else if (hoodSet < HoodMAP.MIN_ENCODER) {
+      hoodSet = HoodMAP.MIN_ENCODER;
+    }
+    movementVal = (hoodSet - encoderPos) / 10; // scale
 
-    if (hoodSet > 0 && encoderPos >= HoodMAP.MAX_ENCODER) {
-      movementVal = 0;
-    } else if (movementVal < 0 && encoderPos <= HoodMAP.MIN_ENCODER) {
+    
+    // if (hoodSet > 0 && encoderPos >= HoodMAP.MAX_ENCODER) {
+    //   movementVal = 0;
+    // } else if (movementVal < 0 && encoderPos <= HoodMAP.MIN_ENCODER) {
+    //   movementVal = 0;
+    // }
+    
+    if (Math.abs(movementVal) < 0.05) {
       movementVal = 0;
     }
 
@@ -123,6 +134,7 @@ public class Hood extends SubsystemBase {
       movementVal = -HoodMAP.MAX_SPEED;
     }
 
+    SmartDashboard.putNumber("MOVEMENT VAL", movementVal);
     HoodMAP.hoodMotor.set(movementVal);
 
   }
