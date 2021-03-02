@@ -34,7 +34,7 @@ public class DriveBaseMAP {
     public static final Value HIGH_GEAR = Value.kReverse;
 
     // OpenLoopDriveCMD
-    public static final double TURN_SCALING = 1.0; // dampens sensitivity of controls to turning
+    public static double TURN_SCALING = 1.0; // dampens sensitivity of controls to turning
     public static final double SPEED_SCALING = 1.0; // sets a max speed for driver control
     public static final double LEFT_RIGHT_ADJUST = 0.0; // basic adjust to keep robot applying roughly equal power
 

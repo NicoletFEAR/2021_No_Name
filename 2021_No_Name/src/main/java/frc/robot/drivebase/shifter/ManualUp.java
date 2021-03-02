@@ -21,6 +21,8 @@ public class ManualUp extends InstantCommand {
   public void initialize() {
     Robot.shifter.shiftUp();
     
+    DriveBaseMAP.TURN_SCALING = 0.01;
+    
     DriveBaseMAP.driveMotorL1.setOpenLoopRampRate(DriveBaseMAP.DRIVE_RAMP_RATE_HIGH);
     DriveBaseMAP.driveMotorL2.setOpenLoopRampRate(DriveBaseMAP.DRIVE_RAMP_RATE_HIGH);
     DriveBaseMAP.driveMotorL3.setOpenLoopRampRate(DriveBaseMAP.DRIVE_RAMP_RATE_HIGH);

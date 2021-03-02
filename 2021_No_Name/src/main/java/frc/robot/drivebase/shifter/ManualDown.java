@@ -21,7 +21,7 @@ public class ManualDown extends InstantCommand {
   public void initialize() {
     Robot.shifter.shiftDown();
 
-    
+    DriveBaseMAP.TURN_SCALING = 1.0;
     DriveBaseMAP.driveMotorL1.setOpenLoopRampRate(DriveBaseMAP.DRIVE_RAMP_RATE_LOW);
     DriveBaseMAP.driveMotorL2.setOpenLoopRampRate(DriveBaseMAP.DRIVE_RAMP_RATE_LOW);
     DriveBaseMAP.driveMotorL3.setOpenLoopRampRate(DriveBaseMAP.DRIVE_RAMP_RATE_LOW);
