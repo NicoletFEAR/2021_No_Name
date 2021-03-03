@@ -28,10 +28,10 @@ public class DriveBaseMAP {
     // Shifter
     public static DoubleSolenoid shifty = new DoubleSolenoid(0, 1);
     public static double SHIFT_DOWN_THRESHOLD = 1500; // NEEDS CALCULATING
-    public static double SHIFT_UP_THRESHOLD = 5000; // NEEDS CALCULATING // formerly 3500
+    public static double SHIFT_UP_THRESHOLD = 3500; // NEEDS CALCULATING 
 
-    public static final Value LOW_GEAR = Value.kForward;
-    public static final Value HIGH_GEAR = Value.kReverse;
+    public static final Value LOW_GEAR = Value.kForward; // Gets it from import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+    public static final Value HIGH_GEAR = Value.kReverse; // Gets it from import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
     // OpenLoopDriveCMD
     public static double TURN_SCALING = 1.0; // dampens sensitivity of controls to turning
