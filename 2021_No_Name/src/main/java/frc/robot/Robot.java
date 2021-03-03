@@ -168,7 +168,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     //If you are reading this and things are going poorly with vision it's probably because of this.
-    TurretMAP.initEncoderZero = TurretMAP.turretEncoder.getPulseWidthPosition();
+    // TurretMAP.initEncoderZero = TurretMAP.turretEncoder.getPulseWidthPosition();
   }
 
   /** This function is called periodically during operator control. */

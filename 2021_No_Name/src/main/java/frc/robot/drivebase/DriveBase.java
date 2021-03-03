@@ -29,8 +29,8 @@ public class DriveBase extends SubsystemBase {
         if (max > DriveBaseMAP.SPEED_SCALING)
 			multiplier = DriveBaseMAP.SPEED_SCALING / (max);
 		else
-			multiplier = 1;
-
+            multiplier = 1;
+            
 		outputLeft *= multiplier;
 		outputRight *= multiplier;
 
