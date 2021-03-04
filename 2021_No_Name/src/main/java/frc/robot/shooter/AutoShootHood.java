@@ -76,8 +76,8 @@ public class AutoShootHood extends CommandBase {
     // print encoder value, for testing
     if (DriveBaseMAP.debugMode) {
       SmartDashboard.putNumber("Hood Encoder: ", HoodMAP.hoodEncoder.getPosition());
-      SmartDashboard.putNumber("Turret Encoder",
-          (TurretMAP.turretEncoder.getPulseWidthRiseToFallUs() - 1024) / (8 * 4095));
+ //     SmartDashboard.putNumber("Turret Encoder",
+ //         (TurretMAP.turretEncoder.getPulseWidthRiseToFallUs() - 1024) / (8 * 4095));
     }
 
     // GET LIMELIGHT VALUES

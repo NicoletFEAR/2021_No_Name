@@ -122,17 +122,11 @@ public class Robot extends TimedRobot {
 
     CommandScheduler.getInstance().run();
 
-    //print encoder value, for testing
-    //SmartDashboard.putNumber("Hood Encoder: ", HoodMAP.hoodEncoder.getPosition());
-    //SmartDashboard.putNumber("Turret Encoder", TurretMAP.turretEncoder.getAnalogIn());
-    //SmartDashboard.putNumber("Turret Encoder", TurretMAP.turretEncoder.getPulseWidthPosition());
-
-      SmartDashboard.putNumber("Hood Encoder: ", HoodMAP.hoodEncoder.getPosition());
-
     // to reduce prints
     if (DriveBaseMAP.debugMode) {
       SmartDashboard.putNumber("Turret Encoder: ", TurretMAP.turretEncoder.getPulseWidthPosition());
       SmartDashboard.putNumber("Turret Init Position: ", TurretMAP.initEncoderZero);
+      SmartDashboard.putNumber("Hood Encoder: ", HoodMAP.hoodEncoder.getPosition());
     }
   }
 
@@ -154,7 +148,6 @@ public class Robot extends TimedRobot {
     // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
     System.out.println("Auto selected: " + m_autoSelected);
   //  TurretMAP.initEncoderZero = TurretMAP.turretEncoder.getPulseWidthPosition();
-    HoodMAP.initEncoderZero = HoodMAP.hoodEncoder.getPosition();
     SmartDashboard.putNumber("HOOD SET", 0.0);
 
 

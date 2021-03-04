@@ -25,7 +25,7 @@ public class OpenLoopTurret extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        movementVal = Robot.oi.getTurretAxis(); //Get Y input from left joystick on mech driver xbox1
+        movementVal = Robot.oi.getTurretAxis(); //Get X input from left joystick on mech driver xbox1
         //encoderPos = (TurretMAP.turretEncoder.getPulseWidthRiseToFallUs() - 1024) / (8*4095);
         encoderPos = (TurretMAP.turretEncoder.getPulseWidthPosition() - TurretMAP.initEncoderZero);
 

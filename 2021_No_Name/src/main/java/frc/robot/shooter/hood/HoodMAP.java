@@ -22,8 +22,6 @@ public class HoodMAP {
     public static double MAX_ENCODER = 108;
     public static double MIN_ENCODER = 0;
 
-    public static double initEncoderZero = 0.0;
-
     public static void init() {
 
         hoodMotor = new CANSparkMax(32, MotorType.kBrushless); 

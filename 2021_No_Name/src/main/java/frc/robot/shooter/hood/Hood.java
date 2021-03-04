@@ -109,7 +109,7 @@ public class Hood extends SubsystemBase {
   }
 
   public void setHoodSetpoint(double hoodSet) {
-    encoderPos = (HoodMAP.hoodEncoder.getPosition() - HoodMAP.initEncoderZero);
+    encoderPos = (HoodMAP.hoodEncoder.getPosition());
     if (hoodSet > HoodMAP.MAX_ENCODER) {
       hoodSet = HoodMAP.MAX_ENCODER;
     } else if (hoodSet < HoodMAP.MIN_ENCODER) {
@@ -134,7 +134,7 @@ public class Hood extends SubsystemBase {
       movementVal = -HoodMAP.MAX_SPEED;
     }
 
-    SmartDashboard.putNumber("MOVEMENT VAL", movementVal);
+    SmartDashboard.putNumber("HOOD MVMT VAL", movementVal);
     HoodMAP.hoodMotor.set(movementVal);
 
   }
