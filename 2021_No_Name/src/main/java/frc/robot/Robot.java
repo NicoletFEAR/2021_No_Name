@@ -100,10 +100,12 @@ public class Robot extends TimedRobot {
     //m_chooser.addOption("My Auto", kCustomAuto);
     //SmartDashboard.putData("Auto choices", m_chooser);
 
-    try{
-      TurretMAP.turretEncoder.setPulseWidthPosition(0, 100);
-    } catch (Exception e) {}
-
+//    try{
+//      TurretMAP.turretEncoder.setPulseWidthPosition(0, 100);
+//    } catch (Exception e) {
+//      System.out.println(e.toString());
+//    }
+//    TurretMAP.initEncoderZero = TurretMAP.turretEncoder.getPulseWidthPosition();
   }
 
   /**
@@ -129,8 +131,8 @@ public class Robot extends TimedRobot {
 
     // to reduce prints
     if (DriveBaseMAP.debugMode) {
-      SmartDashboard.putNumber("Turret Encoder: ", (TurretMAP.turretEncoder.getPulseWidthRiseToFallUs() - 1024) / (8*4095)); //probably being added from
-      // Anything else you think we should add?
+      SmartDashboard.putNumber("Turret Encoder: ", TurretMAP.turretEncoder.getPulseWidthPosition());
+      SmartDashboard.putNumber("Turret Init Position: ", TurretMAP.initEncoderZero);
     }
   }
 
@@ -151,7 +153,7 @@ public class Robot extends TimedRobot {
     m_autoSelected = m_chooser.getSelected();
     // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
     System.out.println("Auto selected: " + m_autoSelected);
-    TurretMAP.initEncoderZero = TurretMAP.turretEncoder.getPulseWidthPosition();
+  //  TurretMAP.initEncoderZero = TurretMAP.turretEncoder.getPulseWidthPosition();
     HoodMAP.initEncoderZero = HoodMAP.hoodEncoder.getPosition();
     SmartDashboard.putNumber("HOOD SET", 0.0);
 
@@ -168,7 +170,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     //If you are reading this and things are going poorly with vision it's probably because of this.
-    // TurretMAP.initEncoderZero = TurretMAP.turretEncoder.getPulseWidthPosition();
+  //  TurretMAP.initEncoderZero = TurretMAP.turretEncoder.getPulseWidthPosition();
   }
 
   /** This function is called periodically during operator control. */
