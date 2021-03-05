@@ -28,6 +28,7 @@ public class OpenLoopHood extends CommandBase {
         if (Math.abs(movementVal) < 0.05) {   
             movementVal = 0; 
         }
+        System.out.println(movementVal);
         // if (movementVal > 0.3) {
         //     Robot.hood.setPoint += 1.0;
         // } else if (movementVal < -0.3) {
@@ -35,7 +36,8 @@ public class OpenLoopHood extends CommandBase {
         // }
         //Might need to tune multiplier value
         //System.out.println("********* INSIDE OPENLOOPHOOD");
-        if (usePID) {
+      //if (usePID) {
+          if (false) {
             if (movementVal > 0.5) {
                 //Hood PID += 1
                 Robot.hood.changePID(0.01);

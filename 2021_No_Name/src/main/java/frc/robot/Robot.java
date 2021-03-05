@@ -124,7 +124,7 @@ public class Robot extends TimedRobot {
 
     CommandScheduler.getInstance().run();
     //HoodMAP.hoodMotor.set(0.3);
-    TurretMAP.turretMotor.set(ControlMode.PercentOutput, 0.3);
+    //TurretMAP.turretMotor.set(ControlMode.PercentOutput, 0.3);
 
     // to reduce prints
     if (DriveBaseMAP.debugMode) {

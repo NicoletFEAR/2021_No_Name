@@ -171,7 +171,7 @@ public class AutoShootHood extends CommandBase {
       adjustableSpd = newAdjSpd;
     }
     //ShooterMAP.flywheelMotor.set(speedVal);
-    //***ShooterMAP.flywheelMotor.set(adjustableSpd);
+    ShooterMAP.flywheelMotor.set(adjustableSpd);
 
 
     double smartHoodSet = SmartDashboard.getNumber("HOOD SET", 0.0);

@@ -99,9 +99,8 @@ public class Hood extends SubsystemBase {
 
   // Passed adjusted input from OpenLoopHood
   public void setHoodSpeed(double adjustedInput) {
-    /*
-     * HoodMAP.hoodMotor.set(adjustedInput);
-     */
+     HoodMAP.hoodMotor.set(adjustedInput);
+    
   }
 
   public void stop() {
