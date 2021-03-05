@@ -21,6 +21,7 @@ public class HoodMAP {
 
     public static double MAX_ENCODER = 108;
     public static double MIN_ENCODER = 0;
+    public static double hoodInitEncoderZero = 0;
 
     public static void init() {
 
@@ -33,6 +34,8 @@ public class HoodMAP {
         hoodEncoder = hoodMotor.getEncoder();
 
         hoodController = hoodMotor.getPIDController();
+        
+        hoodInitEncoderZero = hoodEncoder.getPosition();
 
     }
 

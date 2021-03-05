@@ -3,6 +3,8 @@
 // the WPILib BSD license file in the root directory o
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -121,10 +123,13 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
 
     CommandScheduler.getInstance().run();
+    //HoodMAP.hoodMotor.set(0.3);
+    TurretMAP.turretMotor.set(ControlMode.PercentOutput, 0.3);
 
     // to reduce prints
     if (DriveBaseMAP.debugMode) {
-      SmartDashboard.putNumber("Turret Encoder: ", TurretMAP.turretEncoder.getPulseWidthPosition());
+      //SmartDashboard.putNumber("Turret Encoder: ", TurretMAP.turretEncoder.getPulseWidthPosition());
+      SmartDashboard.putNumber("Turret Encoder: ", (TurretMAP.turretEncoder.getPulseWidthRiseToFallUs() - 1024) / (8 * 4095));
       SmartDashboard.putNumber("Turret Init Position: ", TurretMAP.initEncoderZero);
       SmartDashboard.putNumber("Hood Encoder: ", HoodMAP.hoodEncoder.getPosition());
     }

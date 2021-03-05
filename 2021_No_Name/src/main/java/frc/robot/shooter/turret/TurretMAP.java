@@ -30,7 +30,7 @@ public class TurretMAP {
         
 
         turretEncoder = turretMotor.getSensorCollection();
-        initEncoderZero = turretEncoder.getPulseWidthPosition();
+        initEncoderZero = (TurretMAP.turretEncoder.getPulseWidthRiseToFallUs() - 1024) / (8 * 4095);
 
         // How You Would Get and Set Encoder Pos From Other Classes:
         //turretEncoder.getQuadraturePosition();

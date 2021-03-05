@@ -78,7 +78,7 @@ public class AutoShoot extends CommandBase {
       SmartDashboard.putNumber("Hood Encoder: ", HoodMAP.hoodEncoder.getPosition());
       // SmartDashboard.putNumber("Turret Encoder",
       //     (TurretMAP.turretEncoder.getPulseWidthRiseToFallUs() - 1024) / (8 * 4095));
-      SmartDashboard.putNumber("Turret Encoder", (TurretMAP.turretEncoder.getPulseWidthPosition() - TurretMAP.initEncoderZero));
+      SmartDashboard.putNumber("Turret Encoder relative", ((TurretMAP.turretEncoder.getPulseWidthRiseToFallUs() - 1024) / (8 * 4095) - TurretMAP.initEncoderZero));
     }
 
     // GET LIMELIGHT VALUES

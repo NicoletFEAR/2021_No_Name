@@ -4,6 +4,7 @@
 
 package frc.robot.drivebase.shifter;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.Robot;
 import frc.robot.drivebase.DriveBaseMAP;
@@ -20,8 +21,10 @@ public class ManualUp extends InstantCommand {
   @Override
   public void initialize() {
     Robot.shifter.shiftUp();
-    
-    DriveBaseMAP.TURN_SCALING = 0.01;
+    DriveBaseMAP.TURN_SCALING = SmartDashboard.getNumber("HIGH TURN", 0.1);
+    DriveBaseMAP.SPEED_SCALING = SmartDashboard.getNumber("HIGH SPEED", 0.5);
+    //DriveBaseMAP.TURN_SCALING = 0.1;
+    //DriveBaseMAP.SPEED_SCALING = 0.3;
     
     DriveBaseMAP.driveMotorL1.setOpenLoopRampRate(DriveBaseMAP.DRIVE_RAMP_RATE_HIGH);
     DriveBaseMAP.driveMotorL2.setOpenLoopRampRate(DriveBaseMAP.DRIVE_RAMP_RATE_HIGH);

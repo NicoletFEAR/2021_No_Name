@@ -32,9 +32,9 @@ public class Turret extends SubsystemBase {
   }
 
   public void addToTurretSetpoint(int targetChange) { // a range of -23 to 23
-    encoderPos = (TurretMAP.turretEncoder.getPulseWidthPosition() - TurretMAP.initEncoderZero);
+    encoderPos = ((TurretMAP.turretEncoder.getPulseWidthRiseToFallUs() - 1024) / (8 * 4095) - TurretMAP.initEncoderZero);
     // System.out.println("targetChange is " + targetChange);
-    movementVal = targetChange / 2; // scale
+    movementVal = targetChange / 1; // scale
     // System.out.println("movementVal is " + movementVal);
 
     // if (Math.abs(movementVal) < 0.05) {
@@ -59,7 +59,7 @@ public class Turret extends SubsystemBase {
   }
 
   public void turretToZero() {
-    encoderPos = (TurretMAP.turretEncoder.getPulseWidthPosition() - TurretMAP.initEncoderZero);
+    encoderPos = ((TurretMAP.turretEncoder.getPulseWidthRiseToFallUs() - 1024) / (8 * 4095) - TurretMAP.initEncoderZero);
     movementVal = -(encoderPos / 2);
     TurretMAP.turretMotor.set(ControlMode.PercentOutput, movementVal);
 
@@ -72,7 +72,7 @@ public class Turret extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putNumber("TurretEncoder",
-        (TurretMAP.turretEncoder.getPulseWidthPosition() - TurretMAP.initEncoderZero));
+    SmartDashboard.putNumber("TurretEncoderRelative",
+        ((TurretMAP.turretEncoder.getPulseWidthRiseToFallUs() - 1024) / (8 * 4095) - TurretMAP.initEncoderZero));
   }
 }

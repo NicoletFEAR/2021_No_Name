@@ -7,6 +7,7 @@ import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
@@ -35,7 +36,7 @@ public class DriveBaseMAP {
 
     // OpenLoopDriveCMD
     public static double TURN_SCALING = 1.0; // dampens sensitivity of controls to turning
-    public static final double SPEED_SCALING = 1.0; // sets a max speed for driver control
+    public static double SPEED_SCALING = 1.0; // sets a max speed for driver control
     public static final double LEFT_RIGHT_ADJUST = 0.0; // basic adjust to keep robot applying roughly equal power
 
     // SparkMax Configurations
@@ -108,6 +109,10 @@ public class DriveBaseMAP {
         driveMotorR1.setInverted(false);
         driveMotorR2.setInverted(false);
         driveMotorR3.setInverted(false);
+
+        SmartDashboard.putNumber("HIGH TURN", 0.1);
+        SmartDashboard.putNumber("HIGH SPEED", 0.5);
+        
 
     }
 

@@ -24,7 +24,7 @@ public class Hood extends SubsystemBase {
 
   public void init() {
 
-    HoodMAP.hoodEncoder.setPosition(0.0);
+    //HoodMAP.hoodEncoder.setPosition(0.0);
 
     // Get motor from HoodMAP
     // HoodMAP.hoodMotor
@@ -109,7 +109,7 @@ public class Hood extends SubsystemBase {
   }
 
   public void setHoodSetpoint(double hoodSet) {
-    encoderPos = (HoodMAP.hoodEncoder.getPosition());
+    encoderPos = (HoodMAP.hoodEncoder.getPosition() - HoodMAP.hoodInitEncoderZero);
     if (hoodSet > HoodMAP.MAX_ENCODER) {
       hoodSet = HoodMAP.MAX_ENCODER;
     } else if (hoodSet < HoodMAP.MIN_ENCODER) {

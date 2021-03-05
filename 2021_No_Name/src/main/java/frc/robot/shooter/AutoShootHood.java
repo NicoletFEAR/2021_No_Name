@@ -184,11 +184,10 @@ public class AutoShootHood extends CommandBase {
     // Robot.shooter.setPoint = useYLookup((int) y);
     // SmartDashboard.putNumber("setPoint SHOOT", Robot.shooter.setPoint);
     // Robot.shooter.setFlywheelPID(useYLookup((int) y)); // full speed for now
+    
     // SET TURRET
-    
-    
-    //***Robot.turret.addToTurretSetpoint((int) (x));
-    //***HoldMAP.holdMotor.set(HoldMAP.DEFAULT_SPEED);
+    Robot.turret.addToTurretSetpoint((int) (x));
+    HoldMAP.holdMotor.set(HoldMAP.DEFAULT_SPEED);
 
   }
 

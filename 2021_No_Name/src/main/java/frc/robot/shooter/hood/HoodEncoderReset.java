@@ -12,7 +12,7 @@ public class HoodEncoderReset extends InstantCommand {
 
     @Override
     public void initialize() {
-        HoodMAP.hoodEncoder.setPosition(0.0);
+       // HoodMAP.hoodEncoder.setPosition(0.0);
 
     }
 

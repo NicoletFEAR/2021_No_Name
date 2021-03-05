@@ -18,7 +18,7 @@ public class OpenLoopHood extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        usePID = true; //we set to determine
+        usePID = false; //we set to determine
     }
 
     // Called every time the scheduler runs while the command is scheduled.
