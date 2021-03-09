@@ -21,8 +21,8 @@ public class ManualUp extends InstantCommand {
   @Override
   public void initialize() {
     Robot.shifter.shiftUp();
-    DriveBaseMAP.TURN_SCALING = SmartDashboard.getNumber("HIGH TURN", 0.1);
-    DriveBaseMAP.SPEED_SCALING = SmartDashboard.getNumber("HIGH SPEED", 0.5);
+    DriveBaseMAP.TURN_SCALING = SmartDashboard.getNumber("HIGH TURN", 0.55);
+    DriveBaseMAP.SPEED_SCALING = SmartDashboard.getNumber("HIGH SPEED", 0.6);
     //DriveBaseMAP.TURN_SCALING = 0.1;
     //DriveBaseMAP.SPEED_SCALING = 0.3;
     

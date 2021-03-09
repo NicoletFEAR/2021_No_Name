@@ -3,16 +3,15 @@
 // the WPILib BSD license file in the root directory o
 package frc.robot;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.autonomous.Player;
 import frc.robot.drivebase.DriveBase;
 import frc.robot.drivebase.DriveBaseMAP;
 import frc.robot.drivebase.OpenLoopDrive;
-import frc.robot.drivebase.shifter.AutoShift;
 import frc.robot.drivebase.shifter.Shifter;
 import frc.robot.hold.Hold;
 import frc.robot.hold.HoldMAP;
@@ -22,7 +21,6 @@ import frc.robot.shooter.Shooter;
 import frc.robot.shooter.ShooterMAP;
 import frc.robot.shooter.hood.Hood;
 import frc.robot.shooter.hood.HoodMAP;
-import frc.robot.shooter.hood.ResetHood;
 import frc.robot.shooter.turret.Turret;
 import frc.robot.shooter.turret.TurretMAP;
 
@@ -155,7 +153,8 @@ public class Robot extends TimedRobot {
   //  TurretMAP.initEncoderZero = TurretMAP.turretEncoder.getPulseWidthPosition();
     SmartDashboard.putNumber("HOOD SET", 0.0);
 
-
+    CommandBase autoCommand = new Player();
+    autoCommand.schedule();
   }
 
   /** This function is called periodically during autonomous. */

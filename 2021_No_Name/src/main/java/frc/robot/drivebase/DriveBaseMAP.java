@@ -44,7 +44,7 @@ public class DriveBaseMAP {
     public static final int DRIVE_CURRENT_FREE_LIMIT = 80; // default is 80A
 
     public static final double DRIVE_RAMP_RATE_LOW = 0.40; // bigger number = less acceleration
-    public static final double DRIVE_RAMP_RATE_HIGH = 0.90;
+    public static final double DRIVE_RAMP_RATE_HIGH = 0.60;
 
     // enable prints
     public static boolean debugMode;
@@ -110,8 +110,8 @@ public class DriveBaseMAP {
         driveMotorR2.setInverted(false);
         driveMotorR3.setInverted(false);
 
-        SmartDashboard.putNumber("HIGH TURN", 0.1);
-        SmartDashboard.putNumber("HIGH SPEED", 0.5);
+        SmartDashboard.putNumber("HIGH TURN", 0.55);
+        SmartDashboard.putNumber("HIGH SPEED", 0.6);
         
 
     }
