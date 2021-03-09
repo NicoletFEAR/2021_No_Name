@@ -133,7 +133,7 @@ public class Player extends CommandBase {
     // RUN LINE
 
      // DRIVE:
-     Robot.driveBase.RacingDrive(thisLine[5]-thisLine[4], thisLine[0] * DriveBaseMAP.TURN_SCALING);
+     Robot.driveBase.RacingDrive(thisLine[5]-thisLine[4], thisLine[0]);// * DriveBaseMAP.TURN_SCALING);
 
      // SWITCH FRONT
      if (thisLine[8] == 1.0) {Robot.driveBase.switchFront();} 
