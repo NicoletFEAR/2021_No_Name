@@ -97,87 +97,94 @@ public class AutoShootHood extends CommandBase {
     // SET FLYWHEEL
 
     // FOR FLYWHEEL:
-    /*
-    if (y > 13) {
-      speedVal = 0.63;
+    
+    if (y > 20) {
+      speedVal = 0.75;
+    } else if (y > 18) {
+      speedVal = 0.65;//0.7;
+    } else if (y > 15) {
+      speedVal = 0.65;//0.7;
+    } else if (y > 13) {
+      speedVal = 0.68;//0.7;
     } else if (y > 12) {
-      speedVal = 0.57;//0.7;
+      speedVal = 0.9;//0.7;
     } else if (y > 11) {
-      speedVal = 0.55;//0.65;
+      speedVal = 0.85;//0.65;
     } else if (y > 10) {
-      speedVal = 0.53;//0.65;
+      speedVal = 0.65;//0.65;
     } else if (y > 9) {
-      speedVal = 0.57;//0.68;
+      speedVal = 0.6;//0.68;
     } else if (y > 8) {
-      speedVal = 0.57;//0.7;
+      speedVal = 0.6;//0.7;
     } else if (y > 7) {
-      speedVal = 0.56;//0.69;
+      speedVal = 0.6;//0.69;
     } else if (y > 6) {
-      speedVal = 0.56;
+      speedVal = 0.64;
     } else if (y > 5) {
-      speedVal = 0.56;
+      speedVal = 0.62;
     } else if (y > 3) {
-      speedVal = 0.56;
+      speedVal = 0.54;
     } else if (y > 0) {
-      speedVal = 0.53;
+      speedVal = 0.54;
     } else if (y > -3) {
-      speedVal = 0.8;
+      speedVal = 0.55;
     } else if (y > -5) {
-      speedVal = 1.0;
+      speedVal = 0.55;
     } else if (y > -8) {
-      speedVal = 1.0;
+      speedVal = 0.55;
     } else {
-      speedVal = 1.0;
+      speedVal = 0.55;
     }
-    */
+    
 
     // FOR HOOD:
-    /*
-    if (y > 13) {
-      hoodSet = 0.63;
+    
+    if (y > 20) {
+      hoodSet = -50;
+    } else if (y > 17) {
+      hoodSet = -90;//0.7;
+    } else if (y > 15) {
+      hoodSet = -90;//0.65;
+    } else if (y > 13) {
+      hoodSet = -90;//0.65;
     } else if (y > 12) {
-      hoodSet = 0.57;//0.7;
-    } else if (y > 11) {
-      hoodSet = 0.55;//0.65;
-    } else if (y > 10) {
-      hoodSet = 0.53;//0.65;
-    } else if (y > 9) {
-      hoodSet = 0.57;//0.68;
+      hoodSet = -90;//0.68;
     } else if (y > 8) {
-      hoodSet = 0.57;//0.7;
-    } else if (y > 7) {
-      hoodSet = 0.56;//0.69;
+      hoodSet = -90;//0.7;
     } else if (y > 6) {
-      hoodSet = 0.56;
-    } else if (y > 5) {
-      hoodSet = 0.56;
+      hoodSet = -90;//0.69;
+    } else if (y > 4) {
+      hoodSet = -90;
     } else if (y > 3) {
-      hoodSet = 0.56;
+      hoodSet = -57;
+    } else if (y > 2) {
+      hoodSet = -52;
     } else if (y > 0) {
-      hoodSet = 0.53;
+      hoodSet = -50;
     } else if (y > -3) {
-      hoodSet = 0.8;
+      hoodSet = -50;
     } else if (y > -5) {
-      hoodSet = 1.0;
+      hoodSet = -50;
     } else if (y > -8) {
-      hoodSet = 1.0;
+      hoodSet = -50;
     } else {
-      hoodSet = 1.0;
+      hoodSet = -50;
     }
-    */
+    
+    
+    // double newAdjSpd = SmartDashboard.getNumber("SHOOT SPD", 0.75);
+    // if ((newAdjSpd != adjustableSpd)) {
+    //   adjustableSpd = newAdjSpd;
+    // }
+    
+    ShooterMAP.flywheelMotor.set(speedVal);
+    //ShooterMAP.flywheelMotor.set(adjustableSpd);
 
-    double newAdjSpd = SmartDashboard.getNumber("SHOOT SPD", 0.75);
-    if ((newAdjSpd != adjustableSpd)) {
-      adjustableSpd = newAdjSpd;
-    }
-    //ShooterMAP.flywheelMotor.set(speedVal);
-    ShooterMAP.flywheelMotor.set(adjustableSpd);
 
-
-    double smartHoodSet = SmartDashboard.getNumber("HOOD SET", 0.0);
-    if ((smartHoodSet != hoodSet)) {
-      hoodSet = smartHoodSet;
-    }
+    // double smartHoodSet = SmartDashboard.getNumber("HOOD SET", 0.0);
+    // if ((smartHoodSet != hoodSet)) {
+    //   hoodSet = smartHoodSet;
+    // }
     Robot.hood.setHoodSetpoint(hoodSet);
 
 
@@ -187,7 +194,7 @@ public class AutoShootHood extends CommandBase {
     
     // SET TURRET
     Robot.turret.addToTurretSetpoint((int) (x));
-    HoldMAP.holdMotor.set(HoldMAP.DEFAULT_SPEED);
+    //HoldMAP.holdMotor.set(HoldMAP.DEFAULT_SPEED);
 
   }
 

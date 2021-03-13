@@ -11,6 +11,7 @@ import frc.robot.autonomous.Record;
 import frc.robot.drivebase.DriveBaseMAP;
 import frc.robot.drivebase.shifter.ManualDown;
 import frc.robot.drivebase.shifter.ManualUp;
+import frc.robot.hold.Hold;
 // import frc.robot.drivebase.*
 import frc.robot.intake.In;
 import frc.robot.intake.OpenLoopIntake;
@@ -172,7 +173,8 @@ public class OI {
         xbox1RBumper.whenReleased(() -> DriveBaseMAP.setDebugMode(false));
         xbox1LBumper.whenPressed(() -> HoodMAP.hoodInitEncoderZero = HoodMAP.hoodEncoder.getPosition());
         xbox1Start.whenPressed(new HoodEncoderReset());
-
+        xbox1X.whenPressed(() -> Robot.hold.eject());
+        xbox1X.whenReleased(() -> Robot.hold.stop());
         
     }
 
