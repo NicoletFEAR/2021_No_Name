@@ -127,9 +127,9 @@ public class Robot extends TimedRobot {
     // to reduce prints
     if (DriveBaseMAP.debugMode) {
       //SmartDashboard.putNumber("Turret Encoder: ", TurretMAP.turretEncoder.getPulseWidthPosition());
-      SmartDashboard.putNumber("Turret Encoder: ", (TurretMAP.turretEncoder.getPulseWidthRiseToFallUs() - 1024) / (8 * 4095));
-      SmartDashboard.putNumber("Turret Init Position: ", TurretMAP.initEncoderZero);
-      SmartDashboard.putNumber("Hood Encoder: ", HoodMAP.hoodEncoder.getPosition());
+      //SmartDashboard.putNumber("Turret Encoder: ", (TurretMAP.turretEncoder.getPulseWidthRiseToFallUs() - 1024) / (8 * 4095));
+      //SmartDashboard.putNumber("Turret Init Position: ", TurretMAP.initEncoderZero);
+      //SmartDashboard.putNumber("Hood Encoder: ", HoodMAP.hoodEncoder.getPosition());
     }
   }
 

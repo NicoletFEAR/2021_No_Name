@@ -70,6 +70,7 @@ public class ShooterMAP {
 
         
     // display PID coefficients on SmartDashboard
+    /*
     SmartDashboard.putNumber("P Gain", kP);
     SmartDashboard.putNumber("I Gain", kI);
     SmartDashboard.putNumber("D Gain", kD);
@@ -77,7 +78,7 @@ public class ShooterMAP {
     SmartDashboard.putNumber("Feed Forward", kFF);
     SmartDashboard.putNumber("Max Output", kMaxOutput);
     SmartDashboard.putNumber("Min Output", kMinOutput);
-    
+    */
       
     }
 

@@ -133,7 +133,7 @@ public class Hood extends SubsystemBase {
       movementVal = -HoodMAP.MAX_SPEED;
     }
 
-    SmartDashboard.putNumber("HOOD MVMT VAL", movementVal);
+    //SmartDashboard.putNumber("HOOD MVMT VAL", movementVal);
     HoodMAP.hoodMotor.set(movementVal);
 
   }
