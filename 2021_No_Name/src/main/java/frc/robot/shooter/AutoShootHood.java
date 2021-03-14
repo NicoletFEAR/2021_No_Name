@@ -40,7 +40,7 @@ public class AutoShootHood extends CommandBase {
 
   /** Creates a new AutoShoot. */
   public AutoShootHood() {
-    addRequirements(Robot.shooter);
+    //addRequirements(Robot.shooter);
     addRequirements(Robot.turret);
     addRequirements(Robot.hood);
     // addRequirements(Robot.hold);
@@ -177,7 +177,7 @@ public class AutoShootHood extends CommandBase {
     //   adjustableSpd = newAdjSpd;
     // }
     
-    ShooterMAP.flywheelMotor.set(speedVal);
+    //ShooterMAP.flywheelMotor.set(speedVal);
     //ShooterMAP.flywheelMotor.set(adjustableSpd);
 
 
@@ -202,7 +202,7 @@ public class AutoShootHood extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     // Robot.shooter.setPoint = 0;
-    ShooterMAP.flywheelMotor.set(0.0);
+    //ShooterMAP.flywheelMotor.set(0.0);
     Robot.turret.stop();
     HoldMAP.holdMotor.set(0.0);
     HoodMAP.hoodMotor.set(0.0);
