@@ -3,12 +3,21 @@
 // the WPILib BSD license file in the root directory o
 package frc.robot;
 
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.autonomous.Player;
+import frc.robot.autonomous.PlayerPreLoaded;
 import frc.robot.drivebase.DriveBase;
 import frc.robot.drivebase.DriveBaseMAP;
 import frc.robot.drivebase.OpenLoopDrive;
@@ -53,10 +62,20 @@ public class Robot extends TimedRobot {
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
+  public ArrayList<double[]> autonomousArray;
+  
+  ArrayList<double[]> redA;
+  ArrayList<double[]> redB;
+  ArrayList<double[]> blueA;
+  ArrayList<double[]> blueB;
+  ArrayList<double[]> currentChallenge;
 
+  NetworkTable table;
+  
   /**
    * This function is run when the robot is first started up and should be used
    * for any initialization code.
+   * 
    */
   @Override
   public void robotInit() {
@@ -96,10 +115,67 @@ public class Robot extends TimedRobot {
     SmartDashboard.putBoolean("OverwriteModeisTrue", false); // should be in robotinit
     SmartDashboard.putString("autoToPlay", "defaultEmpty");
 
-    //m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
-    //m_chooser.addOption("My Auto", kCustomAuto);
-    //SmartDashboard.putData("Auto choices", m_chooser);
+    // PreLoading auto arraylists
+    Gson gson = new Gson();
 
+    try { // RED A
+      FileReader fileReader_RedA = new FileReader("/c/" + "RedA" + ".json");
+      redA = gson.fromJson(fileReader_RedA, new TypeToken<List<double[]>>(){}.getType());
+      System.out.println("opened read file redA");
+      fileReader_RedA.close();
+    }
+    catch (Exception e) {
+      System.out.println("could not create FileReader redA");
+      System.out.println(e);
+    } // END RED A
+
+    try { // RED B
+      FileReader fileReader_RedB = new FileReader("/c/" + "RedB" + ".json");
+      redB = gson.fromJson(fileReader_RedB, new TypeToken<List<double[]>>(){}.getType());
+      System.out.println("opened read file redB");
+      fileReader_RedB.close();
+    }
+    catch (Exception e) {
+      System.out.println("could not create FileReader redB");
+      System.out.println(e);
+    } // END RED B
+    
+    try { // BLUE A
+      FileReader fileReader_BlueA = new FileReader("/c/" + "BlueA" + ".json");
+      blueA = gson.fromJson(fileReader_BlueA, new TypeToken<List<double[]>>(){}.getType());
+      System.out.println("opened read file BlueA");
+      fileReader_BlueA.close();
+    }
+    catch (Exception e) {
+      System.out.println("could not create FileReader BlueA");
+      System.out.println(e);
+    } // END BLUE A
+    
+    try { // BLUE B
+      FileReader fileReader_BlueB = new FileReader("/c/" + "BlueB" + ".json");
+      blueB = gson.fromJson(fileReader_BlueB, new TypeToken<List<double[]>>(){}.getType());
+      System.out.println("opened read file BlueB");
+      fileReader_BlueB.close();
+    }
+    catch (Exception e) {
+      System.out.println("could not create FileReader BlueB");
+      System.out.println(e);
+    } // END BLUE B
+
+    try { // CURRENT CHALLENGE
+      FileReader fileReader_CurrentChallenge = new FileReader("/c/" + "CurrentChallenge" + ".json");
+      currentChallenge = gson.fromJson(fileReader_CurrentChallenge, new TypeToken<List<double[]>>(){}.getType());
+      System.out.println("opened read file CURRENT CHALLENGE");
+      fileReader_CurrentChallenge.close();
+    }
+    catch (Exception e) {
+      System.out.println("could not create FileReader CURRENT CHALLENGE");
+      System.out.println(e);
+    } 
+    
+    table = NetworkTableInstance.getDefault().getTable("limelight");
+
+    // END CURRENT CHALLENGE
 //    try{
 //      TurretMAP.turretEncoder.setPulseWidthPosition(0, 100);
 //    } catch (Exception e) {
@@ -147,13 +223,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() { // start of auto
-    m_autoSelected = m_chooser.getSelected();
-    // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
-    System.out.println("Auto selected: " + m_autoSelected);
-  //  TurretMAP.initEncoderZero = TurretMAP.turretEncoder.getPulseWidthPosition();
-    SmartDashboard.putNumber("HOOD SET", 0.0);
-
-    CommandBase autoCommand = new Player();
+    // DECIDE WHICH AUTO TO PLAY
+    //tx = table.getEntry("tx");
+    autonomousArray = currentChallenge;
+    CommandBase autoCommand = new PlayerPreLoaded(autonomousArray);
     autoCommand.schedule();
   }
 
