@@ -132,6 +132,8 @@ public class OI {
         xbox0B.whenReleased(() -> Robot.hold.stop());
         xbox0DpadRight.whileHeld(() -> Robot.intake.exhaust());
         xbox0DpadRight.whenReleased(() -> Robot.intake.stop());
+        xbox0DpadLeft.whenPressed(() -> Robot.hold.eject());
+        xbox0DpadLeft.whenReleased(() -> Robot.hold.stop());
          //xbox0Y.whenHeld(new AutoShoot());
          //xbox1Y.whenHeld(new AutoShoot());
         xbox0Y.whenHeld(new AutoShootHood());

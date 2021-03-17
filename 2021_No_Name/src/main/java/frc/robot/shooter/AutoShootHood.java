@@ -102,24 +102,26 @@ public class AutoShootHood extends CommandBase {
       speedVal = 0.75;
     } else if (y > 18) {
       speedVal = 0.65;//0.7;
-    } else if (y > 15) {
+    } else if (y > 17) {
       speedVal = 0.65;//0.7;
+    } else if (y > 15) {
+      speedVal = 0.55;//0.7;
     } else if (y > 13) {
-      speedVal = 0.68;//0.7;
+      speedVal = 0.58;//0.7;
     } else if (y > 12) {
-      speedVal = 0.9;//0.7;
+      speedVal = 0.58;//0.7;
     } else if (y > 11) {
-      speedVal = 0.85;//0.65;
+      speedVal = 0.6;//0.65;
     } else if (y > 10) {
       speedVal = 0.65;//0.65;
     } else if (y > 9) {
       speedVal = 0.6;//0.68;
     } else if (y > 8) {
-      speedVal = 0.6;//0.7;
+      speedVal = 0.53;//0.7;
     } else if (y > 7) {
-      speedVal = 0.6;//0.69;
+      speedVal = 0.58;//0.69;
     } else if (y > 6) {
-      speedVal = 0.64;
+      speedVal = 0.62;
     } else if (y > 5) {
       speedVal = 0.62;
     } else if (y > 3) {
@@ -142,15 +144,17 @@ public class AutoShootHood extends CommandBase {
     if (y > 20) {
       hoodSet = -50;
     } else if (y > 17) {
-      hoodSet = -90;//0.7;
+      hoodSet = -55;//0.7;
+    } else if (y > 16) {
+      hoodSet = -60;//0.7;
     } else if (y > 15) {
-      hoodSet = -90;//0.65;
+      hoodSet = -55;//0.65;
     } else if (y > 13) {
       hoodSet = -90;//0.65;
     } else if (y > 12) {
-      hoodSet = -90;//0.68;
+      hoodSet = -60;//0.68;
     } else if (y > 8) {
-      hoodSet = -90;//0.7;
+      hoodSet = -65;//0.7;
     } else if (y > 6) {
       hoodSet = -90;//0.69;
     } else if (y > 4) {
@@ -177,7 +181,7 @@ public class AutoShootHood extends CommandBase {
     //   adjustableSpd = newAdjSpd;
     // }
     
-    //ShooterMAP.flywheelMotor.set(speedVal);
+    ShooterMAP.flywheelMotor.set(speedVal);
     //ShooterMAP.flywheelMotor.set(adjustableSpd);
 
 
@@ -202,7 +206,7 @@ public class AutoShootHood extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     // Robot.shooter.setPoint = 0;
-    //ShooterMAP.flywheelMotor.set(0.0);
+    ShooterMAP.flywheelMotor.set(0.0);
     Robot.turret.stop();
     HoldMAP.holdMotor.set(0.0);
     HoodMAP.hoodMotor.set(0.0);

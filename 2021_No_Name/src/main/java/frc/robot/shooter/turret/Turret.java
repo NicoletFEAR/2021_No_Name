@@ -34,7 +34,7 @@ public class Turret extends SubsystemBase {
   public void addToTurretSetpoint(int targetChange) { // a range of -23 to 23
     encoderPos = ((TurretMAP.turretEncoder.getPulseWidthRiseToFallUs() - 1024) / (8 * 4095) - TurretMAP.initEncoderZero);
     // System.out.println("targetChange is " + targetChange);
-    movementVal = targetChange / 3; // scale
+    movementVal = targetChange / 1; // scale
     // System.out.println("movementVal is " + movementVal);
 
     // if (Math.abs(movementVal) < 0.05) {
@@ -49,10 +49,10 @@ public class Turret extends SubsystemBase {
 
 
     //Limit Max Speed
-    if (movementVal >= 0.28) {
-      movementVal = 0.28;
-    } else if (movementVal <= -0.28) {
-      movementVal = -0.28;
+    if (movementVal >= 0.22) {
+      movementVal = 0.22;
+    } else if (movementVal <= -0.22) {
+      movementVal = -0.22;
     }
 
     TurretMAP.turretMotor.set(ControlMode.PercentOutput, movementVal);

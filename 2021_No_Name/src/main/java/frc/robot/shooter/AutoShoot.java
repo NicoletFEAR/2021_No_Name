@@ -141,7 +141,7 @@ public class AutoShoot extends CommandBase {
     // Robot.turret.addToTurretSetpoint((int)x);
     // HoldMAP.holdMotor.set(HoldMAP.DEFAULT_SPEED);
     // // RUN HOLD?
-    ShooterMAP.flywheelMotor.set(.75);
+    ShooterMAP.flywheelMotor.set(.6);
     //ShooterMAP.flywheelMotor.set(adjustableSpd);
 
 
