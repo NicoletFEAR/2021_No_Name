@@ -163,7 +163,7 @@ public class Robot extends TimedRobot {
     } // END BLUE B
 
     try { // CURRENT CHALLENGE
-      FileReader fileReader_CurrentChallenge = new FileReader("/c/" + "CurrentChallenge" + ".json");
+      FileReader fileReader_CurrentChallenge = new FileReader("/c/" + "defaultEmpty" + ".json");
       currentChallenge = gson.fromJson(fileReader_CurrentChallenge, new TypeToken<List<double[]>>(){}.getType());
       System.out.println("opened read file CURRENT CHALLENGE");
       fileReader_CurrentChallenge.close();
@@ -225,6 +225,7 @@ public class Robot extends TimedRobot {
   public void autonomousInit() { // start of auto
     // DECIDE WHICH AUTO TO PLAY
     //tx = table.getEntry("tx");
+    // 
     autonomousArray = currentChallenge;
     CommandBase autoCommand = new PlayerPreLoaded(autonomousArray);
     autoCommand.schedule();

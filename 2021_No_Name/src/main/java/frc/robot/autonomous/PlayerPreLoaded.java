@@ -104,7 +104,7 @@ public class PlayerPreLoaded extends CommandBase {
   @Override
   public void execute() {
 
-    if (isFinished = false) {
+    if (isFinished == false) {
     double[] thisLine = allLines.get(currentLine);
     
     // RUN LINE
