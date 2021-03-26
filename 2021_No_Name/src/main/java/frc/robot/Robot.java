@@ -10,6 +10,8 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.ejml.simple.AutomaticSimpleMatrixConvert;
+
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -121,11 +123,11 @@ public class Robot extends TimedRobot {
     try { // RED A
       FileReader fileReader_RedA = new FileReader("/c/" + "RedA" + ".json");
       redA = gson.fromJson(fileReader_RedA, new TypeToken<List<double[]>>(){}.getType());
-      System.out.println("opened read file redA");
+      System.out.println("opened read file RedA");
       fileReader_RedA.close();
     }
     catch (Exception e) {
-      System.out.println("could not create FileReader redA");
+      System.out.println("could not create FileReader RedA");
       System.out.println(e);
     } // END RED A
 
@@ -136,7 +138,7 @@ public class Robot extends TimedRobot {
       fileReader_RedB.close();
     }
     catch (Exception e) {
-      System.out.println("could not create FileReader redB");
+      System.out.println("could not create FileReader RedB");
       System.out.println(e);
     } // END RED B
     
@@ -163,7 +165,7 @@ public class Robot extends TimedRobot {
     } // END BLUE B
 
     try { // CURRENT CHALLENGE
-      FileReader fileReader_CurrentChallenge = new FileReader("/c/" + "defaultEmpty" + ".json");
+      FileReader fileReader_CurrentChallenge = new FileReader("/c/" + "slalomnew" + ".json");
       currentChallenge = gson.fromJson(fileReader_CurrentChallenge, new TypeToken<List<double[]>>(){}.getType());
       System.out.println("opened read file CURRENT CHALLENGE");
       fileReader_CurrentChallenge.close();
@@ -224,8 +226,24 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() { // start of auto
     // DECIDE WHICH AUTO TO PLAY
-    //tx = table.getEntry("tx");
-    // 
+    double tx = table.getEntry("tx").getDouble(0.0);
+    double ty = table.getEntry("ty").getDouble(0.0);
+
+    // check where the ball is (by distance and by left/right)
+    if (ty > 0) { // run blue
+      if (tx < 0) {
+        autonomousArray = blueB; // B // far away, on the left
+      } else {
+        autonomousArray = blueA; // A // far away, on the right
+      }
+    }
+    else { // run red
+    if (tx < 0) {
+      autonomousArray = redB; // B // close, on the left
+    } else {
+      autonomousArray = redA; // A // far away, on the right
+    }
+    }
     autonomousArray = currentChallenge;
     CommandBase autoCommand = new PlayerPreLoaded(autonomousArray);
     autoCommand.schedule();

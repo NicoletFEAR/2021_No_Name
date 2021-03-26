@@ -137,7 +137,7 @@ public class OI {
          //xbox0Y.whenHeld(new AutoShoot());
          //xbox1Y.whenHeld(new AutoShoot());
         xbox0Y.whenHeld(new AutoShootHood());
-        xbox1Y.whenHeld(new AutoShoot());
+        xbox1Y.whenHeld(new AutoShootHood());
 
 
         // Y for automatic shooting (whenHeld we think)

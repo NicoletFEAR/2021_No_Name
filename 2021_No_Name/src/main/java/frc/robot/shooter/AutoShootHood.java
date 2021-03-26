@@ -84,7 +84,9 @@ public class AutoShootHood extends CommandBase {
     x = tx.getDouble(0.0);
     y = ty.getDouble(0.0);
     area = ta.getDouble(0.0);
-
+    if (y > 17.5) {
+      x -= 2.0;
+    }
     // DO MATH TO CALCULATE SETPOINTS
     // x to turret
 
@@ -125,9 +127,9 @@ public class AutoShootHood extends CommandBase {
     } else if (y > 5) {
       speedVal = 0.62;
     } else if (y > 3) {
-      speedVal = 0.54;
+      speedVal = 0.5;
     } else if (y > 0) {
-      speedVal = 0.54;
+      speedVal = 0.5;
     } else if (y > -3) {
       speedVal = 0.55;
     } else if (y > -5) {
@@ -148,29 +150,33 @@ public class AutoShootHood extends CommandBase {
     } else if (y > 16) {
       hoodSet = -60;//0.7;
     } else if (y > 15) {
-      hoodSet = -55;//0.65;
+      hoodSet = -65;//0.65;
     } else if (y > 13) {
-      hoodSet = -90;//0.65;
+      hoodSet = -75;//0.65;
     } else if (y > 12) {
-      hoodSet = -60;//0.68;
+      hoodSet = -75;//0.68;
     } else if (y > 8) {
-      hoodSet = -65;//0.7;
+      hoodSet = -80;//0.7;
     } else if (y > 6) {
       hoodSet = -90;//0.69;
     } else if (y > 4) {
       hoodSet = -90;
     } else if (y > 3) {
-      hoodSet = -57;
+      hoodSet = -72;
     } else if (y > 2) {
-      hoodSet = -52;
+      hoodSet = -60;
+    } else if (y > 1) {
+      hoodSet = -66;
     } else if (y > 0) {
-      hoodSet = -50;
+      hoodSet = -76;
     } else if (y > -3) {
-      hoodSet = -50;
+      hoodSet = -88;
     } else if (y > -5) {
-      hoodSet = -50;
+      hoodSet = -73;
+    } else if (y > -6) {
+      hoodSet = -73;
     } else if (y > -8) {
-      hoodSet = -50;
+      hoodSet = -70;
     } else {
       hoodSet = -50;
     }
@@ -181,7 +187,7 @@ public class AutoShootHood extends CommandBase {
     //   adjustableSpd = newAdjSpd;
     // }
     
-    ShooterMAP.flywheelMotor.set(speedVal);
+    //ShooterMAP.flywheelMotor.set(speedVal);
     //ShooterMAP.flywheelMotor.set(adjustableSpd);
 
 
@@ -189,13 +195,14 @@ public class AutoShootHood extends CommandBase {
     // if ((smartHoodSet != hoodSet)) {
     //   hoodSet = smartHoodSet;
     // }
-    Robot.hood.setHoodSetpoint(hoodSet);
+    //Robot.hood.setHoodSetpoint(hoodSet);
 
 
     // Robot.shooter.setPoint = useYLookup((int) y);
     // SmartDashboard.putNumber("setPoint SHOOT", Robot.shooter.setPoint);
     // Robot.shooter.setFlywheelPID(useYLookup((int) y)); // full speed for now
-    
+    ShooterMAP.flywheelMotor.set(.53);
+
     // SET TURRET
     Robot.turret.addToTurretSetpoint((int) (x));
     //HoldMAP.holdMotor.set(HoldMAP.DEFAULT_SPEED);
@@ -206,9 +213,10 @@ public class AutoShootHood extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     // Robot.shooter.setPoint = 0;
+    
     ShooterMAP.flywheelMotor.set(0.0);
     Robot.turret.stop();
-    HoldMAP.holdMotor.set(0.0);
+    //HoldMAP.holdMotor.set(0.0);
     HoodMAP.hoodMotor.set(0.0);
   }
 
