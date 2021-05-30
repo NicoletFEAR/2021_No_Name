@@ -15,7 +15,7 @@ public class ShooterMAP {
     // Speed Controllers/Motors
     public static CANSparkMax flywheelMotor; // the big shooter flywheel
     //public static CANSparkMax hoodMotor;
-    //public static CANSparkMax holdMotor;
+    //public static CANSparkMax spindexerMotor;
     public static double setPoint;
   private static double adjustableSpeed;
     // Flywheel PID
@@ -31,7 +31,7 @@ public class ShooterMAP {
 
         flywheelMotor = new CANSparkMax(31, MotorType.kBrushless);
         // hoodMotor = new CANSparkMax(32, MotorType.kBrushless);
-        // holdMotor = new CANSparkMax(33, MotorType.kBrushless);
+        // spindexerMotor = new CANSparkMax(33, MotorType.kBrushless);
         
         
         flywheelMotor.setSmartCurrentLimit(80, 80);

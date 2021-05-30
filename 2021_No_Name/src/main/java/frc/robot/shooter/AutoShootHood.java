@@ -19,7 +19,7 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
 import frc.robot.drivebase.*;
-import frc.robot.hold.HoldMAP;
+import frc.robot.spindexer.SpindexerMAP;
 
 public class AutoShootHood extends CommandBase {
 
@@ -43,7 +43,7 @@ public class AutoShootHood extends CommandBase {
     //addRequirements(Robot.shooter);
     addRequirements(Robot.turret);
     addRequirements(Robot.hood);
-    // addRequirements(Robot.hold);
+    // addRequirements(Robot.spindexer);
     // Use addRequirements() here to declare subsystem dependencies.
 
   }
@@ -205,7 +205,7 @@ public class AutoShootHood extends CommandBase {
 
     // SET TURRET
     Robot.turret.addToTurretSetpoint((int) (x));
-    //HoldMAP.holdMotor.set(HoldMAP.DEFAULT_SPEED);
+    //SpindexerMAP.spindexerMotor.set(SpindexerMAP.DEFAULT_SPEED);
 
   }
 
@@ -216,7 +216,7 @@ public class AutoShootHood extends CommandBase {
     
     ShooterMAP.flywheelMotor.set(0.0);
     Robot.turret.stop();
-    //HoldMAP.holdMotor.set(0.0);
+    //SpindexerMAP.spindexerMotor.set(0.0);
     HoodMAP.hoodMotor.set(0.0);
   }
 

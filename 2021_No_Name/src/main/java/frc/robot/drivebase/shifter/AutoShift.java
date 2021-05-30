@@ -37,12 +37,12 @@ public class AutoShift extends CommandBase {
 
     avgVel =calcAvgVel();
 
-    if (Robot.oi.xbox0.getBumper(Hand.kLeft)) { // check the driver is holding down the low gear button
+    if (Robot.oi.xbox0.getBumper(Hand.kLeft)) { // check the driver is spindexering down the low gear button
       if (DriveBaseMAP.shifty.get() == DriveBaseMAP.HIGH_GEAR) { //check that robot is not already in low gear
         Robot.shifter.shiftDown();
       }
     } 
-    else if (Robot.oi.xbox0.getBumper(Hand.kRight)) { // check the driver is holding down the high gear button
+    else if (Robot.oi.xbox0.getBumper(Hand.kRight)) { // check the driver is spindexering down the high gear button
       if (DriveBaseMAP.shifty.get() == DriveBaseMAP.LOW_GEAR) { //check that robot is not already in high gear
         Robot.shifter.shiftUp();
       }

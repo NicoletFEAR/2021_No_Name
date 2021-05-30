@@ -14,7 +14,7 @@ public class HoodMAP {
     public static CANEncoder hoodEncoder; // to be easier to access
     public static CANPIDController hoodController;
 
-    // Hold Constants
+    // Spindexer Constants
     public static double DEFAULT_SPEED = 0.1; //  if we want a default speed for commands
     public static double HOOD_MULTIPLIER = 0.5;
     public static double MAX_SPEED = 0.4; // set a maximum hood movement speed

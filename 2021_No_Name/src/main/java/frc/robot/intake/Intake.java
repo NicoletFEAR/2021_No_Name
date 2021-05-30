@@ -30,11 +30,11 @@ public class Intake extends SubsystemBase {
         
     }
 
-    public void up() { // arm up
+    public void retract() { // intake retracted 
         IntakeMAP.intakePiston.set(Value.kForward); // may need to flip forward and reverse
     }
 
-    public void down() { // arm down
+    public void deploy() { // intake deployed
         IntakeMAP.intakePiston.set(Value.kReverse);
     }
 

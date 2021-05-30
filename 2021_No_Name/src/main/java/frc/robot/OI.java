@@ -21,6 +21,7 @@ import frc.robot.shooter.hood.HoodEncoderReset;
 import frc.robot.shooter.hood.HoodMAP;
 import frc.robot.shooter.hood.OpenLoopHood;
 import frc.robot.shooter.turret.OpenLoopTurret;
+import frc.robot.spindexer.SpinSmart;
 
 /**
  * interface to the commands and command groups that allow control of the robot.
@@ -118,22 +119,16 @@ public class OI {
         xbox1DpadLeft = new POVButton(xbox1, 270);
 
         // xbox0 for normal operation
-        xbox0X.whenPressed(() -> Robot.driveBase.switchFront()); 
 
         // xbox0 bumpers for shift up and down
-        xbox0LBumper.whenPressed(new ManualDown());
-        xbox0RBumper.whenPressed(new ManualUp());
 
-        // D pad up and down for intake piston
-        xbox0DpadUp.whenPressed(() -> Robot.intake.up());
-        xbox0DpadDown.whenPressed(() -> Robot.intake.down());
         
-        xbox0B.whenPressed(() -> Robot.hold.toShooter());
-        xbox0B.whenReleased(() -> Robot.hold.stop());
+        xbox0B.whenPressed(() -> Robot.spindexer.toShooter());
+        xbox0B.whenReleased(() -> Robot.spindexer.stop());
         xbox0DpadRight.whileHeld(() -> Robot.intake.exhaust());
         xbox0DpadRight.whenReleased(() -> Robot.intake.stop());
-        xbox0DpadLeft.whenPressed(() -> Robot.hold.eject());
-        xbox0DpadLeft.whenReleased(() -> Robot.hold.stop());
+        xbox0DpadLeft.whenPressed(() -> Robot.spindexer.eject());
+        xbox0DpadLeft.whenReleased(() -> Robot.spindexer.stop());
          //xbox0Y.whenHeld(new AutoShoot());
          //xbox1Y.whenHeld(new AutoShoot());
         xbox0Y.whenHeld(new AutoShootHood());
@@ -146,12 +141,11 @@ public class OI {
         // A whileHeld lambda for constant intake
         //xbox0A.whileHeld(() -> Robot.intake.intake());
         //xbox0A.whenReleased(() -> Robot.intake.stop()); // have to stop the motor
-        xbox0A.whenHeld(new In()); //  for now want real command for interruptible logic
+         //  for now want real command for interruptible logic
 
         xbox0Back.whenPressed(new Record());
         xbox0Start.whenHeld(new Player());
 
-        xbox1A.whenHeld(new In());
 
         // left joy y axis for intake variable
         // i think this might just be inside of a default command im not sure tho
@@ -161,9 +155,9 @@ public class OI {
         // left trigger for intake speed
         // left joystick x axis for turret manual
 
-        // a button when held for hold noodles to actually fire balls
-        //xbox1A.whileHeld(() -> Robot.hold.toShooter()); // 
-        //xbox1A.whenReleased(() -> Robot.hold.stop());
+        // a button when held for spindexer noodles to actually fire balls
+        //xbox1A.whileHeld(() -> Robot.spindexer.toShooter()); // 
+        //xbox1A.whenReleased(() -> Robot.spindexer.stop());
         
 
         //Enable Manual Control of the Hood Mech and shooter speed when held
@@ -176,9 +170,52 @@ public class OI {
         xbox1RBumper.whenReleased(() -> DriveBaseMAP.setDebugMode(false));
         xbox1LBumper.whenPressed(() -> HoodMAP.hoodInitEncoderZero = HoodMAP.hoodEncoder.getPosition());
         xbox1Start.whenPressed(new HoodEncoderReset());
-        xbox1X.whenPressed(() -> Robot.hold.eject());
-        xbox1X.whenReleased(() -> Robot.hold.stop());
+        /*
+        xbox1X.whenPressed(() -> Robot.spindexer.spinClockwise());
+        xbox1X.whenPressed(() -> Robot.spindexer.spinCounterClockwise());
+        xbox1X.whenReleased(() -> Robot.spindexer.stop());
+        */
+
+        // DRIVE ---------------------------------------------
+
+        xbox0X.whenPressed(() -> Robot.driveBase.switchFront()); 
+
+        xbox0LBumper.whenPressed(new ManualDown());
+        xbox0RBumper.whenPressed(new ManualUp());
+
+        // SHOOTER -------------------------------------------
+
+        // KICKER --------------------------------------------
+
+        // INTAKE --------------------------------------------
         
+        xbox0A.whenHeld(new In());
+        
+        xbox1A.whenHeld(new In());
+
+        // D pad up and down for intake piston
+        xbox0DpadUp.whenPressed(() -> Robot.intake.deploy());
+        xbox0DpadDown.whenPressed(() -> Robot.intake.retract());
+        
+        xbox1DpadUp0.whenPressed(() -> Robot.intake.deploy());
+        xbox1DpadDown180.whenPressed(() -> Robot.intake.retract());
+        
+        // SPINDEXER -----------------------------------------
+        
+        xbox0A.whenHeld(new SpinSmart());
+        xbox1X.whenHeld(new SpinSmart());
+
+        xbox0DpadRight.whenPressed(() -> Robot.spindexer.spinClockwise());
+        xbox0DpadRight.whenReleased(() -> Robot.spindexer.stop());
+        xbox0DpadLeft.whenPressed(() -> Robot.spindexer.spinCounterClockwise());
+        xbox0DpadLeft.whenReleased(() -> Robot.spindexer.stop());
+
+        xbox1DpadRight.whenPressed(() -> Robot.spindexer.spinClockwise());
+        xbox1DpadRight.whenReleased(() -> Robot.spindexer.stop());
+        xbox1DpadLeft.whenPressed(() -> Robot.spindexer.spinCounterClockwise());
+        xbox1DpadLeft.whenReleased(() -> Robot.spindexer.stop());
+        
+        // CLIMB ---------------------------------------------
     }
 
     // Driver

@@ -24,8 +24,8 @@ import frc.robot.drivebase.DriveBase;
 import frc.robot.drivebase.DriveBaseMAP;
 import frc.robot.drivebase.OpenLoopDrive;
 import frc.robot.drivebase.shifter.Shifter;
-import frc.robot.hold.Hold;
-import frc.robot.hold.HoldMAP;
+import frc.robot.spindexer.Spindexer;
+import frc.robot.spindexer.SpindexerMAP;
 import frc.robot.intake.Intake;
 import frc.robot.intake.IntakeMAP;
 import frc.robot.shooter.Shooter;
@@ -50,7 +50,7 @@ public class Robot extends TimedRobot {
   public static Shifter shifter;
   public static Intake intake;
   public static Shooter shooter;
-  public static Hold hold;
+  public static Spindexer spindexer;
   public static Hood hood;
   public static Turret turret;
 
@@ -88,7 +88,7 @@ public class Robot extends TimedRobot {
     ShooterMAP.init();
     IntakeMAP.init();
     HoodMAP.init();
-    HoldMAP.init();
+    SpindexerMAP.init();
     TurretMAP.init();
   
     driveBase = new DriveBase();
@@ -97,7 +97,7 @@ public class Robot extends TimedRobot {
     shifter = new Shifter();
     intake = new Intake();
     shooter = new Shooter();
-    hold = new Hold();
+    spindexer = new Spindexer();
     hood = new Hood();
     turret = new Turret();
 

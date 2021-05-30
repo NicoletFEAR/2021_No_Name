@@ -13,7 +13,7 @@ import frc.robot.*;
 
 public class ShiftUpHold extends CommandBase {
   /**
-   * Creates a new ShiftUpHoldCMD.
+   * Creates a new ShiftUpSpindexerCMD.
    */
   public ShiftUpHold() {
     // Use addRequirements() here to declare subsystem dependencies.

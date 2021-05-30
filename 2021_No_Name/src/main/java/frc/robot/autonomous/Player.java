@@ -145,8 +145,8 @@ public class Player extends CommandBase {
      if (thisLine[10] == 3.0) {Robot.intake.stop();}
 
      // SPIN HOLD TO SHOOT
-     if (thisLine[11] == 1.0) {Robot.hold.toShooter();}
-     if (thisLine[11] == 3.0) {Robot.hold.stop();}
+     if (thisLine[11] == 1.0) {Robot.spindexer.toShooter();}
+     if (thisLine[11] == 3.0) {Robot.spindexer.stop();}
 
      // AUTO AIM
      if (thisLine[9] == 1.0) {shooty = new AutoShoot(); shooty.schedule();} else if (thisLine[9] == 3.0) {shooty.cancel();}
