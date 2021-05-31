@@ -14,6 +14,7 @@ public class ShooterMAP {
 
     // Speed Controllers/Motors
     public static CANSparkMax flywheelMotor; // the big shooter flywheel
+    public static CANSparkMax flywheelMotor2;
     //public static CANSparkMax hoodMotor;
     //public static CANSparkMax spindexerMotor;
     public static double setPoint;
@@ -30,13 +31,21 @@ public class ShooterMAP {
     public static void init() {
 
         flywheelMotor = new CANSparkMax(31, MotorType.kBrushless);
+        flywheelMotor2 = new CANSparkMax(41, MotorType.kBrushless);
+
         // hoodMotor = new CANSparkMax(32, MotorType.kBrushless);
         // spindexerMotor = new CANSparkMax(33, MotorType.kBrushless);
         
         
         flywheelMotor.setSmartCurrentLimit(80, 80);
+        flywheelMotor2.setSmartCurrentLimit(80, 80);
 
         flywheelMotor.setIdleMode(IdleMode.kBrake);
+        flywheelMotor2.setIdleMode(IdleMode.kBrake);
+
+        
+        flywheelMotor2.follow(flywheelMotor);
+        flywheelMotor2.setInverted(true);
 
         setUpFlywheelPID();
 

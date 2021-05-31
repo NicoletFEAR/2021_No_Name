@@ -123,12 +123,6 @@ public class OI {
         // xbox0 bumpers for shift up and down
 
         
-        xbox0B.whenPressed(() -> Robot.spindexer.toShooter());
-        xbox0B.whenReleased(() -> Robot.spindexer.stop());
-        xbox0DpadRight.whileHeld(() -> Robot.intake.exhaust());
-        xbox0DpadRight.whenReleased(() -> Robot.intake.stop());
-        xbox0DpadLeft.whenPressed(() -> Robot.spindexer.eject());
-        xbox0DpadLeft.whenReleased(() -> Robot.spindexer.stop());
          //xbox0Y.whenHeld(new AutoShoot());
          //xbox1Y.whenHeld(new AutoShoot());
         xbox0Y.whenHeld(new AutoShootHood());
