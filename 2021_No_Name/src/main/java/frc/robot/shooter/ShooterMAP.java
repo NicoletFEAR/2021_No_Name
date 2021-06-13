@@ -30,8 +30,8 @@ public class ShooterMAP {
 
     public static void init() {
 
-        flywheelMotor = new CANSparkMax(31, MotorType.kBrushless);
-        flywheelMotor2 = new CANSparkMax(41, MotorType.kBrushless);
+        flywheelMotor = new CANSparkMax(24, MotorType.kBrushless);
+        flywheelMotor2 = new CANSparkMax(25, MotorType.kBrushless);
 
         // hoodMotor = new CANSparkMax(32, MotorType.kBrushless);
         // spindexerMotor = new CANSparkMax(33, MotorType.kBrushless);

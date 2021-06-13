@@ -35,6 +35,7 @@ import frc.robot.shooter.hood.HoodMAP;
 import frc.robot.shooter.turret.Turret;
 import frc.robot.shooter.turret.TurretMAP;
 import frc.robot.kicker.*;
+import frc.robot.climb.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -55,6 +56,7 @@ public class Robot extends TimedRobot {
   public static Hood hood;
   public static Turret turret;
   public static Kicker kicker;
+  public static Climb climb;
 
 
    // Enable or disable printing of diagnostics to smart dashboard
@@ -93,6 +95,7 @@ public class Robot extends TimedRobot {
     SpindexerMAP.init();
     TurretMAP.init();
     KickerMAP.init();
+    ClimbMAP.init();
   
     driveBase = new DriveBase();
     SmartDashboard.putBoolean("isFront", driveBase.isFrontFacing());
@@ -104,6 +107,7 @@ public class Robot extends TimedRobot {
     hood = new Hood();
     turret = new Turret();
     kicker = new Kicker();
+    climb = new Climb();
 
     oi = new OI(); // this comes after the subsystems!
 

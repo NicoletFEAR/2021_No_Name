@@ -25,7 +25,7 @@ public class HoodMAP {
 
     public static void init() {
 
-        hoodMotor = new CANSparkMax(32, MotorType.kBrushless); 
+        hoodMotor = new CANSparkMax(26, MotorType.kBrushless); 
         
         hoodMotor.setSmartCurrentLimit(40, 40);
 

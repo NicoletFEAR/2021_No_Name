@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.autonomous.Player;
 import frc.robot.autonomous.Record;
+import frc.robot.climb.ClimbDeploy;
+import frc.robot.climb.ClimbRetract;
 import frc.robot.drivebase.DriveBaseMAP;
 import frc.robot.drivebase.shifter.ManualDown;
 import frc.robot.drivebase.shifter.ManualUp;
@@ -15,7 +17,6 @@ import frc.robot.drivebase.shifter.ManualUp;
 import frc.robot.intake.In;
 import frc.robot.intake.OpenLoopIntake;
 import frc.robot.kicker.KickToShooter;
-import frc.robot.shooter.AutoShoot;
 import frc.robot.shooter.AutoShootHood;
 import frc.robot.shooter.OpenLoopShooter;
 import frc.robot.shooter.hood.HoodEncoderReset;
@@ -214,6 +215,10 @@ public class OI {
         xbox1DpadLeft.whenReleased(() -> Robot.spindexer.stop());
         
         // CLIMB ---------------------------------------------
+    
+        xbox1Back.whenHeld(new ClimbDeploy());
+        xbox1Start.whenHeld(new ClimbRetract());
+
     }
 
     // Driver

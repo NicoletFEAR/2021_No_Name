@@ -15,7 +15,7 @@ public class KickerMAP {
 
     public static void init() {
 
-        kickerMotor = new CANSparkMax(51, MotorType.kBrushless); 
+        kickerMotor = new CANSparkMax(23, MotorType.kBrushless); 
 
     }
 
