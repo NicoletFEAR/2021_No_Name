@@ -16,6 +16,11 @@ public class Kicker extends SubsystemBase {
     KickerMAP.kickerMotor.set(KickerMAP.DEFAULT_SPEED);
   }
 
+  public void spinBackwards() {
+    KickerMAP.kickerMotor.set(-KickerMAP.DEFAULT_SPEED);
+  }
+
+
   public void variableKicker(double speed) {
     if (Math.abs(speed) < Math.abs(KickerMAP.MAX_SPEED)) {
       KickerMAP.kickerMotor.set(speed);

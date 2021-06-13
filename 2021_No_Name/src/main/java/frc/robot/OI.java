@@ -14,6 +14,7 @@ import frc.robot.drivebase.shifter.ManualUp;
 // import frc.robot.drivebase.*
 import frc.robot.intake.In;
 import frc.robot.intake.OpenLoopIntake;
+import frc.robot.kicker.KickToShooter;
 import frc.robot.shooter.AutoShoot;
 import frc.robot.shooter.AutoShootHood;
 import frc.robot.shooter.OpenLoopShooter;
@@ -180,6 +181,9 @@ public class OI {
         // SHOOTER -------------------------------------------
 
         // KICKER --------------------------------------------
+
+        xbox0B.whenHeld(new KickToShooter());
+        xbox1B.whenHeld(new KickToShooter());
 
         // INTAKE --------------------------------------------
         
