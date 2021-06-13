@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.autonomous.Player;
 import frc.robot.autonomous.Record;
 import frc.robot.climb.ClimbDeploy;
+import frc.robot.climb.ClimbReset;
 import frc.robot.climb.ClimbRetract;
 import frc.robot.drivebase.DriveBaseMAP;
 import frc.robot.drivebase.shifter.ManualDown;
@@ -218,6 +219,8 @@ public class OI {
     
         xbox1Back.whenHeld(new ClimbDeploy());
         xbox1Start.whenHeld(new ClimbRetract());
+
+        xbox1LBumper.whenHeld(new ClimbReset());
 
     }
 
