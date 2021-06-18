@@ -30,8 +30,10 @@ public class Kicker extends SubsystemBase {
      else {
        if (speed > 0){
         KickerMAP.kickerMotor.set(KickerMAP.MAX_SPEED);
+        KickerMAP.kickerMotor2.set(-KickerMAP.DEFAULT_SPEED);
        } else {
         KickerMAP.kickerMotor.set(-KickerMAP.MAX_SPEED);
+        KickerMAP.kickerMotor2.set(KickerMAP.DEFAULT_SPEED);
        }
     }
   }
