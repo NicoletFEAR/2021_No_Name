@@ -7,6 +7,7 @@ public class KickerMAP {
 
     // Speed Controllers/Motors
     public static CANSparkMax kickerMotor;
+    public static CANSparkMax kickerMotor2;
 
     // kicker Constants
     public static double DEFAULT_SPEED = 0.4; //  if we want a default speed for commands
@@ -16,6 +17,7 @@ public class KickerMAP {
     public static void init() {
 
         kickerMotor = new CANSparkMax(23, MotorType.kBrushless); 
+        kickerMotor2 = new CANSparkMax(28, MotorType.kBrushless); 
 
     }
 

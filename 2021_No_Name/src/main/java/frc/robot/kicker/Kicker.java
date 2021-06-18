@@ -14,10 +14,12 @@ public class Kicker extends SubsystemBase {
 
   public void spin() {
     KickerMAP.kickerMotor.set(KickerMAP.DEFAULT_SPEED);
+    KickerMAP.kickerMotor2.set(-KickerMAP.DEFAULT_SPEED);
   }
 
   public void spinBackwards() {
     KickerMAP.kickerMotor.set(-KickerMAP.DEFAULT_SPEED);
+    KickerMAP.kickerMotor2.set(KickerMAP.DEFAULT_SPEED);
   }
 
 

@@ -19,6 +19,7 @@ import frc.robot.intake.In;
 import frc.robot.intake.OpenLoopIntake;
 import frc.robot.kicker.KickToShooter;
 import frc.robot.shooter.AutoShootHood;
+import frc.robot.shooter.ManualTurretHoodFlywheel;
 import frc.robot.shooter.OpenLoopShooter;
 import frc.robot.shooter.hood.HoodEncoderReset;
 import frc.robot.shooter.hood.HoodMAP;
@@ -128,8 +129,8 @@ public class OI {
         
          //xbox0Y.whenHeld(new AutoShoot());
          //xbox1Y.whenHeld(new AutoShoot());
-        xbox0Y.whenHeld(new AutoShootHood());
-        xbox1Y.whenHeld(new AutoShootHood());
+        //xbox0Y.whenHeld(new AutoShootHood());
+        //xbox1Y.whenHeld(new AutoShootHood());
 
 
         // Y for automatic shooting (whenHeld we think)
@@ -156,7 +157,7 @@ public class OI {
         //xbox1A.whileHeld(() -> Robot.spindexer.toShooter()); // 
         //xbox1A.whenReleased(() -> Robot.spindexer.stop());
         
-
+        /*
         //Enable Manual Control of the Hood Mech and shooter speed when held
         //xbox1RBumper gives manual control for co-controller when held
         xbox1RBumper.whenHeld(new OpenLoopHood()); // Manual control of hood height
@@ -167,20 +168,28 @@ public class OI {
         xbox1RBumper.whenReleased(() -> DriveBaseMAP.setDebugMode(false));
         xbox1LBumper.whenPressed(() -> HoodMAP.hoodInitEncoderZero = HoodMAP.hoodEncoder.getPosition());
         xbox1Start.whenPressed(new HoodEncoderReset());
+        */
         /*
         xbox1X.whenPressed(() -> Robot.spindexer.spinClockwise());
         xbox1X.whenPressed(() -> Robot.spindexer.spinCounterClockwise());
         xbox1X.whenReleased(() -> Robot.spindexer.stop());
         */
 
+        // Buttom Map https://docs.google.com/drawings/d/1BF8G-HcMui3Qu7I2f9eXdoeyDQ2lp7zIP9lheYLL0Qc/edit
+
         // DRIVE ---------------------------------------------
 
         xbox0X.whenPressed(() -> Robot.driveBase.switchFront()); 
 
-        xbox0LBumper.whenPressed(new ManualDown());
-        xbox0RBumper.whenPressed(new ManualUp());
+        xbox0LBumper.whenPressed(new ManualDown()); // shifter
+        xbox0RBumper.whenPressed(new ManualUp()); // shifter
 
         // SHOOTER -------------------------------------------
+
+        //xbox0Y.whenHeld(new AutoShoot()); // Everything (kicker, vision, turret, etc)
+        //xbox1Y.whenHeld(new AutoFLywheel()); // Vision only flywheel speed
+        xbox1LeftStick.whenHeld(new ManualTurretHoodFlywheel()); // hold down the joystick to manually control all 3
+        
 
         // KICKER --------------------------------------------
 
@@ -190,8 +199,9 @@ public class OI {
         // INTAKE --------------------------------------------
         
         xbox0A.whenHeld(new In());
-        
         xbox1A.whenHeld(new In());
+
+        xbox1RBumper.whenHeld(new OpenLoopIntake());
 
         // D pad up and down for intake piston
         xbox0DpadUp.whenPressed(() -> Robot.intake.deploy());
@@ -261,6 +271,7 @@ public class OI {
         return getXbox1().getTriggerAxis(GenericHID.Hand.kRight);
         //return getXbox1().getX(GenericHID.Hand.kLeft);     
     }
+
     public double getIntakeAxis() {
         return getXbox1().getTriggerAxis(GenericHID.Hand.kLeft);
         //return getXbox1().getX(GenericHID.Hand.kLeft);     

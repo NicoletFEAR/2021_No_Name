@@ -122,17 +122,17 @@ public class PlayerPreLoaded extends CommandBase {
      if (thisLine[10] == 3.0) {Robot.intake.stop();}
 
      // SPIN HOLD TO SHOOT
-     if (thisLine[11] == 1.0) {Robot.spindexer.toShooter();}
+     //if (thisLine[11] == 1.0) {Robot.spindexer.toShooter();}
      if (thisLine[11] == 3.0) {Robot.spindexer.stop();}
 
      // AUTO AIM
      if (thisLine[9] == 1.0) {shooty = new AutoShoot(); shooty.schedule();} else if (thisLine[9] == 3.0) {shooty.cancel();}
 
      // INTAKE UP
-    if (thisLine[14] == 1.0) {Robot.intake.up();}
+    //if (thisLine[14] == 1.0) {Robot.intake.up();}
 
      // INTAKE DOWN
-     if (thisLine[16] == 1.0) {Robot.intake.down();}
+    // if (thisLine[16] == 1.0) {Robot.intake.down();}
 
 
 
