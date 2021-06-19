@@ -1,36 +1,43 @@
 package frc.robot.shooter.turret;
 
-import com.ctre.phoenix.motorcontrol.SensorCollection;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.revrobotics.CANEncoder;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 
 public class TurretMAP {
 
     // Turret motor
-    public static TalonSRX turretMotor;
+    //public static TalonSRX turretMotor;
+    public static CANSparkMax turretMotor;
 
     // Turret encoder
-    public static SensorCollection turretEncoder;
-    public static int initEncoderZero;
+    //public static SensorCollection turretEncoder;
+    public static CANEncoder turretEncoder;
+    public static double turretInitEncoderZero = 0.0;
 
-    public static double DEFAULT_SPEED = 0.1; //  if we want a default speed for commands
-    public static double MAX_SPEED = 1.0; 
+    public static double DEFAULT_SPEED = 0.3; //  if we want a default speed for commands
+    public static double MAX_SPEED = 0.5; 
 
     public static int MAX_ENCODER = 1000;
     public static int MIN_ENCODER = -1000;
     
 
     public static void init() {
-        turretMotor = new TalonSRX(27); 
+        //turretMotor = new TalonSRX(27); 
+        turretMotor = new CANSparkMax(27, MotorType.kBrushless);
+        turretMotor.setSmartCurrentLimit(40, 40);
 
-        turretMotor.setNeutralMode(NeutralMode.Brake);
+        turretMotor.setIdleMode(IdleMode.kBrake);
+        //turretMotor.setNeutralMode(NeutralMode.Brake);
         turretMotor.setInverted(false);
 
-        
+        turretEncoder = turretMotor.getEncoder();
 
-        turretEncoder = turretMotor.getSensorCollection();
-        initEncoderZero = (TurretMAP.turretEncoder.getPulseWidthRiseToFallUs() - 1024) / (8 * 4095);
+        //turretEncoder = turretMotor.getSensorCollection();
+        //initEncoderZero = (TurretMAP.turretEncoder.getPulseWidthRiseToFallUs() - 1024) / (8 * 4095);
+        turretInitEncoderZero = turretEncoder.getPosition();
 
         // How You Would Get and Set Encoder Pos From Other Classes:
         //turretEncoder.getQuadraturePosition();

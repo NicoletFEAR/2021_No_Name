@@ -6,33 +6,20 @@ package frc.robot.shooter.turret;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import com.ctre.phoenix.motorcontrol.ControlMode;
+//import com.ctre.phoenix.motorcontrol.ControlMode;
 
 public class Turret extends SubsystemBase {
   // Operates Turret
   double movementVal;
-  int encoderPos;
+  double encoderPos;
   // Our Methods HERE
 
   public void setTurretMotorSpeed(double speed) {
-    TurretMAP.turretMotor.set(ControlMode.PercentOutput, speed);
-  }
-
-
-  //Currently Not Used
-  public void setTurretPID(int target) {
-    // use can talon srx pid
-    if (target < TurretMAP.MAX_ENCODER && target > TurretMAP.MIN_ENCODER) {
-      // use target value to set
-    } else if (target >= TurretMAP.MAX_ENCODER) {
-      // use max encoder value
-    } else {
-      // use min encoder value
-    }
+    TurretMAP.turretMotor.set(speed);
   }
 
   public void addToTurretSetpoint(int targetChange) { // a range of -23 to 23
-    encoderPos = ((TurretMAP.turretEncoder.getPulseWidthRiseToFallUs() - 1024) / (8 * 4095) - TurretMAP.initEncoderZero);
+    encoderPos = ((TurretMAP.turretEncoder.getPosition() - TurretMAP.turretInitEncoderZero);
     // System.out.println("targetChange is " + targetChange);
     movementVal = targetChange / 1.5; // scale
     // System.out.println("movementVal is " + movementVal);
@@ -55,18 +42,19 @@ public class Turret extends SubsystemBase {
       movementVal = -0.22;
     }
 
-    TurretMAP.turretMotor.set(ControlMode.PercentOutput, movementVal);
+    TurretMAP.turretMotor.set(movementVal);
   }
 
   public void turretToZero() {
-    encoderPos = ((TurretMAP.turretEncoder.getPulseWidthRiseToFallUs() - 1024) / (8 * 4095) - TurretMAP.initEncoderZero);
+    //encoderPos = ((TurretMAP.turretEncoder.getPulseWidthRiseToFallUs() - 1024) / (8 * 4095) - TurretMAP.initEncoderZero);
+    encoderPos = (TurretMAP.turretEncoder.getPosition() - TurretMAP.turretInitEncoderZero);
     movementVal = -(encoderPos / 2);
-    TurretMAP.turretMotor.set(ControlMode.PercentOutput, movementVal);
+    TurretMAP.turretMotor.set(movementVal);
 
   }
 
   public void stop() {
-    TurretMAP.turretMotor.set(ControlMode.PercentOutput, 0.0);
+    TurretMAP.turretMotor.set(0.0);
   }
 
   @Override

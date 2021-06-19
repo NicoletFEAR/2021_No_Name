@@ -8,7 +8,6 @@ import frc.robot.Robot;
 // used mostly for tuning & testing purposes
 public class OpenLoopHood extends CommandBase {
     double movementVal;
-    private boolean usePID;
     
     public OpenLoopHood() {
         // Use addRequirements() here to declare subsystem dependencies.
@@ -18,7 +17,6 @@ public class OpenLoopHood extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        usePID = false; //we set to determine
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -28,15 +26,13 @@ public class OpenLoopHood extends CommandBase {
         if (Math.abs(movementVal) < 0.05) {   
             movementVal = 0; 
         }
-        System.out.println(movementVal);
+        //System.out.println(movementVal);
         // if (movementVal > 0.3) {
         //     Robot.hood.setPoint += 1.0;
         // } else if (movementVal < -0.3) {
         //     Robot.hood.setPoint -= 1.0;
         // }
-        //Might need to tune multiplier value
-        //System.out.println("********* INSIDE OPENLOOPHOOD");
-      //if (usePID) {
+       //if (usePID) {
           
             movementVal *= HoodMAP.HOOD_MULTIPLIER;
             
@@ -46,7 +42,6 @@ public class OpenLoopHood extends CommandBase {
                 } else {
                     Robot.hood.setHoodSpeed(-HoodMAP.MAX_SPEED);
                 }
-                Robot.hood.setHoodSpeed(HoodMAP.MAX_SPEED);
             } else {
                 Robot.hood.setHoodSpeed(movementVal); //Pass adjusted joystick input to move method
             }
