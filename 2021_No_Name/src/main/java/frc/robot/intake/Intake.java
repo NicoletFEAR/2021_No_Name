@@ -4,7 +4,6 @@ import frc.robot.intake.*; // imports everything in the drivebase folder - "*" m
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 public class Intake extends SubsystemBase {
@@ -22,10 +21,14 @@ public class Intake extends SubsystemBase {
     }
 
     public void variableIntake(double speed) {
-        if (speed < IntakeMAP.MAX_SPEED) {
+        if (Math.abs(speed) < IntakeMAP.MAX_SPEED) {
             IntakeMAP.intakeMotor.set(speed);
         } else {
-            IntakeMAP.intakeMotor.set(IntakeMAP.MAX_SPEED);
+            if (speed < 0) {
+                IntakeMAP.intakeMotor.set(-IntakeMAP.MAX_SPEED);
+            } else {
+                IntakeMAP.intakeMotor.set(IntakeMAP.MAX_SPEED);
+            }
         }
         
     }

@@ -22,9 +22,10 @@ public class IntakeMAP {
 
         intakeMotor = new CANSparkMax(21, MotorType.kBrushless);
 
-        intakeMotor.setSmartCurrentLimit(80, 80);
+        intakeMotor.setSmartCurrentLimit(40, 40);
 
-        intakeMotor.setIdleMode(IdleMode.kBrake);
+        intakeMotor.setIdleMode(IdleMode.kCoast);
+        intakeMotor.setOpenLoopRampRate(0.05);
 
         intakePiston = new DoubleSolenoid(2, 3);
 

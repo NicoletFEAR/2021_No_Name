@@ -23,7 +23,6 @@ public class ClimbReset extends CommandBase {
   @Override
   public void execute() {
     Robot.climb.reverse();
-
   }
 
   // Called once the command ends or is interrupted.

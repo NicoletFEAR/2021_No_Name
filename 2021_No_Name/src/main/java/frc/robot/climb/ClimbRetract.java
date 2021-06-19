@@ -37,12 +37,9 @@ public class ClimbRetract extends CommandBase {
   public boolean isFinished() {
     
     // if encoder past the end or before the top, return true;
-    if (1 > 2) {
+    if (1 > 3) {
       return true;
-    } else if (1 < 1) {
-      return true;
-    }
-
+    } 
     return false;
   }
 }

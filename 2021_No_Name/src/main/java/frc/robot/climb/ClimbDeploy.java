@@ -23,7 +23,6 @@ public class ClimbDeploy extends CommandBase {
   @Override
   public void execute() {
     Robot.climb.runClimb();
-
   }
 
   // Called once the command ends or is interrupted.
@@ -40,7 +39,6 @@ public class ClimbDeploy extends CommandBase {
     if (1 > 2) {
       return true;
     }
-
     return false;
   }
 }

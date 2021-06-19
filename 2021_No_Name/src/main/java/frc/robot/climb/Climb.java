@@ -4,8 +4,6 @@ import frc.robot.climb.*; // imports everything in the drivebase folder - "*" me
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 public class Climb extends SubsystemBase {
     /**

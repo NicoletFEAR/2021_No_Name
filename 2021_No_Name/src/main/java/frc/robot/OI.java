@@ -226,6 +226,7 @@ public class OI {
         // CLIMB ---------------------------------------------
     
         xbox1Back.whenHeld(new ClimbDeploy());
+        xbox0Back.whenHeld(new ClimbDeploy());
         xbox1Start.whenHeld(new ClimbRetract());
 
         xbox1LBumper.whenHeld(new ClimbReset());

@@ -130,43 +130,43 @@ if((allE != ShooterMAP.allowedErr)) { ShooterMAP.m_pidController.setSmartMotionA
     // FOR FLYWHEEL:
     
     if (y > 20) {
-      speedVal = 0.75;
+      speedVal = 100.0;
     } else if (y > 18) {
-      speedVal = 0.65;//0.7;
+      speedVal = 100.0;//0.7;
     } else if (y > 17) {
-      speedVal = 0.65;//0.7;
+      speedVal = 100.0;//0.7;
     } else if (y > 15) {
-      speedVal = 0.55;//0.7;
+      speedVal = 100.0;//0.7;
     } else if (y > 13) {
-      speedVal = 0.58;//0.7;
+      speedVal = 100.0;
     } else if (y > 12) {
-      speedVal = 0.58;//0.7;
+      speedVal = 100.0;//0.7;
     } else if (y > 11) {
-      speedVal = 0.6;//0.65;
+      speedVal = 100.0;
     } else if (y > 10) {
-      speedVal = 0.65;//0.65;
+      speedVal = 100.0;
     } else if (y > 9) {
-      speedVal = 0.6;//0.68;
+      speedVal = 100.0;
     } else if (y > 8) {
-      speedVal = 0.53;//0.7;
+      speedVal = 100.0;
     } else if (y > 7) {
-      speedVal = 0.58;//0.69;
+      speedVal = 100.0;
     } else if (y > 6) {
-      speedVal = 0.62;
+      speedVal = 100.0;
     } else if (y > 5) {
-      speedVal = 0.62;
+      speedVal = 100.0;
     } else if (y > 3) {
-      speedVal = 0.5;
+      speedVal = 100.0;
     } else if (y > 0) {
-      speedVal = 0.5;
+      speedVal = 100.0;
     } else if (y > -3) {
-      speedVal = 0.55;
+      speedVal = 100.0;
     } else if (y > -5) {
-      speedVal = 0.55;
+      speedVal = 100.0;
     } else if (y > -8) {
-      speedVal = 0.55;
+      speedVal = 100.0;
     } else {
-      speedVal = 0.55;
+      speedVal = 100.0;
     }
     
 
