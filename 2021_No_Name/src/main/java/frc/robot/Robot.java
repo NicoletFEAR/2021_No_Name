@@ -112,6 +112,7 @@ public class Robot extends TimedRobot {
     oi = new OI(); // this comes after the subsystems!
 
     DriveBaseMAP.debugMode = false; //See Above
+    ShooterMAP.doShoot = true;
 
     driveBase.setDefaultCommand(new OpenLoopDrive()); // means OpenLoopDrive runs
     //shifter.setDefaultCommand(new AutoShift());
