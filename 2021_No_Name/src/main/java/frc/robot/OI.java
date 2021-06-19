@@ -19,6 +19,7 @@ import frc.robot.intake.OpenLoopIntake;
 import frc.robot.kicker.KickToShooter;
 import frc.robot.shooter.AutoShoot;
 import frc.robot.shooter.ManualTurretHoodFlywheel;
+import frc.robot.spindexer.OpenLoopSpindexer;
 import frc.robot.spindexer.SpinSmart;
 
 /**
@@ -197,7 +198,7 @@ public class OI {
         xbox0A.whenHeld(new In());
         xbox1A.whenHeld(new In());
 
-        xbox1RBumper.whenHeld(new OpenLoopIntake());
+        xbox1RightStick.whenHeld(new OpenLoopIntake());
 
         // D pad up and down for intake piston
         xbox0DpadUp.whenPressed(() -> Robot.intake.deploy());
@@ -212,6 +213,8 @@ public class OI {
 
         xbox0A.whenHeld(new SpinSmart());
         xbox1X.whenHeld(new SpinSmart());
+
+        xbox1RightStick.whenHeld(new OpenLoopSpindexer());
 
         xbox0DpadRight.whenPressed(() -> Robot.spindexer.spinClockwise());
         xbox0DpadRight.whenReleased(() -> Robot.spindexer.stop());
@@ -272,8 +275,13 @@ public class OI {
     }
 
     public double getIntakeAxis() {
-        return getXbox1().getTriggerAxis(GenericHID.Hand.kLeft);
-        //return getXbox1().getX(GenericHID.Hand.kLeft);     
+        //return getXbox1().getTriggerAxis(GenericHID.Hand.kLeft);
+        return getXbox1().getY(GenericHID.Hand.kRight);     
+    }
+
+    public double getSpindexerAxis() {
+        //return getXbox1().getTriggerAxis(GenericHID.Hand.kLeft);
+        return getXbox1().getX(GenericHID.Hand.kRight);     
     }
 
 }

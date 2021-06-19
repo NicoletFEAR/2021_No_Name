@@ -17,7 +17,7 @@ import frc.robot.Robot;
 public class SwitchFront extends InstantCommand {
   public SwitchFront() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.driveBase);
+    //addRequirements(Robot.driveBase);
 
   }
 
