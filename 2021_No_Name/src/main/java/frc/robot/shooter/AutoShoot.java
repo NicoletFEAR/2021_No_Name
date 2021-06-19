@@ -4,22 +4,16 @@
 
 package frc.robot.shooter;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
-import frc.robot.shooter.*;
-import frc.robot.shooter.hood.*;
-import frc.robot.shooter.turret.TurretMAP;
+import com.revrobotics.ControlType;
+
+import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
-
-import frc.robot.drivebase.*;
-import frc.robot.spindexer.SpindexerMAP;
+import frc.robot.drivebase.DriveBaseMAP;
+import frc.robot.shooter.hood.HoodMAP;
 
 public class AutoShoot extends CommandBase {
 
@@ -37,6 +31,9 @@ public class AutoShoot extends CommandBase {
   public double adjustableSpd;
   public double speedVal;
   public double hoodSet;
+  public double setPoint, processVariable;
+  public boolean mode = SmartDashboard.getBoolean("Mode", false);
+
 
   /** Creates a new AutoShoot. */
   public AutoShoot() {
@@ -52,6 +49,8 @@ public class AutoShoot extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    ShooterMAP.doShoot = false;
+
     table = NetworkTableInstance.getDefault().getTable("limelight");
     tx = table.getEntry("tx");
     ty = table.getEntry("ty");
@@ -66,6 +65,35 @@ public class AutoShoot extends CommandBase {
     LEDState = ledState.getDouble(3.0);
     ledState.forceSetDouble(3.0);
     adjustableSpd = 0.75;
+
+
+    // REV PID
+    
+    double p = SmartDashboard.getNumber("P Gain", 0);
+    double i = SmartDashboard.getNumber("I Gain", 0);
+    double d = SmartDashboard.getNumber("D Gain", 0);
+    double iz = SmartDashboard.getNumber("I Zone", 0);
+    double ff = SmartDashboard.getNumber("Feed Forward", 0);
+    double max = SmartDashboard.getNumber("Max Output", 0);
+    double min = SmartDashboard.getNumber("Min Output", 0);
+    double maxV = SmartDashboard.getNumber("Max Velocity", 0);
+    double minV = SmartDashboard.getNumber("Min Velocity", 0);
+    double maxA = SmartDashboard.getNumber("Max Acceleration", 0);
+    double allE = SmartDashboard.getNumber("Allowed Closed Loop Error", 0);
+// if PID coefficients on SmartDashboard have changed, write new values to controller
+if((p != ShooterMAP.kP)) { ShooterMAP.m_pidController.setP(p); ShooterMAP.kP = p; }
+if((i != ShooterMAP.kI)) { ShooterMAP.m_pidController.setI(i); ShooterMAP.kI = i; }
+if((d != ShooterMAP.kD)) { ShooterMAP.m_pidController.setD(d); ShooterMAP.kD = d; }
+if((iz != ShooterMAP.kIz)) { ShooterMAP.m_pidController.setIZone(iz); ShooterMAP.kIz = iz; }
+if((ff != ShooterMAP.kFF)) { ShooterMAP.m_pidController.setFF(ff); ShooterMAP.kFF = ff; }
+if((max != ShooterMAP.kMaxOutput) || (min != ShooterMAP.kMinOutput)) { 
+  ShooterMAP.m_pidController.setOutputRange(min, max); 
+  ShooterMAP.kMinOutput = min; ShooterMAP.kMaxOutput = max; 
+}
+if((maxV != ShooterMAP.maxVel)) { ShooterMAP.m_pidController.setSmartMotionMaxVelocity(maxV,0); ShooterMAP.maxVel = maxV; }
+if((minV != ShooterMAP.minVel)) { ShooterMAP.m_pidController.setSmartMotionMinOutputVelocity(minV,0); ShooterMAP.minVel = minV; }
+if((maxA != ShooterMAP.maxAcc)) { ShooterMAP.m_pidController.setSmartMotionMaxAccel(maxA,0); ShooterMAP.maxAcc = maxA; }
+if((allE != ShooterMAP.allowedErr)) { ShooterMAP.m_pidController.setSmartMotionAllowedClosedLoopError(allE,0); ShooterMAP.allowedErr = allE; }
 
     //
   }
@@ -189,7 +217,29 @@ public class AutoShoot extends CommandBase {
     // }
 
         // TODO PID
-    ShooterMAP.flywheelMotor.set(speedVal);
+        if(true) {
+        //if(mode) {
+          setPoint = speedVal;
+          //setPoint = SmartDashboard.getNumber("Set Velocity", 0);
+          ShooterMAP.m_pidController.setReference(setPoint, ControlType.kVelocity);
+          processVariable = ShooterMAP.m_encoder.getVelocity();
+          if (Math.abs(setPoint-processVariable) > 100) {ShooterMAP.doShoot = true;} else {ShooterMAP.doShoot = false;}
+        } else {
+          setPoint = SmartDashboard.getNumber("Set Position", 0);
+          /**
+           * As with other PID modes, Smart Motion is set by calling the
+           * setReference method on an existing pid object and setting
+           * the control type to kSmartMotion
+           */
+          ShooterMAP.m_pidController.setReference(setPoint, ControlType.kSmartMotion);
+          processVariable = ShooterMAP.m_encoder.getPosition();
+        }
+        
+        SmartDashboard.putNumber("SetPoint", setPoint);
+        SmartDashboard.putNumber("Process Variable", processVariable);
+        SmartDashboard.putNumber("Output", ShooterMAP.flywheelMotor.getAppliedOutput());
+    
+        //ShooterMAP.flywheelMotor.set(speedVal);
     //ShooterMAP.flywheelMotor.set(adjustableSpd);
 
 
@@ -216,7 +266,8 @@ public class AutoShoot extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     // Robot.shooter.setPoint = 0;
-    
+    ShooterMAP.doShoot = true;
+
     ShooterMAP.flywheelMotor.set(0.0);
             // TODO PID
     Robot.turret.stop();

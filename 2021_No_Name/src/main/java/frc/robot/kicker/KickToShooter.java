@@ -2,6 +2,7 @@ package frc.robot.kicker;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
+import frc.robot.shooter.ShooterMAP;
 
 public class KickToShooter extends CommandBase {
     /**
@@ -21,7 +22,11 @@ public class KickToShooter extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        Robot.kicker.spin(); //?
+        if (ShooterMAP.doShoot == true) {
+            Robot.kicker.spin(); //?
+        } else {
+            Robot.kicker.stop();
+        }
     }
 
     // Called once the command ends or is interrupted.

@@ -9,6 +9,7 @@ import com.revrobotics.CANSparkMax;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
+import frc.robot.shooter.ShooterMAP;
 
 public class SpinSmart extends CommandBase {
   /** Creates a new SpinSmart. */
@@ -41,7 +42,11 @@ public class SpinSmart extends CommandBase {
 
     if (motor.getOutputCurrent() >= 200 & motor.getEncoder().getVelocity() <= 0 & counter > 10) {
       directionCC = !directionCC;
-      if (directionCC) {Robot.spindexer.spinClockwise();}
+      
+      if (ShooterMAP.doShoot == false) {
+        Robot.spindexer.stop();
+      }
+      else if (directionCC) {Robot.spindexer.spinClockwise();}
       else {Robot.spindexer.spinCounterClockwise();}
     }
   }

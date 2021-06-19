@@ -11,20 +11,14 @@ import frc.robot.autonomous.Record;
 import frc.robot.climb.ClimbDeploy;
 import frc.robot.climb.ClimbReset;
 import frc.robot.climb.ClimbRetract;
-import frc.robot.drivebase.DriveBaseMAP;
 import frc.robot.drivebase.shifter.ManualDown;
 import frc.robot.drivebase.shifter.ManualUp;
 // import frc.robot.drivebase.*
 import frc.robot.intake.In;
 import frc.robot.intake.OpenLoopIntake;
 import frc.robot.kicker.KickToShooter;
-import frc.robot.shooter.OLDAutoShootHood;
+import frc.robot.shooter.AutoShoot;
 import frc.robot.shooter.ManualTurretHoodFlywheel;
-import frc.robot.shooter.OpenLoopShooter;
-import frc.robot.shooter.hood.HoodEncoderReset;
-import frc.robot.shooter.hood.HoodMAP;
-import frc.robot.shooter.hood.OpenLoopHood;
-import frc.robot.shooter.turret.OpenLoopTurret;
 import frc.robot.spindexer.SpinSmart;
 
 /**
@@ -186,7 +180,7 @@ public class OI {
 
         // SHOOTER -------------------------------------------
 
-        //xbox0Y.whenHeld(new AutoShoot()); // Everything (kicker, vision, turret, etc)
+        xbox0Y.whenHeld(new AutoShoot()); // Everything (kicker, vision, turret, etc)
         //xbox1Y.whenHeld(new AutoFlywheel()); // Vision only flywheel speed
         xbox1LeftStick.whenHeld(new ManualTurretHoodFlywheel()); // hold down the joystick to manually control all 3
         
