@@ -279,7 +279,7 @@ public class AutoShoot extends CommandBase {
     Robot.hood.setHoodSetpoint(hoodSet);
 
     // Robot.shooter.setPoint = useYLookup((int) y);
-    // SmartDashboard.putNumber("setPoint SHOOT", Robot.shooter.setPoint);
+    // SmartDashboard.putNumber("setPoint SHOOT", KickRobot.shooter.setPoint);
     // Robot.shooter.setFlywheelPID(useYLookup((int) y)); // full speed for now
 
     // ShooterMAP.flywheelMotor.set(.53);

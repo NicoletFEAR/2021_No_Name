@@ -1,5 +1,6 @@
 package frc.robot.shooter.turret;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
@@ -38,7 +39,8 @@ public class OpenLoopTurret extends CommandBase {
         }
         
         Robot.turret.setTurretMotorSpeed(movementVal*0.2); //Pass adjusted joystick input to move method
-        
+        SmartDashboard.putNumber("TurretEnc", TurretMAP.turretEncoder.getPosition());
+
         // leave this:
         // long term we really want this joystick input to
         // be changing the setpoint for the Sparkmax built in PID

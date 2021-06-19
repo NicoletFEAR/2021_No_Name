@@ -4,8 +4,8 @@
 
 package frc.robot.climb;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.climb.*;
 import frc.robot.Robot;
 
 public class ClimbDeploy extends CommandBase {
@@ -23,6 +23,9 @@ public class ClimbDeploy extends CommandBase {
   @Override
   public void execute() {
     Robot.climb.runClimb();
+    SmartDashboard.putNumber("ClimbEnc", ClimbMAP.climbMotor.getEncoder().getPosition());
+
+    
   }
 
   // Called once the command ends or is interrupted.

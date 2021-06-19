@@ -18,8 +18,8 @@ public class Kicker extends SubsystemBase {
   }
 
   public void spinBackwards() {
-    KickerMAP.kickerMotor.set(-KickerMAP.DEFAULT_SPEED);
-    KickerMAP.kickerMotor2.set(KickerMAP.DEFAULT_SPEED_2);
+    KickerMAP.kickerMotor.set(-0.05);
+    KickerMAP.kickerMotor2.set(0.05);
   }
 
 

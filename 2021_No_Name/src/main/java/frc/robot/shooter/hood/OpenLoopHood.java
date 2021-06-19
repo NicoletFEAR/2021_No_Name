@@ -1,5 +1,6 @@
 package frc.robot.shooter.hood;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
@@ -45,7 +46,7 @@ public class OpenLoopHood extends CommandBase {
             } else {
                 Robot.hood.setHoodSpeed(movementVal); //Pass adjusted joystick input to move method
             }
-        
+        SmartDashboard.putNumber("HoodEnc", HoodMAP.hoodEncoder.getPosition());
         // leave this:
         // long term we really want this joystick input to
         // be changing the setpoint for the Sparkmax built in PID

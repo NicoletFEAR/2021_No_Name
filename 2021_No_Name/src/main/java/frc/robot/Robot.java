@@ -185,6 +185,9 @@ public class Robot extends TimedRobot {
     //Ensure starting in low gear and intake up
     
 
+    Robot.shifter.shiftDown();
+    Robot.intake.retract();
+
     // DECIDE WHICH AUTO TO PLAY
     //double tx = table.getEntry("tx").getDouble(0.0);
     //double ty = table.getEntry("ty").getDouble(0.0);
@@ -201,11 +204,11 @@ public class Robot extends TimedRobot {
     catch (Exception e) {
       System.out.println("could not create FileReader "+ challengeName + " playing RedA instead");
       System.out.println(e);
-      autonomousArray = redA;
+      try {
+       autonomousArray = redA;
+      } catch (Exception exc) {}
     } // END RED A
 
-    Robot.shifter.shiftDown();
-    Robot.intake.retract();
 
     //autonomousArray = currentChallenge;
     try {
@@ -225,6 +228,7 @@ public class Robot extends TimedRobot {
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() {
+    
     //If you are reading this and things are going poorly with vision it's probably because of this.
   //  TurretMAP.initEncoderZero = TurretMAP.turretEncoder.getPulseWidthPosition();
   }

@@ -21,6 +21,7 @@ import frc.robot.shooter.AutoAim;
 import frc.robot.shooter.AutoFlywheel;
 import frc.robot.shooter.AutoShoot;
 import frc.robot.shooter.OpenLoopShooter;
+import frc.robot.shooter.Unjam;
 import frc.robot.shooter.hood.OpenLoopHood;
 import frc.robot.shooter.turret.OpenLoopTurret;
 import frc.robot.spindexer.OpenLoopSpindexer;
@@ -193,6 +194,8 @@ public class OI {
         xbox1RBumper.whenHeld(new OpenLoopTurret());
 
         xbox0B.whenHeld(new AutoAim());
+
+        xbox0Start.whenHeld(new Unjam());
 
         // KICKER --------------------------------------------
 
