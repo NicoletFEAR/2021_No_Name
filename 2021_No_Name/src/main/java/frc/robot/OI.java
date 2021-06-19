@@ -190,7 +190,7 @@ public class OI {
 
         xbox0Y.whenHeld(new KickToShooter()); // for Auto Shooting
 
-        xbox0B.whenHeld(new KickToShooter());
+        //xbox0B.whenHeld(new KickToShooter());
         xbox1B.whenHeld(new KickToShooter());
 
         // INTAKE --------------------------------------------

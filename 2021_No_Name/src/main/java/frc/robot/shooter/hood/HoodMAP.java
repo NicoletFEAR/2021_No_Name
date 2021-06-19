@@ -12,9 +12,9 @@ public class HoodMAP {
     // Speed Controllers/Motors
     public static CANSparkMax hoodMotor;
     public static CANEncoder hoodEncoder; // to be easier to access
-    public static CANPIDController hoodController;
+    //public static CANPIDController hoodController;
 
-    // Spindexer Constants
+    // Hood Constants
     public static double DEFAULT_SPEED = 0.1; //  if we want a default speed for commands
     public static double HOOD_MULTIPLIER = 0.5;
     public static double MAX_SPEED = 0.4; // set a maximum hood movement speed
@@ -33,7 +33,7 @@ public class HoodMAP {
 
         hoodEncoder = hoodMotor.getEncoder();
 
-        hoodController = hoodMotor.getPIDController();
+        //hoodController = hoodMotor.getPIDController();
         
         hoodInitEncoderZero = hoodEncoder.getPosition();
         //hoodMotor.setInverted(false);

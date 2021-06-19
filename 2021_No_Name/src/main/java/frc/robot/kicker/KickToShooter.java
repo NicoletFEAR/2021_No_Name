@@ -11,7 +11,7 @@ public class KickToShooter extends CommandBase {
 
     public KickToShooter() {
         // Use addRequirements() here to declare subsystem dependencies.
-        addRequirements(Robot.spindexer);
+        addRequirements(Robot.kicker);
     }
 
     // Called when the command is initially scheduled.
@@ -23,7 +23,7 @@ public class KickToShooter extends CommandBase {
     @Override
     public void execute() {
         if (ShooterMAP.doShoot == true) {
-            Robot.kicker.spin(); //?
+            Robot.kicker.spin();
         } else {
             Robot.kicker.stop();
         }

@@ -14,32 +14,36 @@ public class Kicker extends SubsystemBase {
 
   public void spin() {
     KickerMAP.kickerMotor.set(KickerMAP.DEFAULT_SPEED);
-    KickerMAP.kickerMotor2.set(-KickerMAP.DEFAULT_SPEED);
+    KickerMAP.kickerMotor2.set(-KickerMAP.DEFAULT_SPEED_2);
   }
 
   public void spinBackwards() {
     KickerMAP.kickerMotor.set(-KickerMAP.DEFAULT_SPEED);
-    KickerMAP.kickerMotor2.set(KickerMAP.DEFAULT_SPEED);
+    KickerMAP.kickerMotor2.set(KickerMAP.DEFAULT_SPEED_2);
   }
 
 
   public void variableKicker(double speed) {
     if (Math.abs(speed) < Math.abs(KickerMAP.MAX_SPEED)) {
       KickerMAP.kickerMotor.set(speed);
+      if (Math.abs(speed) < Math.abs(KickerMAP.MAX_SPEED_2)) {
+        KickerMAP.kickerMotor2.set(speed);
+      }
     }
      else {
        if (speed > 0){
         KickerMAP.kickerMotor.set(KickerMAP.MAX_SPEED);
-        KickerMAP.kickerMotor2.set(-KickerMAP.DEFAULT_SPEED);
+        KickerMAP.kickerMotor2.set(-KickerMAP.DEFAULT_SPEED_2);
        } else {
         KickerMAP.kickerMotor.set(-KickerMAP.MAX_SPEED);
-        KickerMAP.kickerMotor2.set(KickerMAP.DEFAULT_SPEED);
+        KickerMAP.kickerMotor2.set(KickerMAP.DEFAULT_SPEED_2);
        }
     }
   }
 
   public void stop() {
     KickerMAP.kickerMotor.set(0.0);
+    KickerMAP.kickerMotor2.set(0.0);
   }
 
 

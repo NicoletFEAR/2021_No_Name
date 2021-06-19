@@ -132,35 +132,41 @@ public class Player extends CommandBase {
     
     // RUN LINE
 
-     // DRIVE:
+     // DRIVE // triggers and joystick xbox0
      Robot.driveBase.RacingDrive(thisLine[5]-thisLine[4], thisLine[0]);// * DriveBaseMAP.TURN_SCALING);
 
-     // SWITCH FRONT
+     // SWITCH FRONT // 8 // X xbox0
      if (thisLine[8] == 1.0) {Robot.driveBase.switchFront();} 
     
      // SHIFTER (IGNORE)
 
-     // SPIN INTAKE
+     // SPIN INTAKE // A xbox0 & xbox1
      if (thisLine[10] == 1.0) {Robot.intake.intake();}
      if (thisLine[10] == 3.0) {Robot.intake.stop();}
+     if (thisLine[30] == 1.0) {Robot.intake.intake();}
+     if (thisLine[30] == 3.0) {Robot.intake.stop();}
 
-     // SPIN HOLD TO SHOOT
-     //if (thisLine[11] == 1.0) {Robot.spindexer.toShooter();}
-     if (thisLine[11] == 3.0) {Robot.spindexer.stop();}
+     // DEPLOY INTAKE // 14 and 34 // D Pad Up xbox0 & xbox1
+     if (thisLine[14] == 1.0) {Robot.intake.deploy();}
+     if (thisLine[34] == 1.0) {Robot.intake.deploy();}
 
-     // AUTO AIM
-     if (thisLine[9] == 1.0) {shooty = new OLDAutoShoot(); shooty.schedule();} else if (thisLine[9] == 3.0) {shooty.cancel();}
+     // RETRACT INTAKE // 16 and 36 // D Pad Down xbox0 & xbox1
+     if (thisLine[16] == 1.0) {Robot.intake.retract();}
+     if (thisLine[36] == 1.0) {Robot.intake.retract();}
 
-     // INTAKE UP
-    //if (thisLine[14] == 1.0) {Robot.intake.up();}
+     // SPINDEXER SPIN SMART // 10 and 28 // A xbox0 & X xbox1
 
-     // INTAKE DOWN
-     //if (thisLine[16] == 1.0) {Robot.intake.down();}
+     // SPINDEXER SPIN COUNTERCLOCK // 17 and 37 // D Pad left xbox0 & xbox1
 
+     // SPINDEXER SPIN CLOCK // 15 and 35 // D Pad right xbox0 & xbox1
 
+     // AUTO SHOOT // 9 // Y xbox0
 
+     // AUTO FLYWHEEL // 29 // Y xbox1
 
+     // AIM //  // B xbox0
 
+     // KICKER
 
 
     // END RUN LINE
