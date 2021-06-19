@@ -15,7 +15,7 @@ public class SpindexerMAP {
 
     public static void init() {
 
-        spindexerMotor = new CANSparkMax(33, MotorType.kBrushless); 
+        spindexerMotor = new CANSparkMax(22, MotorType.kBrushless); 
 
     }
 

@@ -19,7 +19,7 @@ public class Turret extends SubsystemBase {
   }
 
   public void addToTurretSetpoint(int targetChange) { // a range of -23 to 23
-    encoderPos = ((TurretMAP.turretEncoder.getPosition() - TurretMAP.turretInitEncoderZero);
+    encoderPos = (TurretMAP.turretEncoder.getPosition() - TurretMAP.turretInitEncoderZero);
     // System.out.println("targetChange is " + targetChange);
     movementVal = targetChange / 1.5; // scale
     // System.out.println("movementVal is " + movementVal);

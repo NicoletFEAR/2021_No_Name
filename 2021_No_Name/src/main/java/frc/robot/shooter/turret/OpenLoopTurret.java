@@ -1,6 +1,6 @@
 package frc.robot.shooter.turret;
 
-import edu.wpi.first.wpilibj.GenericHID;
+//import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
@@ -27,7 +27,7 @@ public class OpenLoopTurret extends CommandBase {
     public void execute() {
         movementVal = Robot.oi.getTurretAxis(); //Get X input from left joystick on mech driver xbox1
         //encoderPos = (TurretMAP.turretEncoder.getPulseWidthRiseToFallUs() - 1024) / (8*4095);
-        encoderPos = ((TurretMAP.turretEncoder.getPulseWidthRiseToFallUs() - 1024) / (8 * 4095) - TurretMAP.initEncoderZero);
+        encoderPos = (TurretMAP.turretEncoder.getPosition() - TurretMAP.turretInitEncoderZero);
 
         if (Math.abs(movementVal) < 0.05) {
             movementVal = 0;

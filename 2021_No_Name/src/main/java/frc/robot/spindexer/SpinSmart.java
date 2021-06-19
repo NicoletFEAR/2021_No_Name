@@ -26,7 +26,7 @@ public class SpinSmart extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    directionCC = true;
+    directionCC = false;
     counter = 0;
     Robot.spindexer.spinClockwise();
   }
@@ -46,8 +46,8 @@ public class SpinSmart extends CommandBase {
       if (ShooterMAP.doShoot == false) {
         Robot.spindexer.stop();
       }
-      else if (directionCC) {Robot.spindexer.spinClockwise();}
-      else {Robot.spindexer.spinCounterClockwise();}
+      else if (directionCC) {Robot.spindexer.spinCounterClockwise();}
+      else {Robot.spindexer.spinClockwise();}
     }
   }
 
