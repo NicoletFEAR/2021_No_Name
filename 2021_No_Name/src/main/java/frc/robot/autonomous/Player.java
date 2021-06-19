@@ -17,8 +17,11 @@ import com.google.gson.reflect.TypeToken;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-import frc.robot.shooter.OLDAutoShoot;
-import frc.robot.drivebase.DriveBaseMAP;
+import frc.robot.kicker.KickToShooter;
+import frc.robot.shooter.AutoAim;
+import frc.robot.shooter.AutoFlywheel;
+import frc.robot.shooter.AutoShoot;
+import frc.robot.spindexer.SpinSmart;
 
 public class Player extends CommandBase {
 
@@ -31,6 +34,12 @@ public class Player extends CommandBase {
   //public Scanner scanner = null;
   long startTime;
 
+  SpinSmart spiny; // command for SmartSpin
+  KickToShooter kick; // command for KickToShoot
+  AutoAim aim;
+  AutoShoot autoshoot;
+  AutoFlywheel flywheel;
+
   boolean onTime = true;
   double nextDouble;
   String autoToPlay;
@@ -39,7 +48,7 @@ public class Player extends CommandBase {
   boolean isFinished;
   FileReader fileReader;
 
-  OLDAutoShoot shooty;
+  //OLDAutoShoot shooty;
 
   ArrayList<double[]> allLines;
   /** Creates a new Player. */
@@ -140,11 +149,11 @@ public class Player extends CommandBase {
     
      // SHIFTER (IGNORE)
 
-     // SPIN INTAKE // A xbox0 & xbox1
+     // SPIN INTAKE // 10 and 30 // A xbox0 & xbox1
      if (thisLine[10] == 1.0) {Robot.intake.intake();}
-     if (thisLine[10] == 3.0) {Robot.intake.stop();}
+     if (thisLine[10] == 3.0) {Robot.intake.stop();} // when released
      if (thisLine[30] == 1.0) {Robot.intake.intake();}
-     if (thisLine[30] == 3.0) {Robot.intake.stop();}
+     if (thisLine[30] == 3.0) {Robot.intake.stop();} // when released
 
      // DEPLOY INTAKE // 14 and 34 // D Pad Up xbox0 & xbox1
      if (thisLine[14] == 1.0) {Robot.intake.deploy();}
@@ -155,7 +164,14 @@ public class Player extends CommandBase {
      if (thisLine[36] == 1.0) {Robot.intake.retract();}
 
      // SPINDEXER SPIN SMART // 9 and 10 and 28 // A and Y xbox0 & X xbox1
-     //if (thisLine[10] == 1.0) {START THE COMMAND????}
+     // reference:
+     //if (thisLine[9] == 1.0) {shooty = new AutoShoot(); shooty.schedule();} else if (thisLine[9] == 3.0) {shooty.cancel();}
+      if (thisLine[9] == 1.0) {spiny = new SpinSmart(); spiny.schedule();}
+      else if (thisLine[9] == 3.0) {spiny.cancel();}
+      else if (thisLine[10] == 1.0) {spiny = new SpinSmart(); spiny.schedule();}
+      else if (thisLine[10] == 3.0) {spiny.cancel();}
+      else if (thisLine[28] == 1.0) {spiny = new SpinSmart(); spiny.schedule();}
+      else if (thisLine[28] == 3.0) {spiny.cancel();}
 
      // SPINDEXER SPIN COUNTERCLOCK // 17 and 37 // D Pad left xbox0 & xbox1
      if (thisLine[17] == 1.0) {Robot.spindexer.spinCounterClockwise();}
@@ -170,13 +186,22 @@ public class Player extends CommandBase {
      if (thisLine[35] == 3.0) {Robot.spindexer.stop();}
 
      // AUTO SHOOT // 9 // Y xbox0
+     if (thisLine[9] == 1.0) {autoshoot = new AutoShoot(); autoshoot.schedule();}
+     else if (thisLine[9] == 3.0) {autoshoot.cancel();}
 
      // AUTO FLYWHEEL // 29 // Y xbox1
+     if (thisLine[29] == 1.0) {flywheel = new AutoFlywheel(); flywheel.schedule();}
+     else if (thisLine[29] == 3.0) {flywheel.cancel();}
 
      // AIM // 11 // B xbox0
+     if (thisLine[11] == 1.0) {aim = new AutoAim(); aim.schedule();}
+     else if (thisLine[11] == 3.0) {aim.cancel();}
 
      // KICKER // 9 and 31 // B and Y xbox1
-
+     if (thisLine[9] == 1.0) {kick = new KickToShooter(); kick.schedule();}
+     else if (thisLine[9] == 3.0) {kick.cancel();}
+     else if (thisLine[31] == 1.0) {kick = new KickToShooter(); kick.schedule();}
+     else if (thisLine[31] == 3.0) {kick.cancel();}
 
     // END RUN LINE
 

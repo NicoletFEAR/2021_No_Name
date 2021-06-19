@@ -40,9 +40,9 @@ public class SpinSmart extends CommandBase {
     SmartDashboard.putNumber("spin_outputCurrent", motor.getOutputCurrent());
     SmartDashboard.putNumber("spin_velocity", motor.getEncoder().getVelocity());
 
-    if (motor.getOutputCurrent() >= 200 & motor.getEncoder().getVelocity() <= 0 & counter > 10) {
+    if (motor.getOutputCurrent() >= 75 & Math.abs(motor.getEncoder().getVelocity()) <= 15 & counter > 50) {
       directionCC = !directionCC;
-      
+      counter = 0;
       if (ShooterMAP.doShoot == false) {
         Robot.spindexer.stop();
       }

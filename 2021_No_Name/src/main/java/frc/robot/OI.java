@@ -17,6 +17,8 @@ import frc.robot.drivebase.shifter.ManualUp;
 import frc.robot.intake.In;
 import frc.robot.intake.OpenLoopIntake;
 import frc.robot.kicker.KickToShooter;
+import frc.robot.shooter.AutoAim;
+import frc.robot.shooter.AutoFlywheel;
 import frc.robot.shooter.AutoShoot;
 import frc.robot.shooter.OpenLoopShooter;
 import frc.robot.shooter.hood.OpenLoopHood;
@@ -184,11 +186,13 @@ public class OI {
         // SHOOTER -------------------------------------------
 
         xbox0Y.whenHeld(new AutoShoot()); // Everything (kicker, vision, turret, etc)
-        //xbox1Y.whenHeld(new AutoFlywheel()); // Vision only flywheel speed
+        xbox1Y.whenHeld(new AutoFlywheel()); // Vision only flywheel speed
         //xbox1LeftStick.whenHeld(new ManualTurretHoodFlywheel()); // hold down the joystick to manually control all 3
         xbox1RBumper.whenHeld(new OpenLoopShooter());
         xbox1RBumper.whenHeld(new OpenLoopHood());
         xbox1RBumper.whenHeld(new OpenLoopTurret());
+
+        xbox0B.whenHeld(new AutoAim());
 
         // KICKER --------------------------------------------
 

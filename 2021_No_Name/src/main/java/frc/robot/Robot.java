@@ -10,7 +10,7 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import org.ejml.simple.AutomaticSimpleMatrixConvert;
+//import org.ejml.simple.AutomaticSimpleMatrixConvert;
 
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -71,9 +71,6 @@ public class Robot extends TimedRobot {
   public ArrayList<double[]> autonomousArray;
   
   ArrayList<double[]> redA;
-  ArrayList<double[]> redB;
-  ArrayList<double[]> blueA;
-  ArrayList<double[]> blueB;
   ArrayList<double[]> currentChallenge;
 
   NetworkTable table;
@@ -140,59 +137,9 @@ public class Robot extends TimedRobot {
       System.out.println(e);
     } // END RED A
 
-    try { // RED B
-      FileReader fileReader_RedB = new FileReader("/c/" + "RedB" + ".json");
-      redB = gson.fromJson(fileReader_RedB, new TypeToken<List<double[]>>(){}.getType());
-      System.out.println("opened read file redB");
-      fileReader_RedB.close();
-    }
-    catch (Exception e) {
-      System.out.println("could not create FileReader RedB");
-      System.out.println(e);
-    } // END RED B
-    
-    try { // BLUE A
-      FileReader fileReader_BlueA = new FileReader("/c/" + "BlueA" + ".json");
-      blueA = gson.fromJson(fileReader_BlueA, new TypeToken<List<double[]>>(){}.getType());
-      System.out.println("opened read file BlueA");
-      fileReader_BlueA.close();
-    }
-    catch (Exception e) {
-      System.out.println("could not create FileReader BlueA");
-      System.out.println(e);
-    } // END BLUE A
-    
-    try { // BLUE B
-      FileReader fileReader_BlueB = new FileReader("/c/" + "BlueB" + ".json");
-      blueB = gson.fromJson(fileReader_BlueB, new TypeToken<List<double[]>>(){}.getType());
-      System.out.println("opened read file BlueB");
-      fileReader_BlueB.close();
-    }
-    catch (Exception e) {
-      System.out.println("could not create FileReader BlueB");
-      System.out.println(e);
-    } // END BLUE B
-
-    try { // CURRENT CHALLENGE
-      FileReader fileReader_CurrentChallenge = new FileReader("/c/" + "slalomnew" + ".json");
-      currentChallenge = gson.fromJson(fileReader_CurrentChallenge, new TypeToken<List<double[]>>(){}.getType());
-      System.out.println("opened read file CURRENT CHALLENGE");
-      fileReader_CurrentChallenge.close();
-    }
-    catch (Exception e) {
-      System.out.println("could not create FileReader CURRENT CHALLENGE");
-      System.out.println(e);
-    } 
     
     table = NetworkTableInstance.getDefault().getTable("limelight");
-
-    // END CURRENT CHALLENGE
-//    try{
-//      TurretMAP.turretEncoder.setPulseWidthPosition(0, 100);
-//    } catch (Exception e) {
-//      System.out.println(e.toString());
-//    }
-//    TurretMAP.initEncoderZero = TurretMAP.turretEncoder.getPulseWidthPosition();
+    
   }
 
   /**
@@ -234,28 +181,39 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() { // start of auto
-    // DECIDE WHICH AUTO TO PLAY
-    double tx = table.getEntry("tx").getDouble(0.0);
-    double ty = table.getEntry("ty").getDouble(0.0);
 
-    // check where the ball is (by distance and by left/right)
-    if (ty > 0) { // run blue
-      if (tx < 0) {
-        autonomousArray = blueB; // B // far away, on the left
-      } else {
-        autonomousArray = blueA; // A // far away, on the right
-      }
+    //Ensure starting in low gear and intake up
+    
+
+    // DECIDE WHICH AUTO TO PLAY
+    //double tx = table.getEntry("tx").getDouble(0.0);
+    //double ty = table.getEntry("ty").getDouble(0.0);
+    Gson gson = new Gson();      
+    String challengeName = SmartDashboard.getString("autoToPlay", "defaultEmpty");
+
+    try { // current challenge
+      FileReader fileReader_CurrentChallenge = new FileReader("/c/" + challengeName + ".json");
+      currentChallenge = gson.fromJson(fileReader_CurrentChallenge, new TypeToken<List<double[]>>(){}.getType());
+      System.out.println("opened read file " + challengeName);
+      fileReader_CurrentChallenge.close();
+      autonomousArray = currentChallenge;
     }
-    else { // run red
-    if (tx < 0) {
-      autonomousArray = redB; // B // close, on the left
-    } else {
-      autonomousArray = redA; // A // far away, on the right
-    }
-    }
-    autonomousArray = currentChallenge;
+    catch (Exception e) {
+      System.out.println("could not create FileReader "+ challengeName + " playing RedA instead");
+      System.out.println(e);
+      autonomousArray = redA;
+    } // END RED A
+
+    Robot.shifter.shiftDown();
+    Robot.intake.retract();
+
+    //autonomousArray = currentChallenge;
+    try {
     CommandBase autoCommand = new PlayerPreLoaded(autonomousArray);
     autoCommand.schedule();
+    } catch (Exception e) {
+      System.out.println(e);
+    }
   }
 
   /** This function is called periodically during autonomous. */

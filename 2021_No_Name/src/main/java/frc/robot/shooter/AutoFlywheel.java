@@ -15,7 +15,7 @@ import frc.robot.Robot;
 import frc.robot.drivebase.DriveBaseMAP;
 import frc.robot.shooter.hood.HoodMAP;
 
-public class AutoShoot extends CommandBase {
+public class AutoFlywheel extends CommandBase {
 
   private NetworkTable table;
   private NetworkTableEntry tx;
@@ -35,12 +35,8 @@ public class AutoShoot extends CommandBase {
   public boolean mode = SmartDashboard.getBoolean("Mode", false);
 
   /** Creates a new AutoShoot. */
-  public AutoShoot() {
+  public AutoFlywheel() {
     addRequirements(Robot.shooter);
-    addRequirements(Robot.turret);
-    addRequirements(Robot.hood);
-    // addRequirements(Robot.spindexer);
-    // addRequirements(Robot.kicker);
     // Use addRequirements() here to declare subsystem dependencies.
 
   }
@@ -48,7 +44,7 @@ public class AutoShoot extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    ShooterMAP.doShoot = false;
+    //ShooterMAP.doShoot = false;
 
     table = NetworkTableInstance.getDefault().getTable("limelight");
     tx = table.getEntry("tx");
@@ -121,8 +117,6 @@ public class AutoShoot extends CommandBase {
       ShooterMAP.m_pidController.setSmartMotionAllowedClosedLoopError(allE, 0);
       ShooterMAP.allowedErr = allE;
     }
-
-    //
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -195,46 +189,6 @@ public class AutoShoot extends CommandBase {
       speedVal = 100.0;
     }
 
-    // FOR HOOD:
-
-    if (y > 20) {
-      hoodSet = -50;
-    } else if (y > 17) {
-      hoodSet = -55;// 0.7;
-    } else if (y > 16) {
-      hoodSet = -60;// 0.7;
-    } else if (y > 15) {
-      hoodSet = -65;// 0.65;
-    } else if (y > 13) {
-      hoodSet = -75;// 0.65;
-    } else if (y > 12) {
-      hoodSet = -75;// 0.68;
-    } else if (y > 8) {
-      hoodSet = -80;// 0.7;
-    } else if (y > 6) {
-      hoodSet = -90;// 0.69;
-    } else if (y > 4) {
-      hoodSet = -90;
-    } else if (y > 3) {
-      hoodSet = -72;
-    } else if (y > 2) {
-      hoodSet = -60;
-    } else if (y > 1) {
-      hoodSet = -66;
-    } else if (y > 0) {
-      hoodSet = -76;
-    } else if (y > -3) {
-      hoodSet = -88;
-    } else if (y > -5) {
-      hoodSet = -73;
-    } else if (y > -6) {
-      hoodSet = -73;
-    } else if (y > -8) {
-      hoodSet = -70;
-    } else {
-      hoodSet = -50;
-    }
-
     // UNCOMMENT THIS FOR SMARTDASHBOARD TUNING
     // double newAdjSpd = SmartDashboard.getNumber("SHOOT SPD", 0.75);
     // if ((newAdjSpd != adjustableSpd)) {
@@ -251,11 +205,11 @@ public class AutoShoot extends CommandBase {
       // setPoint = SmartDashboard.getNumber("Set Velocity", 0);
       ShooterMAP.m_pidController.setReference(setPoint, ControlType.kVelocity);
       processVariable = ShooterMAP.m_encoder.getVelocity();
-      if (Math.abs(setPoint - processVariable) > 100) {
-        ShooterMAP.doShoot = false;
-      } else {
-        ShooterMAP.doShoot = true;
-      }
+      //if (Math.abs(setPoint - processVariable) > 100) {
+      //   ShooterMAP.doShoot = false;
+      // } else {
+      //   ShooterMAP.doShoot = true;
+      // }
     } else {
       setPoint = SmartDashboard.getNumber("Set Position", 0);
       /**
@@ -272,21 +226,9 @@ public class AutoShoot extends CommandBase {
 
     // ShooterMAP.flywheelMotor.set(speedVal);
 
-    // double smartHoodSet = SmartDashboard.getNumber("HOOD SET", 0.0);
-    // if ((smartHoodSet != hoodSet)) {
-    // hoodSet = smartHoodSet;
-    // }
-    Robot.hood.setHoodSetpoint(hoodSet);
-
     // Robot.shooter.setPoint = useYLookup((int) y);
     // SmartDashboard.putNumber("setPoint SHOOT", Robot.shooter.setPoint);
     // Robot.shooter.setFlywheelPID(useYLookup((int) y)); // full speed for now
-
-    // ShooterMAP.flywheelMotor.set(.53);
-
-    // SET TURRET
-    Robot.turret.addToTurretSetpoint((int) (x));
-    // SpindexerMAP.spindexerMotor.set(SpindexerMAP.DEFAULT_SPEED);
 
   }
 
@@ -298,10 +240,7 @@ public class AutoShoot extends CommandBase {
     ShooterMAP.m_pidController.setReference(0, ControlType.kVelocity);
 
     ShooterMAP.flywheelMotor.set(0.0);
-    // TODO PID
-    Robot.turret.stop();
-    // SpindexerMAP.spindexerMotor.set(0.0);
-    HoodMAP.hoodMotor.set(0.0); // stop the motor
+
   }
 
   // Returns true when the command should end.

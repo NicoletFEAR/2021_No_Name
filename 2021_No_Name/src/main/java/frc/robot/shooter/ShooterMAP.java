@@ -28,10 +28,6 @@ public class ShooterMAP {
 
   public static boolean doShoot;
 
-    // Shooter Constants
-    public static double DEFAULT_HOLD_SPEED = 1.0; //  if we want a default speed for commands
-    public static double MAX_SPEED = 1.0; // if we want to set a maximum intake speed
-
     public static void init() {
 
         doShoot = true;
