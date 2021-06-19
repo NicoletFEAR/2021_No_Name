@@ -21,7 +21,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import frc.robot.drivebase.*;
 import frc.robot.spindexer.SpindexerMAP;
 
-public class AutoShootHood extends CommandBase {
+public class OLDAutoShootHood extends CommandBase {
 
   private NetworkTable table;
   private NetworkTableEntry tx;
@@ -39,7 +39,7 @@ public class AutoShootHood extends CommandBase {
   public double hoodSet;
 
   /** Creates a new AutoShoot. */
-  public AutoShootHood() {
+  public OLDAutoShootHood() {
     //addRequirements(Robot.shooter);
     addRequirements(Robot.turret);
     addRequirements(Robot.hood);

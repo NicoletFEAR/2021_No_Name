@@ -17,7 +17,7 @@ import com.google.gson.reflect.TypeToken;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-import frc.robot.shooter.AutoShoot;
+import frc.robot.shooter.OLDAutoShoot;
 import frc.robot.drivebase.DriveBaseMAP;
 
 public class Player extends CommandBase {
@@ -39,7 +39,7 @@ public class Player extends CommandBase {
   boolean isFinished;
   FileReader fileReader;
 
-  AutoShoot shooty;
+  OLDAutoShoot shooty;
 
   ArrayList<double[]> allLines;
   /** Creates a new Player. */
@@ -149,7 +149,7 @@ public class Player extends CommandBase {
      if (thisLine[11] == 3.0) {Robot.spindexer.stop();}
 
      // AUTO AIM
-     if (thisLine[9] == 1.0) {shooty = new AutoShoot(); shooty.schedule();} else if (thisLine[9] == 3.0) {shooty.cancel();}
+     if (thisLine[9] == 1.0) {shooty = new OLDAutoShoot(); shooty.schedule();} else if (thisLine[9] == 3.0) {shooty.cancel();}
 
      // INTAKE UP
     //if (thisLine[14] == 1.0) {Robot.intake.up();}

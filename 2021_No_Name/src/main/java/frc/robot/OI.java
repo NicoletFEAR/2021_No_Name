@@ -18,7 +18,7 @@ import frc.robot.drivebase.shifter.ManualUp;
 import frc.robot.intake.In;
 import frc.robot.intake.OpenLoopIntake;
 import frc.robot.kicker.KickToShooter;
-import frc.robot.shooter.AutoShootHood;
+import frc.robot.shooter.OLDAutoShootHood;
 import frc.robot.shooter.ManualTurretHoodFlywheel;
 import frc.robot.shooter.OpenLoopShooter;
 import frc.robot.shooter.hood.HoodEncoderReset;
@@ -187,11 +187,13 @@ public class OI {
         // SHOOTER -------------------------------------------
 
         //xbox0Y.whenHeld(new AutoShoot()); // Everything (kicker, vision, turret, etc)
-        //xbox1Y.whenHeld(new AutoFLywheel()); // Vision only flywheel speed
+        //xbox1Y.whenHeld(new AutoFlywheel()); // Vision only flywheel speed
         xbox1LeftStick.whenHeld(new ManualTurretHoodFlywheel()); // hold down the joystick to manually control all 3
         
 
         // KICKER --------------------------------------------
+
+        xbox0Y.whenHeld(new KickToShooter()); // for Auto Shooting
 
         xbox0B.whenHeld(new KickToShooter());
         xbox1B.whenHeld(new KickToShooter());
@@ -212,6 +214,8 @@ public class OI {
         
         // SPINDEXER -----------------------------------------
         
+        xbox0Y.whenHeld(new SpinSmart()); // for Auto Shooting
+
         xbox0A.whenHeld(new SpinSmart());
         xbox1X.whenHeld(new SpinSmart());
 

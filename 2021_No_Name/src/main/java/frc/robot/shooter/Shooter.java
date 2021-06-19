@@ -30,15 +30,13 @@ public class Shooter extends SubsystemBase {
 
 
     public void setFlywheelPID(int target) {
-        ShooterMAP.flywheelPIDController.setReference(target, ControlType.kVelocity);
-        // set target velocity for flywheel PID
+       
     }
  
 
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-        ShooterMAP.periodCheckFlywheelPIDTuning(); // puts and sets PID Values from smart dashboard
 
     }
 }
