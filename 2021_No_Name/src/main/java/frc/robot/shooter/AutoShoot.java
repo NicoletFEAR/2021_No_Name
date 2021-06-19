@@ -223,7 +223,11 @@ if((allE != ShooterMAP.allowedErr)) { ShooterMAP.m_pidController.setSmartMotionA
           //setPoint = SmartDashboard.getNumber("Set Velocity", 0);
           ShooterMAP.m_pidController.setReference(setPoint, ControlType.kVelocity);
           processVariable = ShooterMAP.m_encoder.getVelocity();
-          if (Math.abs(setPoint-processVariable) > 100) {ShooterMAP.doShoot = false;} else {ShooterMAP.doShoot = true;}
+          if (Math.abs(setPoint-processVariable) > 100) {
+            ShooterMAP.doShoot = false;
+          } else {
+            ShooterMAP.doShoot = true;
+            }
         } else {
           setPoint = SmartDashboard.getNumber("Set Position", 0);
           /**
