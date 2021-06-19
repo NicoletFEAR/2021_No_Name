@@ -154,19 +154,28 @@ public class Player extends CommandBase {
      if (thisLine[16] == 1.0) {Robot.intake.retract();}
      if (thisLine[36] == 1.0) {Robot.intake.retract();}
 
-     // SPINDEXER SPIN SMART // 10 and 28 // A xbox0 & X xbox1
+     // SPINDEXER SPIN SMART // 9 and 10 and 28 // A and Y xbox0 & X xbox1
+     //if (thisLine[10] == 1.0) {START THE COMMAND????}
 
      // SPINDEXER SPIN COUNTERCLOCK // 17 and 37 // D Pad left xbox0 & xbox1
+     if (thisLine[17] == 1.0) {Robot.spindexer.spinCounterClockwise();}
+     if (thisLine[17] == 3.0) {Robot.spindexer.stop();}
+     if (thisLine[37] == 1.0) {Robot.spindexer.spinCounterClockwise();}
+     if (thisLine[37] == 3.0) {Robot.spindexer.stop();}
 
      // SPINDEXER SPIN CLOCK // 15 and 35 // D Pad right xbox0 & xbox1
+     if (thisLine[15] == 1.0) {Robot.spindexer.spinClockwise();}
+     if (thisLine[15] == 3.0) {Robot.spindexer.stop();}
+     if (thisLine[35] == 1.0) {Robot.spindexer.spinClockwise();}
+     if (thisLine[35] == 3.0) {Robot.spindexer.stop();}
 
      // AUTO SHOOT // 9 // Y xbox0
 
      // AUTO FLYWHEEL // 29 // Y xbox1
 
-     // AIM //  // B xbox0
+     // AIM // 11 // B xbox0
 
-     // KICKER
+     // KICKER // 9 and 31 // B and Y xbox1
 
 
     // END RUN LINE
@@ -182,7 +191,13 @@ public class Player extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     isPlaying = false;
-    
+
+    Robot.spindexer.stop();
+    Robot.intake.intake();
+    Robot.driveBase.stop();
+    Robot.kicker.stop();
+    Robot.driveBase.stop();
+
     SmartDashboard.putBoolean("isPlaying", isPlaying);
     try {fileReader.close();}
     catch(Exception e) {}

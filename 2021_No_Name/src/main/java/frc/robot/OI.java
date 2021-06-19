@@ -19,6 +19,8 @@ import frc.robot.intake.OpenLoopIntake;
 import frc.robot.kicker.KickToShooter;
 import frc.robot.shooter.AutoShoot;
 import frc.robot.shooter.ManualTurretHoodFlywheel;
+import frc.robot.shooter.hood.OpenLoopHood;
+import frc.robot.shooter.turret.OpenLoopTurret;
 import frc.robot.spindexer.OpenLoopSpindexer;
 import frc.robot.spindexer.SpinSmart;
 
@@ -184,7 +186,8 @@ public class OI {
         xbox0Y.whenHeld(new AutoShoot()); // Everything (kicker, vision, turret, etc)
         //xbox1Y.whenHeld(new AutoFlywheel()); // Vision only flywheel speed
         xbox1LeftStick.whenHeld(new ManualTurretHoodFlywheel()); // hold down the joystick to manually control all 3
-        
+        xbox1RBumper.whenHeld(new OpenLoopHood());
+        xbox1RBumper.whenHeld(new OpenLoopTurret());
 
         // KICKER --------------------------------------------
 

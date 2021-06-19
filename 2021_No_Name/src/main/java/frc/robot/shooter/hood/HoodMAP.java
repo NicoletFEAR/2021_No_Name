@@ -36,8 +36,7 @@ public class HoodMAP {
         //hoodController = hoodMotor.getPIDController();
         
         hoodInitEncoderZero = hoodEncoder.getPosition();
-        //hoodMotor.setInverted(false);
-        
+        //hoodMotor.setInverted(false);      
 
     }
 
