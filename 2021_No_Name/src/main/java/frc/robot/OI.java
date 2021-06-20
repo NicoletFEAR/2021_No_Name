@@ -141,8 +141,8 @@ public class OI {
         //xbox0A.whenReleased(() -> Robot.intake.stop()); // have to stop the motor
          //  for now want real command for interruptible logic
 
-        xbox0Back.whenPressed(new Record());
-        xbox0Start.whenHeld(new Player());
+        //xbox0Back.whenPressed(new Record());
+        //xbox0Start.whenHeld(new Player());
 
 
         // left joy y axis for intake variable
@@ -195,7 +195,8 @@ public class OI {
 
         xbox0B.whenHeld(new AutoAim());
 
-        xbox0Start.whenHeld(new Unjam());
+        //xbox0Start.whenHeld(new Unjam());
+        xbox0Start.whenPressed(new Record());
 
         // KICKER --------------------------------------------
 

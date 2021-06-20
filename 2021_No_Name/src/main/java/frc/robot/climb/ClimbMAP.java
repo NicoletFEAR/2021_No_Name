@@ -10,7 +10,7 @@ public class ClimbMAP {
     public static CANSparkMax climbMotor;
 
     // Climb Constants
-    public static double DEFAULT_SPEED = 0.4; //  if we want a default speed for commands
+    public static double DEFAULT_SPEED = 1.0; //  if we want a default speed for commands
     public static double MAX_SPEED = 1.0; // if we want to set a maximum intake speed
 
 

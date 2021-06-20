@@ -54,9 +54,9 @@ public class ShooterMAP {
         m_pidController = flywheelMotor.getPIDController();
         m_encoder = flywheelMotor.getEncoder();
         // PID coefficients
-    kP = 5e-3; 
+    kP = 0.00005; 
     kI = 1e-6;
-    kD = 0; 
+    kD = 5000; 
     kIz = 0; 
     kFF = 0.000156; 
     kMaxOutput = 1; 

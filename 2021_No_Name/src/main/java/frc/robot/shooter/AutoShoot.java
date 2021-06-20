@@ -156,83 +156,83 @@ public class AutoShoot extends CommandBase {
     // FOR FLYWHEEL:
 
     if (y > 20) {
-      speedVal = 1000.0;
+      speedVal = 3000.0;
     } else if (y > 18) {
-      speedVal = 1000.0;// 0.7;
+      speedVal = 3000.0;// 0.7;
     } else if (y > 17) {
-      speedVal = 1000.0;// 0.7;
+      speedVal = 3000.0;// 0.7;
     } else if (y > 15) {
-      speedVal = 1000.0;// 0.7;
+      speedVal = 3000.0;// 0.7;
     } else if (y > 13) {
-      speedVal = 1000.0;
+      speedVal = 3000.0;
     } else if (y > 12) {
-      speedVal = 1000.0;// 0.7;
+      speedVal = 3000.0;// 0.7;
     } else if (y > 11) {
-      speedVal = 1000.0;
+      speedVal = 3000.0;
     } else if (y > 10) {
-      speedVal = 1000.0;
+      speedVal = 3000.0;
     } else if (y > 9) {
-      speedVal = 1000.0;
+      speedVal = 3000.0;
     } else if (y > 8) {
-      speedVal = 1000.0;
+      speedVal = 3000.0;
     } else if (y > 7) {
-      speedVal = 1000.0;
+      speedVal = 3000.0;
     } else if (y > 6) {
-      speedVal = 1000.0;
+      speedVal = 3000.0;
     } else if (y > 5) {
-      speedVal = 1000.0;
+      speedVal = 3000.0;
     } else if (y > 3) {
-      speedVal = 1000.0;
+      speedVal = 3000.0;
     } else if (y > 0) {
-      speedVal = 1000.0;
+      speedVal = 3000.0;
     } else if (y > -3) {
-      speedVal = 1000.0;
+      speedVal = 3000.0;
     } else if (y > -5) {
-      speedVal = 1000.0;
+      speedVal = 3000.0;
     } else if (y > -8) {
-      speedVal = 1000.0;
+      speedVal = 3000.0;
     } else {
-      speedVal = 1000.0;
+      speedVal = 3000.0;
     }
 
     // FOR HOOD:
 
     if (y > 20) {
-      hoodSet = -50;
+      hoodSet = -20;
     } else if (y > 17) {
-      hoodSet = -55;// 0.7;
+      hoodSet = -25;// 0.7;
     } else if (y > 16) {
-      hoodSet = -60;// 0.7;
+      hoodSet = -20;// 0.7;
     } else if (y > 15) {
-      hoodSet = -65;// 0.65;
+      hoodSet = -25;// 0.65;
     } else if (y > 13) {
-      hoodSet = -75;// 0.65;
+      hoodSet = -25;// 0.65;
     } else if (y > 12) {
-      hoodSet = -75;// 0.68;
+      hoodSet = -25;// 0.68;
     } else if (y > 8) {
-      hoodSet = -80;// 0.7;
+      hoodSet = -20;// 0.7;
     } else if (y > 6) {
-      hoodSet = -90;// 0.69;
+      hoodSet = -20;// 0.69;
     } else if (y > 4) {
-      hoodSet = -90;
+      hoodSet = -20;
     } else if (y > 3) {
-      hoodSet = -72;
+      hoodSet = -22;
     } else if (y > 2) {
-      hoodSet = -60;
+      hoodSet = -20;
     } else if (y > 1) {
-      hoodSet = -66;
+      hoodSet = -26;
     } else if (y > 0) {
-      hoodSet = -76;
+      hoodSet = -26;
     } else if (y > -3) {
-      hoodSet = -88;
+      hoodSet = -28;
     } else if (y > -5) {
-      hoodSet = -73;
+      hoodSet = -23;
     } else if (y > -6) {
-      hoodSet = -73;
+      hoodSet = -23;
     } else if (y > -8) {
-      hoodSet = -70;
+      hoodSet = -20;
     } else {
-      hoodSet = -50;
+      hoodSet = -20;
     }
 
     // UNCOMMENT THIS FOR SMARTDASHBOARD TUNING
@@ -251,7 +251,7 @@ public class AutoShoot extends CommandBase {
       // setPoint = SmartDashboard.getNumber("Set Velocity", 0);
       ShooterMAP.m_pidController.setReference(setPoint, ControlType.kVelocity);
       processVariable = ShooterMAP.m_encoder.getVelocity();
-      if (Math.abs(setPoint - processVariable) > 100) {
+      if (Math.abs(setPoint - processVariable) > 500) {
         ShooterMAP.doShoot = false;
       } else {
         ShooterMAP.doShoot = true;
