@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 //import org.ejml.simple.AutomaticSimpleMatrixConvert;
+import edu.wpi.first.cameraserver.CameraServer;
 
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -107,6 +108,10 @@ public class Robot extends TimedRobot {
     climb = new Climb();
 
     oi = new OI(); // this comes after the subsystems!
+
+    CameraServer camera = CameraServer.getInstance();
+		camera.startAutomaticCapture("cam0", 50);
+		camera.startAutomaticCapture();
 
     DriveBaseMAP.debugMode = false; //See Above
     ShooterMAP.doShoot = true;

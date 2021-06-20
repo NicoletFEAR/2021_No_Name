@@ -19,7 +19,7 @@ public class HoodMAP {
     public static double MAX_SPEED = 0.4; // set a maximum hood movement speed
 
     public static double MAX_ENCODER = 0;
-    public static double MIN_ENCODER = -120;
+    public static double MIN_ENCODER = -50;
     public static double hoodInitEncoderZero = 0;
 
     public static void init() {

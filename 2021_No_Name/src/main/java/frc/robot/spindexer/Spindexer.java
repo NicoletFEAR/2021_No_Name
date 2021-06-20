@@ -12,11 +12,11 @@ public class Spindexer extends SubsystemBase {
   
 
   public void spinClockwise() {
-    SpindexerMAP.spindexerMotor.set(SpindexerMAP.DEFAULT_SPEED);
+    SpindexerMAP.spindexerMotor.set(-SpindexerMAP.DEFAULT_SPEED);
   }
 
   public void spinCounterClockwise() {
-    SpindexerMAP.spindexerMotor.set(-SpindexerMAP.DEFAULT_SPEED);
+    SpindexerMAP.spindexerMotor.set(SpindexerMAP.DEFAULT_SPEED);
   }
 
   public void variableSpindexer(double speed) {
