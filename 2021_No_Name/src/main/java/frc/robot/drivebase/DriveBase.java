@@ -21,7 +21,7 @@ public class DriveBase extends SubsystemBase {
     
         turnAmount = turnAmount*turnAmount*turnAmount;
         turnAmount *= DriveBaseMAP.TURN_SCALING; // in case we wanted to scale down all turning
-        robotOutput = robotOutput*robotOutput*robotOutput;
+        robotOutput = robotOutput;
         robotOutput *= DriveBaseMAP.SPEED_SCALING;
         //turnAmount = turnAmount < 0 ? -(turnAmount*turnAmount) : (turnAmount*turnAmount); // gives more precise low speed tunring (0->0, .5->.25, 1->1)
         outputLeft =  robotOutput + turnAmount; // sets the outputs for each side

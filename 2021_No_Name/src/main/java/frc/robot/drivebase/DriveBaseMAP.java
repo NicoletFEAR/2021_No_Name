@@ -36,7 +36,7 @@ public class DriveBaseMAP {
 
     // OpenLoopDriveCMD
     public static double TURN_SCALING = 0.4; // dampens sensitivity of controls to turning
-    public static double SPEED_SCALING = 1.0; // sets a max speed for driver control
+    public static double SPEED_SCALING = 0.8; // sets a max speed for driver control
     public static final double LEFT_RIGHT_ADJUST = 0.0; // basic adjust to keep robot applying roughly equal power
 
     // SparkMax Configurations

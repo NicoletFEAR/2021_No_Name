@@ -48,7 +48,7 @@ public class AutoShoot extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    ShooterMAP.doShoot = false;
+    //ShooterMAP.doShoot = false;
 
     table = NetworkTableInstance.getDefault().getTable("limelight");
     tx = table.getEntry("tx");
@@ -156,9 +156,9 @@ public class AutoShoot extends CommandBase {
     // FOR FLYWHEEL:
 
     if (y > 20) {
-      speedVal = 3000.0;
+      speedVal = 4000.0;
     } else if (y > 18) {
-      speedVal = 3000.0;// 0.7;
+      speedVal = 4000.0;// 0.7;
     } else if (y > 17) {
       speedVal = 3000.0;// 0.7;
     } else if (y > 15) {
@@ -174,25 +174,25 @@ public class AutoShoot extends CommandBase {
     } else if (y > 9) {
       speedVal = 3000.0;
     } else if (y > 8) {
-      speedVal = 3000.0;
+      speedVal = 4000.0;
     } else if (y > 7) {
-      speedVal = 3000.0;
+      speedVal = 4000.0;
     } else if (y > 6) {
-      speedVal = 3000.0;
+      speedVal = 4000.0;
     } else if (y > 5) {
-      speedVal = 3000.0;
+      speedVal = 4000.0;
     } else if (y > 3) {
-      speedVal = 3000.0;
+      speedVal = 4000.0;
     } else if (y > 0) {
-      speedVal = 3000.0;
+      speedVal = 4000.0;
     } else if (y > -3) {
-      speedVal = 3000.0;
+      speedVal = 4000.0;
     } else if (y > -5) {
-      speedVal = 3000.0;
+      speedVal = 4000.0;
     } else if (y > -8) {
-      speedVal = 3000.0;
+      speedVal = 4000.0;
     } else {
-      speedVal = 3000.0;
+      speedVal = 4000.0;
     }
 
     // FOR HOOD:
@@ -236,11 +236,11 @@ public class AutoShoot extends CommandBase {
     }
 
     // UNCOMMENT THIS FOR SMARTDASHBOARD TUNING
-    // double newAdjSpd = SmartDashboard.getNumber("SHOOT SPD", 0.75);
-    // if ((newAdjSpd != adjustableSpd)) {
-    // adjustableSpd = newAdjSpd;
-    // }
-    // speedVal = adjustableSpd;
+    double newAdjSpd = SmartDashboard.getNumber("SHOOT SPD", 3000);
+    if ((newAdjSpd != adjustableSpd)) {
+    adjustableSpd = newAdjSpd;
+    }
+    speedVal = adjustableSpd;
 
     // ShooterMAP.flywheelMotor.set(adjustableSpd); //IGNORE IF PID
 
@@ -251,11 +251,11 @@ public class AutoShoot extends CommandBase {
       // setPoint = SmartDashboard.getNumber("Set Velocity", 0);
       ShooterMAP.m_pidController.setReference(setPoint, ControlType.kVelocity);
       processVariable = ShooterMAP.m_encoder.getVelocity();
-      if (Math.abs(setPoint - processVariable) > 500) {
-        ShooterMAP.doShoot = false;
-      } else {
-        ShooterMAP.doShoot = true;
-      }
+      // if (Math.abs(setPoint - processVariable) > 1000) {
+      //   ShooterMAP.doShoot = false;
+      // } else {
+      //   ShooterMAP.doShoot = true;
+      // }
     } else {
       setPoint = SmartDashboard.getNumber("Set Position", 0);
       /**
@@ -272,10 +272,10 @@ public class AutoShoot extends CommandBase {
 
     // ShooterMAP.flywheelMotor.set(speedVal);
 
-    // double smartHoodSet = SmartDashboard.getNumber("HOOD SET", 0.0);
-    // if ((smartHoodSet != hoodSet)) {
-    // hoodSet = smartHoodSet;
-    // }
+    double smartHoodSet = SmartDashboard.getNumber("HOOD SET", 0.0);
+    if ((smartHoodSet != hoodSet)) {
+    hoodSet = smartHoodSet;
+    }
     Robot.hood.setHoodSetpoint(hoodSet);
 
     // Robot.shooter.setPoint = useYLookup((int) y);

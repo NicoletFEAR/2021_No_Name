@@ -109,6 +109,9 @@ public class Robot extends TimedRobot {
 
     oi = new OI(); // this comes after the subsystems!
 
+    SmartDashboard.putNumber("HOOD SET", 0.0);
+    SmartDashboard.putNumber("SHOOT SPD", 3000);
+
     CameraServer camera = CameraServer.getInstance();
 		camera.startAutomaticCapture("cam0", 50);
 		camera.startAutomaticCapture();
