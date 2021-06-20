@@ -156,43 +156,43 @@ public class AutoShoot extends CommandBase {
     // FOR FLYWHEEL:
 
     if (y > 20) {
-      speedVal = 100.0;
+      speedVal = 1000.0;
     } else if (y > 18) {
-      speedVal = 100.0;// 0.7;
+      speedVal = 1000.0;// 0.7;
     } else if (y > 17) {
-      speedVal = 100.0;// 0.7;
+      speedVal = 1000.0;// 0.7;
     } else if (y > 15) {
-      speedVal = 100.0;// 0.7;
+      speedVal = 1000.0;// 0.7;
     } else if (y > 13) {
-      speedVal = 100.0;
+      speedVal = 1000.0;
     } else if (y > 12) {
-      speedVal = 100.0;// 0.7;
+      speedVal = 1000.0;// 0.7;
     } else if (y > 11) {
-      speedVal = 100.0;
+      speedVal = 1000.0;
     } else if (y > 10) {
-      speedVal = 100.0;
+      speedVal = 1000.0;
     } else if (y > 9) {
-      speedVal = 100.0;
+      speedVal = 1000.0;
     } else if (y > 8) {
-      speedVal = 100.0;
+      speedVal = 1000.0;
     } else if (y > 7) {
-      speedVal = 100.0;
+      speedVal = 1000.0;
     } else if (y > 6) {
-      speedVal = 100.0;
+      speedVal = 1000.0;
     } else if (y > 5) {
-      speedVal = 100.0;
+      speedVal = 1000.0;
     } else if (y > 3) {
-      speedVal = 100.0;
+      speedVal = 1000.0;
     } else if (y > 0) {
-      speedVal = 100.0;
+      speedVal = 1000.0;
     } else if (y > -3) {
-      speedVal = 100.0;
+      speedVal = 1000.0;
     } else if (y > -5) {
-      speedVal = 100.0;
+      speedVal = 1000.0;
     } else if (y > -8) {
-      speedVal = 100.0;
+      speedVal = 1000.0;
     } else {
-      speedVal = 100.0;
+      speedVal = 1000.0;
     }
 
     // FOR HOOD:

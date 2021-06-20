@@ -9,14 +9,17 @@ public class Climb extends SubsystemBase {
     /**
      * Operates Climb.
      */
-
+    double climbInitEncoderZero = 0;
+    public Climb() {
+        climbInitEncoderZero = ClimbMAP.climbMotor.getEncoder().getPosition();
+    }
     // Our Methods HERE
     public void runClimb() { // 
-        ClimbMAP.climbMotor.set(ClimbMAP.DEFAULT_SPEED);
+        ClimbMAP.climbMotor.set(-ClimbMAP.DEFAULT_SPEED);
     }
 
     public void reverse() { // reverse of default direction at a constant speed
-        ClimbMAP.climbMotor.set(-ClimbMAP.DEFAULT_SPEED);
+        ClimbMAP.climbMotor.set(ClimbMAP.DEFAULT_SPEED);
     }
 
     public void variableClimb(double speed) {

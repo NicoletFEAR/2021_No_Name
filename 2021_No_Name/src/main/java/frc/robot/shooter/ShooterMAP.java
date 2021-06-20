@@ -42,18 +42,19 @@ public class ShooterMAP {
         flywheelMotor.setSmartCurrentLimit(80, 80);
         flywheelMotor2.setSmartCurrentLimit(80, 80);
 
-        flywheelMotor.setIdleMode(IdleMode.kBrake);
-        flywheelMotor2.setIdleMode(IdleMode.kBrake);
+        flywheelMotor.setIdleMode(IdleMode.kCoast);
+        flywheelMotor2.setIdleMode(IdleMode.kCoast);
 
-        
-        flywheelMotor2.follow(flywheelMotor);
-        flywheelMotor2.setInverted(true);
+                //flywheelMotor2.setInverted(true);
+
+        //flywheelMotor2.follow(flywheelMotor);
+        flywheelMotor2.follow(flywheelMotor, true);
 
         // REV PID
         m_pidController = flywheelMotor.getPIDController();
         m_encoder = flywheelMotor.getEncoder();
         // PID coefficients
-    kP = 5e-5; 
+    kP = 5e-3; 
     kI = 1e-6;
     kD = 0; 
     kIz = 0; 
