@@ -48,7 +48,7 @@ public class AutoShoot extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    //ShooterMAP.doShoot = false;
+    ShooterMAP.doShoot = false;
 
     table = NetworkTableInstance.getDefault().getTable("limelight");
     tx = table.getEntry("tx");
@@ -251,11 +251,11 @@ public class AutoShoot extends CommandBase {
       // setPoint = SmartDashboard.getNumber("Set Velocity", 0);
       ShooterMAP.m_pidController.setReference(setPoint, ControlType.kVelocity);
       processVariable = ShooterMAP.m_encoder.getVelocity();
-      // if (Math.abs(setPoint - processVariable) > 1000) {
-      //   ShooterMAP.doShoot = false;
-      // } else {
-      //   ShooterMAP.doShoot = true;
-      // }
+      if (Math.abs(setPoint - processVariable) > 500) {
+        ShooterMAP.doShoot = false;
+      } else {
+        ShooterMAP.doShoot = true;
+      }
     } else {
       setPoint = SmartDashboard.getNumber("Set Position", 0);
       /**
@@ -272,10 +272,10 @@ public class AutoShoot extends CommandBase {
 
     // ShooterMAP.flywheelMotor.set(speedVal);
 
-    double smartHoodSet = SmartDashboard.getNumber("HOOD SET", 0.0);
-    if ((smartHoodSet != hoodSet)) {
-    hoodSet = smartHoodSet;
-    }
+    //double smartHoodSet = SmartDashboard.getNumber("HOOD SET", 0.0);
+    //if ((smartHoodSet != hoodSet)) {
+    //hoodSet = smartHoodSet;
+    //}
     Robot.hood.setHoodSetpoint(hoodSet);
 
     // Robot.shooter.setPoint = useYLookup((int) y);
