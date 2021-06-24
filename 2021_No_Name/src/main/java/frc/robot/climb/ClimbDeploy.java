@@ -39,7 +39,7 @@ public class ClimbDeploy extends CommandBase {
   public boolean isFinished() {
     
     // if encoder past the top, return true;
-    if (1 > 2) {
+    if ((ClimbMAP.climbMotor.getEncoder().getPosition() - Robot.climb.climbInitEncoderZero) < -370) {
       return true;
     }
     return false;

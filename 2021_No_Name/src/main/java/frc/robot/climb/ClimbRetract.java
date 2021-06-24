@@ -39,7 +39,7 @@ public class ClimbRetract extends CommandBase {
   public boolean isFinished() {
     
     // if encoder past the end or before the top, return true;
-    if (1 > 3) {
+    if ((ClimbMAP.climbMotor.getEncoder().getPosition() - Robot.climb.climbInitEncoderZero) < -795) {
       return true;
     } 
     return false;
