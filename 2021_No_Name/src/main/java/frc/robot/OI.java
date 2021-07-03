@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
-import frc.robot.autonomous.Player;
 import frc.robot.autonomous.Record;
 import frc.robot.climb.ClimbDeploy;
 import frc.robot.climb.ClimbReset;
@@ -21,10 +20,10 @@ import frc.robot.shooter.AutoAim;
 import frc.robot.shooter.AutoFlywheel;
 import frc.robot.shooter.AutoShoot;
 import frc.robot.shooter.OpenLoopShooter;
-import frc.robot.shooter.Unjam;
 import frc.robot.shooter.hood.OpenLoopHood;
 import frc.robot.shooter.turret.OpenLoopTurret;
 import frc.robot.spindexer.OpenLoopSpindexer;
+import frc.robot.spindexer.SpinShuffle;
 import frc.robot.spindexer.SpinSmart;
 
 /**
@@ -223,7 +222,7 @@ public class OI {
         
         xbox0Y.whenHeld(new SpinSmart()); // for Auto Shooting
 
-        xbox0A.whenHeld(new SpinSmart());
+        xbox0A.whenHeld(new SpinShuffle());
         xbox1X.whenHeld(new SpinSmart());
 
         xbox1RightStick.whenHeld(new OpenLoopSpindexer());
